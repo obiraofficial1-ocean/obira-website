@@ -1,0 +1,30 @@
+name: Sync Products to Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout website repo
+        uses: actions/checkout@v3
+
+      - name: Clone products repo
+        run: |
+          git clone https://github.com/obiraofficial1-ocean/obira-products.git
+
+      - name: Copy products to website
+        run: |
+          cp -r obira-products/* ./products/
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Auto update products" || echo "No changes"
+          git push

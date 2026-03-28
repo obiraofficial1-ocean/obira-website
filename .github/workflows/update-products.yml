@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-ww
+        ww
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -19,7 +19,9 @@ jobs:
 
       - name: Copy products to website
         run: |
-          cp -r obira-products/* ./products/
+          cp -r obira-products/bracelets products/
+          cp -r obira-products/necklaces products/
+          cp -r obira-products/catch-clips products/
 
       - name: Commit and push changes
         run: |

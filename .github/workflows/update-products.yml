@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-
+ww
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
 
       - name: Clone products repo
         run: |
-          git clone https://github.com/obiraofficial1-ocean/obira-products.git
+          git clone https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/obiraofficial1-ocean/obira-products.git
 
       - name: Copy products to website
         run: |

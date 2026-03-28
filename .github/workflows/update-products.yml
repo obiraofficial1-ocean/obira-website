@@ -1,10 +1,10 @@
-name: Sync Products to Website
+name: Sync Products
 
 on:
   push:
     branches:
       - main
-        ww
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -17,16 +17,22 @@ jobs:
         run: |
           git clone https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/obiraofficial1-ocean/obira-products.git
 
-      - name: Copy products to website
+      - name: Clean and copy correctly
         run: |
-          cp -r obira-products/bracelets products/
-          cp -r obira-products/necklaces products/
-          cp -r obira-products/catch-clips products/
+          rm -rf products
+          mkdir products
+          mkdir products/bracelets
+          mkdir products/necklaces
+          mkdir products/catch-clips
 
-      - name: Commit and push changes
+          cp -r obira-products/bracelets/* products/bracelets/
+          cp -r obira-products/necklaces/* products/necklaces/
+          cp -r obira-products/catch-clips/* products/catch-clips/
+
+      - name: Commit and push
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
           git add .
-          git commit -m "Auto update products" || echo "No changes"
+          git commit -m "Fix product structure" || echo "No changes"
           git push

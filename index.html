@@ -6,267 +6,304 @@
 <title>OBIRA</title>
 
 <style>
+html { scroll-behavior:smooth; }
+
 body {
   margin:0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background:#ffffff;
+  font-family:-apple-system, BlinkMacSystemFont, sans-serif;
+  background:#fff;
   color:#111;
 }
 
-/* NAVBAR */
+/* NAV */
 .nav {
+  position:fixed;
+  width:100%;
   display:flex;
   justify-content:space-between;
-  padding:20px 8%;
-  border-bottom:1px solid #eee;
-}
-.nav a {
-  text-decoration:none;
-  color:#111;
-  margin-left:20px;
+  padding:15px 8%;
+  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.7);
+  z-index:1000;
 }
 
 /* HERO */
 .hero {
-  text-align:center;
-  padding:120px 20px;
-}
-.hero h1 {
-  font-size:3rem;
-  letter-spacing:2px;
-}
-.hero p {
-  margin:20px 0;
-  color:#555;
+  position:relative;
+  height:100vh;
+  overflow:hidden;
 }
 
-/* BUTTON */
-.btn {
-  background:#111;
-  color:white;
-  padding:12px 28px;
-  text-decoration:none;
-  display:inline-block;
-  transition:0.3s;
+.slide {
+  position:absolute;
+  width:100%;
+  height:100%;
+  opacity:0;
+  transition:1s;
 }
-.btn:hover {
-  background:#333;
+
+.slide.active { opacity:1; }
+
+.slide img, .slide video {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero-text {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  color:white;
+}
+
+.hero-text h1 { font-size:3.5rem; }
+
+.btn {
+  background:white;
+  color:black;
+  padding:12px 25px;
+  text-decoration:none;
+  border:none;
+  cursor:pointer;
 }
 
 /* SECTION */
 .section {
-  padding:80px 8%;
+  padding:100px 8%;
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s;
 }
 
-/* CATEGORIES */
-.categories {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
-.category img {
-  width:100%;
-  height:350px;
-  object-fit:cover;
+.section.show {
+  opacity:1;
+  transform:translateY(0);
 }
 
 /* PRODUCTS */
 .products {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
+  gap:40px;
 }
+
 .product img {
   width:100%;
-}
-.price {
-  color:#555;
+  transition:0.4s;
 }
 
-/* STATEMENT */
-.statement {
-  text-align:center;
-  padding:100px 20px;
+.product img:hover {
+  transform:scale(1.05);
 }
 
-/* ABOUT */
-.about {
-  max-width:700px;
-  line-height:1.6;
+/* CART */
+#cartBtn {
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#111;
+  color:white;
+  padding:10px 15px;
+  cursor:pointer;
+}
+
+#cartBox {
+  display:none;
+  position:fixed;
+  top:60px;
+  right:20px;
+  background:white;
+  padding:15px;
+  width:300px;
+  border:1px solid #ddd;
 }
 
 /* FOOTER */
 .footer {
   text-align:center;
   padding:40px;
-  border-top:1px solid #eee;
-  color:#777;
+}
+
+.social a {
+  margin:0 10px;
+  text-decoration:none;
+  color:#111;
+}
+
+/* WHATSAPP */
+.whatsapp {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:14px 18px;
+  border-radius:50px;
+  text-decoration:none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
+<!-- NAV -->
 <div class="nav">
   <div><strong>OBIRA</strong></div>
-  <div>
-    <a href="#">Shop</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-  </div>
 </div>
 
-<!-- HERO -->
+<!-- HERO SLIDER -->
 <section class="hero">
+
+<div class="slide active">
+  <video autoplay muted loop>
+    <source src="videos/Hero-V1.mp4">
+  </video>
+</div>
+
+<div class="slide">
+  <img src="images/Bracelets-CR-002.jpg">
+</div>
+
+<div class="slide">
+  <img src="images/Necklace-Chain-BD-003.jpg">
+</div>
+
+<div class="hero-text">
   <h1>OBIRA</h1>
   <p>Your World, Amplified.</p>
+  <p>Not made for him or her. Made for you.</p>
   <a href="#" class="btn">SHOP NOW</a>
-</section>
+</div>
 
-<!-- CATEGORIES -->
-<section class="section">
-  <h2>Categories</h2>
-
-  <div class="categories">
-
-    <div class="category">
-      <img src="images/bracelets.jpg">
-      <h3>Bracelets</h3>
-    </div>
-
-    <div class="category">
-      <img src="images/chains.jpg">
-      <h3>Chains & Necklaces</h3>
-    </div>
-
-    <div class="category">
-      <img src="images/hair.jpg">
-      <h3>Hair Accessories</h3>
-    </div>
-
-  </div>
 </section>
 
 <!-- PRODUCTS -->
 <section class="section">
-  <h2>Featured Products</h2>
+<h2>Featured</h2>
 
-  <div class="products">
+<div class="products">
 
-    <div class="product">
-      <img src="images/Bracelets-CR-002.jpg">
-      <h3>OBIRA Chic Radiance Bracelet</h3>
-      <p class="price">₹1199</p>
-      <a href="#" class="btn">ORDER NOW</a>
-    </div>
+<div class="product">
+<img src="images/Bracelets-CR-002.jpg">
+<h3>OBIRA Chic Radiance Bracelet</h3>
+<p>₹1199</p>
+<button onclick="addToCart('OBIRA Chic Radiance Bracelet',1199)" class="btn">ADD TO CART</button>
+</div>
 
-    <div class="product">
-      <img src="images/Necklace-Chain-BD-003.jpg">
-      <h3>OBIRA Bloom Drop Chain</h3>
-      <p class="price">₹999</p>
-      <a href="#" class="btn">ORDER NOW</a>
-    </div>
+<div class="product">
+<img src="images/Necklace-Chain-BD-003.jpg">
+<h3>OBIRA Bloom Drop Chain</h3>
+<p>₹999</p>
+<button onclick="addToCart('OBIRA Bloom Drop Chain',999)" class="btn">ADD TO CART</button>
+</div>
 
-  </div>
+</div>
 </section>
 
-<!-- BRAND STATEMENT -->
-<section class="statement">
-  <p>OBIRA • FOUNDED 2025</p>
-  <h2>Not made for him or her.<br>Made for you.</h2>
-</section>
+<!-- CART -->
+<div id="cartBtn" onclick="toggleCart()">Cart (<span id="count">0</span>)</div>
 
-<!-- ABOUT -->
-<section class="section about">
-  <h2>About</h2>
-  <p>
-    OBIRA is a modern jewellery brand founded in 2025.
-    We create anti-tarnish stainless steel pieces designed for everyday wear.
-    Minimal. Durable. Timeless.
-  </p>
-</section>
-
-<!-- STORY -->
-<section class="section about">
-  <h2>Our Story</h2>
-  <p>
-    OBIRA was not created to follow trends. It was created to express identity.
-    In a world where jewellery is defined by labels, OBIRA chose freedom.
-  </p>
-  <p>
-    Every piece is crafted to last — through moments, routines, and memories.
-  </p>
-</section>
-
-<!-- TRUST -->
-<section class="section" style="background:#fafafa;">
-  <h2 style="text-align:center;">Why OBIRA</h2>
-
-  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:30px; text-align:center;">
-
-    <div>
-      <h3>Anti-Tarnish</h3>
-      <p>No fading. Long-lasting shine.</p>
-    </div>
-
-    <div>
-      <h3>Everyday Wear</h3>
-      <p>Made for daily comfort.</p>
-    </div>
-
-    <div>
-      <h3>Unisex Design</h3>
-      <p>For everyone. No labels.</p>
-    </div>
-
-    <div>
-      <h3>Secure Payments</h3>
-      <p>Safe and trusted checkout.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="section">
-  <h2>Stories from You</h2>
-
-  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px;">
-
-    <div>
-      <p>“I wear my OBIRA bracelet daily — still looks new.”</p>
-      <strong>— Aanya</strong>
-    </div>
-
-    <div>
-      <p>“It feels like it’s made for me, not for a category.”</p>
-      <strong>— Rithik</strong>
-    </div>
-
-    <div>
-      <p>“Finally jewellery that doesn’t fade or irritate.”</p>
-      <strong>— Meera</strong>
-    </div>
-
-  </div>
-</section>
+<div id="cartBox">
+<h3>Your Cart</h3>
+<div id="items"></div>
+<p>Total: ₹<span id="total">0</span></p>
+<button onclick="checkout()" class="btn">Checkout via WhatsApp</button>
+</div>
 
 <!-- FOOTER -->
 <div class="footer">
 
-  <p>© 2026 OBIRA</p>
-  <p>Founded in 2025</p>
+<p>© 2026 OBIRA</p>
+<p>Founded in 2025</p>
 
-  <div style="margin-top:15px;">
-    <a href="https://www.instagram.com/obira.official?igsh=MXU2YmJlZ29razZkag==" target="_blank">Instagram</a>
-    |
-    <a href="https://youtube.com/@obira.official1?si=xwLVphFx96lM7-i_" target="_blank">YouTube</a>
-    |
-    <a href="https://www.facebook.com/share/1ASSUzxYhN/" target="_blank">Facebook</a>
-  </div>
+<div class="social">
+
+<a href="https://www.instagram.com/obira.official" target="_blank">Instagram</a>
+
+<a href="https://youtube.com/@obira.official1" target="_blank">YouTube</a>
+
+<a href="https://www.facebook.com/share/1ASSUzxYhN/" target="_blank">Facebook</a>
+
+<a href="https://pin.it/1wgRAuNBf" target="_blank">Pinterest</a>
+
+<a href="https://wa.me/918792957799" target="_blank">WhatsApp</a>
 
 </div>
+
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/918792957799?text=Hi%20OBIRA%20I%20want%20to%20order" class="whatsapp">Chat</a>
+
+<script>
+
+/* HERO SLIDER */
+let slides=document.querySelectorAll(".slide");
+let i=0;
+
+setInterval(()=>{
+  slides[i].classList.remove("active");
+  i=(i+1)%slides.length;
+  slides[i].classList.add("active");
+},3000);
+
+/* SCROLL ANIMATION */
+let sections=document.querySelectorAll(".section");
+
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    let top=sec.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      sec.classList.add("show");
+    }
+  });
+});
+
+/* CART SYSTEM */
+let cart=[];
+
+function addToCart(name,price){
+  cart.push({name,price});
+  updateCart();
+}
+
+function updateCart(){
+  document.getElementById("count").innerText=cart.length;
+
+  let html="";
+  let total=0;
+
+  cart.forEach(item=>{
+    html += "<p>"+item.name+" - ₹"+item.price+"</p>";
+    total+=item.price;
+  });
+
+  document.getElementById("items").innerHTML=html;
+  document.getElementById("total").innerText=total;
+}
+
+function toggleCart(){
+  let box=document.getElementById("cartBox");
+  box.style.display=box.style.display==="block"?"none":"block";
+}
+
+function checkout(){
+  let msg="Hi OBIRA, I want to order:%0A";
+
+  cart.forEach(i=>{
+    msg += "- "+i.name+" (₹"+i.price+")%0A";
+  });
+
+  let total=cart.reduce((s,i)=>s+i.price,0);
+  msg += "%0ATotal: ₹"+total;
+
+  window.open("https://wa.me/918792957799?text="+msg,"_blank");
+}
+
+</script>
 
 </body>
 </html>

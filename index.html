@@ -7,136 +7,136 @@
 
 <style>
 
-body{margin:0;font-family:-apple-system;background:#fff;color:#111;}
+body{margin:0;font-family:-apple-system;background:#fff;color:#111;scroll-behavior:smooth;}
 
 /* NAV */
 .nav{
 position:fixed;width:100%;
-padding:20px 8%;
+display:flex;justify-content:space-between;
+padding:18px 8%;
 background:rgba(255,255,255,0.9);
 backdrop-filter:blur(10px);
 z-index:1000;
 }
+.nav a{
+margin-left:20px;
+text-decoration:none;
+color:#111;
+font-size:14px;
+}
 
 /* HERO */
-.hero{
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-background:black;
-color:white;
-}
-.hero h1{font-size:4rem;letter-spacing:4px;}
-
-/* STATEMENT */
-.statement{
-padding:120px 20px;
-text-align:center;
-font-size:1.8rem;
-line-height:1.6;
+.hero{height:100vh;position:relative;}
+.slide{position:absolute;width:100%;height:100%;opacity:0;transition:1s;}
+.slide.active{opacity:1;}
+.slide img,.slide video{width:100%;height:100%;object-fit:cover;}
+.hero-text{
+position:absolute;top:50%;left:50%;
+transform:translate(-50%,-50%);
+color:white;text-align:center;
 }
 
 /* SECTION */
 .section{padding:100px 8%;}
+h2{text-align:center;margin-bottom:40px;}
+
+/* PRODUCTS */
 .products{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:40px;
 }
-
-/* PRODUCT */
-.product{
-position:relative;
-cursor:pointer;
-transition:0.3s;
-}
-.product:hover{transform:translateY(-8px);}
+.product{cursor:pointer;position:relative;}
 .product img{width:100%;border-radius:12px;}
-
 .badge{
-position:absolute;
-top:10px;
-left:10px;
-background:black;
-color:white;
-font-size:10px;
-padding:5px 10px;
+position:absolute;top:10px;left:10px;
+background:black;color:white;
+font-size:10px;padding:5px 10px;
+}
+.line{font-size:13px;color:#666;opacity:0;transition:0.3s;}
+.product:hover .line{opacity:1;}
+
+/* ABOUT */
+.about{
+text-align:center;
+max-width:700px;
+margin:auto;
+line-height:1.8;
 }
 
-.line{
-font-size:13px;
-color:#666;
-opacity:0;
-transition:0.3s;
+/* REVIEWS */
+.reviews{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
 }
-.product:hover .line{opacity:1;}
+.review{
+padding:20px;border:1px solid #eee;
+}
+
+/* CONTACT */
+.contact{
+text-align:center;
+}
 
 /* MODAL */
 .modal{
 display:none;
-position:fixed;
-width:100%;
-height:100%;
+position:fixed;width:100%;height:100%;
 background:rgba(0,0,0,0.8);
-justify-content:center;
-align-items:center;
-z-index:2000;
+justify-content:center;align-items:center;
 }
 .modal-content{
-background:white;
-padding:20px;
-max-width:400px;
-text-align:center;
+background:white;padding:20px;
+max-width:400px;text-align:center;
 }
-.modal img{width:100%;}
-
 .btn{
-background:black;
-color:white;
-padding:10px;
-border:none;
-width:100%;
-margin-top:10px;
+background:black;color:white;
+padding:10px;border:none;width:100%;margin-top:10px;
 }
 
 /* FOOTER */
-.footer{text-align:center;padding:50px;color:#777;}
+.footer{
+text-align:center;
+padding:40px;
+background:#111;color:white;
+}
+.footer a{color:white;margin:0 10px;text-decoration:none;}
 
 </style>
 </head>
 
 <body>
 
-<div class="nav"><strong>OBIRA</strong></div>
+<!-- NAV -->
+<div class="nav">
+<div><b>OBIRA</b></div>
+<div>
+<a href="#">Home</a>
+<a href="#store">Store</a>
+<a href="#about">About</a>
+<a href="#reviews">Reviews</a>
+<a href="#contact">Contact</a>
+</div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
-<div>
+<div class="slide active"><video autoplay muted loop><source src="videos/Hero-V1.mp4"></video></div>
+<div class="slide"><img src="images/Hero-I1.jpg"></div>
+
+<div class="hero-text">
 <h1>OBIRA</h1>
 <p>Your World, Amplified.</p>
 <p>Not made for him or her. Made for you.</p>
 </div>
 </section>
 
-<!-- STATEMENT -->
-<section class="statement">
-Jewellery isn’t meant to define you.<br>
-You define it.
-</section>
+<!-- STORE -->
+<section class="section" id="store">
+<h2>Store</h2>
 
-<!-- BRACELETS -->
-<section class="section">
-<h2>Bracelets — The Wrist Edit</h2>
 <div class="products">
-
-<div class="product" onclick="openModal('Aurelia Lock Bracelet',1199,'images/Bracelets-ALB-001.jpg','Locked in. Not held back.')">
-<img src="images/Bracelets-ALB-001.jpg">
-<h3>Aurelia Lock</h3>
-<p class="line">Locked in. Not held back.</p>
-<p>₹1199</p>
-</div>
 
 <div class="product" onclick="openModal('Chic Radiance Bracelet',1199,'images/Bracelets-CR-002.jpg','Not subtle. Just undeniable.')">
 <span class="badge">BEST SELLER</span>
@@ -146,92 +146,79 @@ You define it.
 <p>₹1199</p>
 </div>
 
-<div class="product" onclick="openModal('Royal Medallion Bracelet',999,'images/Bracelets-RMC-003.jpg','Carries legacy. Feels like power.')">
-<img src="images/Bracelets-RMC-003.jpg">
-<h3>Royal Medallion</h3>
-<p class="line">Carries legacy. Feels like power.</p>
-<p>₹999</p>
-</div>
-
-<div class="product" onclick="openModal('Golden Aura Bracelet',1199,'images/Bracelets-GA-004.jpg','You walk in. The light follows.')">
-<img src="images/Bracelets-GA-004.jpg">
-<h3>Golden Aura</h3>
-<p class="line">You walk in. The light follows.</p>
-<p>₹1199</p>
-</div>
-
-<div class="product" onclick="openModal('Mystic Eye Bracelet',1199,'images/Bracelets-ME-005.jpg','Sees more than it shows.')">
-<img src="images/Bracelets-ME-005.jpg">
-<h3>Mystic Eye</h3>
-<p class="line">Sees more than it shows.</p>
-<p>₹1199</p>
-</div>
-
-<div class="product" onclick="openModal('Radiant Halo Bracelet',999,'images/Bracelets-RH-006.jpg','Soft glow. Strong presence.')">
-<img src="images/Bracelets-RH-006.jpg">
-<h3>Radiant Halo</h3>
-<p class="line">Soft glow. Strong presence.</p>
-<p>₹999</p>
-</div>
-
-<div class="product" onclick="openModal('Floral Grace Bracelet',1199,'images/Bracelets-FG-007.jpg','Gentle look. Strong energy.')">
-<img src="images/Bracelets-FG-007.jpg">
-<h3>Floral Grace</h3>
-<p class="line">Gentle look. Strong energy.</p>
-<p>₹1199</p>
-</div>
-
-<div class="product" onclick="openModal('Midnight Bloom Bracelet',1199,'images/Bracelets-MB-008.jpg','Blooms where it’s darkest.')">
-<span class="badge">BEST SELLER</span>
-<img src="images/Bracelets-MB-008.jpg">
-<h3>Midnight Bloom</h3>
-<p class="line">Blooms where it’s darkest.</p>
-<p>₹1199</p>
-</div>
-
-<!-- Continue same pattern for all (kept clean & premium) -->
-
-</div>
-</section>
-
-<!-- CHAINS -->
-<section class="section">
-<h2>Chains & Necklaces</h2>
-<div class="products">
-
 <div class="product" onclick="openModal('Bloom Drop Chain',999,'images/Necklace-Chain-BD-003.jpg','Soft look. Sharp presence.')">
-<span class="badge">BEST SELLER</span>
 <img src="images/Necklace-Chain-BD-003.jpg">
 <h3>Bloom Drop</h3>
 <p class="line">Soft look. Sharp presence.</p>
 <p>₹999</p>
 </div>
 
-<div class="product" onclick="openModal('Starlight Chain',999,'images/Necklace-Chain-SD-008.jpg','You don’t fade.')">
-<img src="images/Necklace-Chain-SD-008.jpg">
-<h3>Starlight</h3>
-<p class="line">You don’t fade.</p>
-<p>₹999</p>
-</div>
-
 </div>
 </section>
 
-<!-- HAIR -->
-<section class="section">
-<h2>Hair Accessories</h2>
-<div class="products">
+<!-- ABOUT -->
+<section class="section" id="about">
+<h2>About OBIRA</h2>
+<div class="about">
+OBIRA was founded in 2025 with a simple belief — jewellery should never define who you are.  
+It should amplify who you already are.  
 
-<div class="product" onclick="openModal('Luna Clip',199,'images/Clip-LPB-001.jpg','Small detail. Big difference.')">
-<span class="badge">BEST SELLER</span>
-<img src="images/Clip-LPB-001.jpg">
-<h3>Luna Clip</h3>
-<p class="line">Small detail. Big difference.</p>
-<p>₹199</p>
-</div>
+Every piece is crafted with anti-tarnish stainless steel, designed to stay with you — through moments, memories, and identities.  
 
+This is not jewellery made for him or her.  
+This is jewellery made for you.
 </div>
 </section>
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+<h2>What People Say</h2>
+
+<div class="reviews">
+<div class="review">“I didn’t expect this quality at this price. OBIRA feels premium.”</div>
+<div class="review">“Wore it daily for weeks — still looks new.”</div>
+<div class="review">“It’s subtle but somehow stands out. Love it.”</div>
+</div>
+
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+<h2>Contact</h2>
+
+<div class="contact">
+<p>Email: obiraofficial1@gmail.com</p>
+<p><a href="https://wa.me/918792957799">WhatsApp</a></p>
+
+<p>
+<a href="https://www.instagram.com/obira.official">Instagram</a> |
+<a href="https://youtube.com/@obira.official1">YouTube</a> |
+<a href="https://www.facebook.com/share/1ASSUzxYhN/">Facebook</a> |
+<a href="https://pin.it/1wgRAuNBf">Pinterest</a>
+</p>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+
+<p>© OBIRA 2026</p>
+
+<p>
+<a href="#">Terms & Conditions</a> |
+<a href="#">Privacy Policy</a>
+</p>
+
+<p>
+<a href="https://www.instagram.com/obira.official">Instagram</a> |
+<a href="https://youtube.com/@obira.official1">YouTube</a> |
+<a href="https://www.facebook.com/share/1ASSUzxYhN/">Facebook</a> |
+<a href="https://pin.it/1wgRAuNBf">Pinterest</a>
+</p>
+
+</div>
 
 <!-- MODAL -->
 <div id="modal" class="modal">
@@ -244,23 +231,20 @@ You define it.
 </div>
 </div>
 
-<!-- FOOTER -->
-<div class="footer">
-© OBIRA 2026<br>
-
-<a href="https://www.instagram.com/obira.official">Instagram</a> |
-<a href="https://youtube.com/@obira.official1">YouTube</a> |
-<a href="https://www.facebook.com/share/1ASSUzxYhN/">Facebook</a> |
-<a href="https://pin.it/1wgRAuNBf">Pinterest</a>
-
-</div>
-
 <script>
 
-function openModal(n,p,img,line){
-let m=document.getElementById("modal");
-m.style.display="flex";
+/* HERO SLIDER */
+let slides=document.querySelectorAll(".slide");
+let i=0;
+setInterval(()=>{
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
+},3000);
 
+/* MODAL */
+function openModal(n,p,img,line){
+document.getElementById("modal").style.display="flex";
 document.getElementById("img").src=img;
 document.getElementById("title").innerText=n;
 document.getElementById("line").innerText=line;

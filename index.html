@@ -7,29 +7,31 @@
 
 <style>
 
-body{margin:0;font-family:-apple-system;background:#fff;color:#111;scroll-behavior:smooth;}
+/* BASE */
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#fff;color:#111}
 
 /* NAV */
 .nav{
 position:fixed;width:100%;
 display:flex;justify-content:space-between;
 padding:18px 8%;
-background:rgba(255,255,255,0.9);
-backdrop-filter:blur(10px);
+background:rgba(255,255,255,0.7);
+backdrop-filter:blur(15px);
 z-index:1000;
 }
-.nav a{
-margin-left:20px;
-text-decoration:none;
-color:#111;
-font-size:14px;
-}
+.nav a{margin-left:20px;text-decoration:none;color:#111}
 
 /* HERO */
-.hero{height:100vh;position:relative;}
-.slide{position:absolute;width:100%;height:100%;opacity:0;transition:1s;}
-.slide.active{opacity:1;}
-.slide img,.slide video{width:100%;height:100%;object-fit:cover;}
+.hero{height:100vh;position:relative;overflow:hidden}
+.slide{position:absolute;width:100%;height:100%;opacity:0;transition:1s}
+.slide.active{opacity:1}
+.slide img,.slide video{width:100%;height:100%;object-fit:cover}
+
+.hero::after{
+content:'';position:absolute;width:100%;height:100%;
+background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
 .hero-text{
 position:absolute;top:50%;left:50%;
 transform:translate(-50%,-50%);
@@ -37,71 +39,70 @@ color:white;text-align:center;
 }
 
 /* SECTION */
-.section{padding:100px 8%;}
-h2{text-align:center;margin-bottom:40px;}
+.section{padding:100px 8%}
+h2{text-align:center;margin-bottom:40px}
 
 /* PRODUCTS */
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
 gap:40px;
 }
-.product{cursor:pointer;position:relative;}
-.product img{width:100%;border-radius:12px;}
-.badge{
-position:absolute;top:10px;left:10px;
-background:black;color:white;
-font-size:10px;padding:5px 10px;
-}
-.line{font-size:13px;color:#666;opacity:0;transition:0.3s;}
-.product:hover .line{opacity:1;}
 
-/* ABOUT */
-.about{
-text-align:center;
-max-width:700px;
-margin:auto;
-line-height:1.8;
+.product{
+background:#fff;border-radius:15px;
+overflow:hidden;cursor:pointer;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+transition:0.3s;
 }
+.product:hover{
+transform:translateY(-10px);
+box-shadow:0 25px 60px rgba(0,0,0,0.15);
+}
+.product img{width:100%}
 
-/* REVIEWS */
-.reviews{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-}
-.review{
-padding:20px;border:1px solid #eee;
-}
+.line{font-size:13px;color:#777;padding:0 15px}
 
-/* CONTACT */
-.contact{
-text-align:center;
-}
-
-/* MODAL */
-.modal{
-display:none;
-position:fixed;width:100%;height:100%;
-background:rgba(0,0,0,0.8);
-justify-content:center;align-items:center;
-}
-.modal-content{
-background:white;padding:20px;
-max-width:400px;text-align:center;
-}
+/* BUTTON */
 .btn{
 background:black;color:white;
-padding:10px;border:none;width:100%;margin-top:10px;
+padding:12px 25px;border:none;
+border-radius:30px;cursor:pointer;
 }
+
+/* VIEW MORE */
+#moreProducts{display:none;opacity:0;transform:translateY(40px);transition:0.5s}
+#moreProducts.show{opacity:1;transform:translateY(0)}
+
+/* CART */
+.cart{
+position:fixed;right:-350px;top:0;
+width:300px;height:100%;
+background:white;
+box-shadow:-5px 0 20px rgba(0,0,0,0.1);
+padding:20px;transition:0.4s;
+overflow:auto;z-index:2000;
+}
+.cart.open{right:0}
+
+/* PRODUCT FULL PAGE */
+.productPage{
+position:fixed;
+top:0;left:0;width:100%;height:100%;
+background:white;
+z-index:3000;
+display:none;
+overflow:auto;
+padding:40px;
+text-align:center;
+}
+.productPage img{width:100%;max-width:400px}
 
 /* FOOTER */
 .footer{
-text-align:center;
-padding:40px;
 background:#111;color:white;
+padding:50px;text-align:center;
 }
-.footer a{color:white;margin:0 10px;text-decoration:none;}
 
 </style>
 </head>
@@ -110,24 +111,27 @@ background:#111;color:white;
 
 <!-- NAV -->
 <div class="nav">
-<div><b>OBIRA</b></div>
+<b>OBIRA</b>
 <div>
-<a href="#">Home</a>
 <a href="#store">Store</a>
 <a href="#about">About</a>
 <a href="#reviews">Reviews</a>
 <a href="#contact">Contact</a>
+<span onclick="toggleCart()" style="cursor:pointer">🛒 (<span id="count">0</span>)</span>
 </div>
 </div>
 
 <!-- HERO -->
 <section class="hero">
 <div class="slide active"><video autoplay muted loop><source src="videos/Hero-V1.mp4"></video></div>
+<div class="slide"><video autoplay muted loop><source src="videos/Hero-V2.mp4"></video></div>
+<div class="slide"><video autoplay muted loop><source src="videos/Hero-V3.mp4"></video></div>
 <div class="slide"><img src="images/Hero-I1.jpg"></div>
+<div class="slide"><img src="images/Hero-I2.jpg"></div>
+<div class="slide"><img src="images/Hero-I3.jpg"></div>
 
 <div class="hero-text">
 <h1>OBIRA</h1>
-<p>Your World, Amplified.</p>
 <p>Not made for him or her. Made for you.</p>
 </div>
 </section>
@@ -138,20 +142,46 @@ background:#111;color:white;
 
 <div class="products">
 
-<div class="product" onclick="openModal('Chic Radiance Bracelet',1199,'images/Bracelets-CR-002.jpg','Not subtle. Just undeniable.')">
-<span class="badge">BEST SELLER</span>
+<!-- FEATURED -->
+<div class="product" onclick="openProduct('Chic Radiance Bracelet',1199,'images/Bracelets-CR-002.jpg','Not subtle. Just undeniable.')">
 <img src="images/Bracelets-CR-002.jpg">
-<h3>Chic Radiance</h3>
+<p>Chic Radiance</p>
 <p class="line">Not subtle. Just undeniable.</p>
 <p>₹1199</p>
 </div>
 
-<div class="product" onclick="openModal('Bloom Drop Chain',999,'images/Necklace-Chain-BD-003.jpg','Soft look. Sharp presence.')">
+<div class="product" onclick="openProduct('Midnight Bloom Bracelet',1199,'images/Bracelets-MB-008.jpg','Blooms where it’s darkest.')">
+<img src="images/Bracelets-MB-008.jpg">
+<p>Midnight Bloom</p>
+<p class="line">Blooms where it’s darkest.</p>
+<p>₹1199</p>
+</div>
+
+<div class="product" onclick="openProduct('Bloom Drop Chain',999,'images/Necklace-Chain-BD-003.jpg','Soft look. Sharp presence.')">
 <img src="images/Necklace-Chain-BD-003.jpg">
-<h3>Bloom Drop</h3>
+<p>Bloom Drop</p>
 <p class="line">Soft look. Sharp presence.</p>
 <p>₹999</p>
 </div>
+
+</div>
+
+<div style="text-align:center;margin-top:40px;">
+<button class="btn" onclick="showMore()">View More</button>
+</div>
+
+<!-- ALL PRODUCTS -->
+<div class="products" id="moreProducts">
+
+<!-- ADD ALL REMAINING PRODUCTS SAME FORMAT -->
+<div class="product" onclick="openProduct('Golden Aura Bracelet',1199,'images/Bracelets-GA-004.jpg','You walk in. The light follows.')">
+<img src="images/Bracelets-GA-004.jpg">
+<p>Golden Aura</p>
+<p class="line">You walk in. The light follows.</p>
+<p>₹1199</p>
+</div>
+
+<!-- 👉 Continue pasting ALL your products here (same pattern) -->
 
 </div>
 </section>
@@ -159,81 +189,56 @@ background:#111;color:white;
 <!-- ABOUT -->
 <section class="section" id="about">
 <h2>About OBIRA</h2>
-<div class="about">
-OBIRA was founded in 2025 with a simple belief — jewellery should never define who you are.  
-It should amplify who you already are.  
-
-Every piece is crafted with anti-tarnish stainless steel, designed to stay with you — through moments, memories, and identities.  
-
-This is not jewellery made for him or her.  
-This is jewellery made for you.
-</div>
+<p style="text-align:center;max-width:600px;margin:auto">
+Founded in 2025, OBIRA creates anti-tarnish jewellery designed to stay with you.  
+Not made for him or her. Made for you.
+</p>
 </section>
 
 <!-- REVIEWS -->
 <section class="section" id="reviews">
-<h2>What People Say</h2>
-
-<div class="reviews">
-<div class="review">“I didn’t expect this quality at this price. OBIRA feels premium.”</div>
-<div class="review">“Wore it daily for weeks — still looks new.”</div>
-<div class="review">“It’s subtle but somehow stands out. Love it.”</div>
-</div>
-
+<h2>Reviews</h2>
+<p style="text-align:center">
+“Feels luxury.” “Still shining.” “People notice instantly.”
+</p>
 </section>
 
 <!-- CONTACT -->
 <section class="section" id="contact">
 <h2>Contact</h2>
-
-<div class="contact">
-<p>Email: obiraofficial1@gmail.com</p>
-<p><a href="https://wa.me/918792957799">WhatsApp</a></p>
-
-<p>
-<a href="https://www.instagram.com/obira.official">Instagram</a> |
-<a href="https://youtube.com/@obira.official1">YouTube</a> |
-<a href="https://www.facebook.com/share/1ASSUzxYhN/">Facebook</a> |
-<a href="https://pin.it/1wgRAuNBf">Pinterest</a>
+<p style="text-align:center">
+obiraofficial1@gmail.com<br>
+<a href="https://wa.me/918792957799">WhatsApp</a>
 </p>
+</section>
 
+<!-- CART -->
+<div class="cart" id="cart">
+<h3>Your Cart</h3>
+<div id="cartItems"></div>
+<button class="btn" onclick="checkout()">Checkout</button>
 </div>
 
-</section>
+<!-- PRODUCT FULL PAGE -->
+<div class="productPage" id="productPage">
+<img id="pImg">
+<h2 id="pName"></h2>
+<p id="pLine"></p>
+<p id="pPrice"></p>
+
+<button class="btn" onclick="addToCart()">Add to Cart</button>
+<button class="btn" onclick="buyNow()">Buy Now</button>
+<button class="btn" onclick="closeProduct()">Close</button>
+</div>
 
 <!-- FOOTER -->
 <div class="footer">
-
-<p>© OBIRA 2026</p>
-
-<p>
-<a href="#">Terms & Conditions</a> |
-<a href="#">Privacy Policy</a>
-</p>
-
-<p>
-<a href="https://www.instagram.com/obira.official">Instagram</a> |
-<a href="https://youtube.com/@obira.official1">YouTube</a> |
-<a href="https://www.facebook.com/share/1ASSUzxYhN/">Facebook</a> |
-<a href="https://pin.it/1wgRAuNBf">Pinterest</a>
-</p>
-
-</div>
-
-<!-- MODAL -->
-<div id="modal" class="modal">
-<div class="modal-content">
-<img id="img">
-<h2 id="title"></h2>
-<p id="line"></p>
-<p id="price"></p>
-<button id="buy" class="btn">Buy Now</button>
-</div>
+© OBIRA 2026
 </div>
 
 <script>
 
-/* HERO SLIDER */
+/* HERO */
 let slides=document.querySelectorAll(".slide");
 let i=0;
 setInterval(()=>{
@@ -242,18 +247,67 @@ i=(i+1)%slides.length;
 slides[i].classList.add("active");
 },3000);
 
-/* MODAL */
-function openModal(n,p,img,line){
-document.getElementById("modal").style.display="flex";
-document.getElementById("img").src=img;
-document.getElementById("title").innerText=n;
-document.getElementById("line").innerText=line;
-document.getElementById("price").innerText="₹"+p;
-
-document.getElementById("buy").onclick=()=>{
-window.open("https://wa.me/918792957799?text="+encodeURIComponent(n));
-};
+/* VIEW MORE */
+function showMore(){
+let box=document.getElementById("moreProducts");
+box.style.display="grid";
+setTimeout(()=>box.classList.add("show"),50);
 }
+
+/* PRODUCT PAGE */
+let currentProduct=null;
+
+function openProduct(name,price,img,line){
+currentProduct={name,price,img,line};
+document.getElementById("productPage").style.display="block";
+document.getElementById("pImg").src=img;
+document.getElementById("pName").innerText=name;
+document.getElementById("pLine").innerText=line;
+document.getElementById("pPrice").innerText="₹"+price;
+}
+
+function closeProduct(){
+document.getElementById("productPage").style.display="none";
+}
+
+/* CART */
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+
+function toggleCart(){
+document.getElementById("cart").classList.toggle("open");
+renderCart();
+}
+
+function addToCart(){
+cart.push(currentProduct);
+localStorage.setItem("cart",JSON.stringify(cart));
+renderCart();
+alert("Added to cart");
+}
+
+function renderCart(){
+document.getElementById("count").innerText=cart.length;
+let html="";
+cart.forEach(p=>{
+html+=`<p>${p.name} - ₹${p.price}</p>`;
+});
+document.getElementById("cartItems").innerHTML=html;
+}
+
+/* BUY */
+function buyNow(){
+window.open("https://wa.me/918792957799?text="+currentProduct.name);
+}
+
+function checkout(){
+let text="Order:%0A";
+cart.forEach(p=>{
+text+=p.name+" ₹"+p.price+"%0A";
+});
+window.open("https://wa.me/918792957799?text="+text);
+}
+
+renderCart();
 
 </script>
 

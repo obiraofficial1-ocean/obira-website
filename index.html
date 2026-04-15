@@ -178,3 +178,125 @@ ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY
 </div>
 
 </section>
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+<div class="slides">
+
+<div class="slide active" style="background-image:url('Hero-I1.jpg');"></div>
+<div class="slide" style="background-image:url('Hero-I2.jpg');"></div>
+<div class="slide" style="background-image:url('Hero-I3.jpg');"></div>
+
+</div>
+
+<div class="hero-content">
+<h1>Everyday Luxury, Effortlessly Yours</h1>
+<p>Anti-tarnish. Stainless steel. Designed to stay with you.</p>
+<button onclick="scrollToStore()">Shop Now</button>
+</div>
+
+</section>
+
+<style>
+
+/* HERO */
+.hero{
+position:relative;
+height:90vh;
+overflow:hidden;
+}
+
+/* SLIDES */
+.slides{
+position:absolute;
+width:100%;
+height:100%;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+opacity:0;
+transition:1s ease;
+}
+
+.slide.active{
+opacity:1;
+}
+
+/* OVERLAY */
+.hero::after{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.3);
+}
+
+/* CONTENT */
+.hero-content{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+color:#fff;
+z-index:2;
+}
+
+.hero-content h1{
+font-family:'Playfair Display';
+font-size:42px;
+letter-spacing:2px;
+margin-bottom:15px;
+}
+
+.hero-content p{
+font-size:14px;
+margin-bottom:25px;
+letter-spacing:1px;
+}
+
+.hero-content button{
+padding:12px 30px;
+background:#fff;
+color:#000;
+border:none;
+font-size:13px;
+letter-spacing:1px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.hero-content button:hover{
+background:#000;
+color:#fff;
+}
+
+</style>
+
+<script>
+
+/* SLIDER */
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(()=>{
+slides[index].classList.remove("active");
+index = (index + 1) % slides.length;
+slides[index].classList.add("active");
+},4000);
+
+/* SCROLL */
+function scrollToStore(){
+document.getElementById("store").scrollIntoView({behavior:"smooth"});
+}
+
+</script>

@@ -8,86 +8,276 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-body{margin:0;font-family:'Poppins';background:#fff;color:#111}
-.nav{position:fixed;width:100%;display:flex;justify-content:space-between;padding:18px 8%;background:rgba(255,255,255,0.6);backdrop-filter:blur(12px);z-index:1000}
-.hero{height:100vh;position:relative}
-.slide{position:absolute;width:100%;height:100%;opacity:0;transition:1s}
+
+body{margin:0;font-family:'Poppins',sans-serif;background:#fff;color:#111}
+
+/* NAV */
+.nav{
+position:fixed;width:100%;
+display:flex;justify-content:space-between;
+padding:18px 8%;
+background:rgba(255,255,255,0.6);
+backdrop-filter:blur(15px);
+z-index:1000;
+}
+.nav b{font-family:'Playfair Display';font-size:22px}
+.nav a{margin-left:18px;text-decoration:none;color:#111;font-size:14px}
+
+/* HERO */
+.hero{height:100vh;position:relative;overflow:hidden}
+.slide{position:absolute;width:100%;height:100%;opacity:0;transition:1.2s}
 .slide.active{opacity:1}
-.slide video,.slide img{width:100%;height:100%;object-fit:cover}
-.hero-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:white;text-align:center}
-.hero-text h1{font-size:60px;font-family:'Playfair Display'}
+.slide img,.slide video{width:100%;height:100%;object-fit:cover}
+
+.hero::after{
+content:'';position:absolute;width:100%;height:100%;
+background:linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+}
+
+.hero-text{
+position:absolute;top:50%;left:50%;
+transform:translate(-50%,-50%);
+color:white;text-align:center;
+}
+.hero-text h1{
+font-family:'Playfair Display';
+font-size:64px;
+letter-spacing:5px;
+}
+.hero-text p{font-size:18px;margin-top:10px}
+
+/* STRIP */
+.strip{
+text-align:center;
+padding:30px;
+font-size:14px;
+background:#f7f7f7;
+letter-spacing:1px;
+}
+
+/* SECTION */
 .section{padding:100px 8%}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px}
-.product{cursor:pointer}
+h2{text-align:center;font-family:'Playfair Display';font-size:34px}
+
+/* FEATURE */
+.feature{
+display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-top:40px;
+}
+.feature .card{
+width:280px;
+text-align:center;
+cursor:pointer;
+}
+.feature img{width:100%;border-radius:10px}
+
+/* PRODUCTS GRID */
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;margin-top:40px;
+}
+
+.product{
+position:relative;
+border-radius:10px;
+overflow:hidden;
+cursor:pointer;
+}
 .product img{width:100%}
-.gallery{display:flex;gap:10px;margin-top:10px}
-.gallery img{width:60px;cursor:pointer}
-.productPage{position:fixed;top:0;left:0;width:100%;height:100%;background:white;z-index:2000;display:none;padding:40px;overflow:auto}
-.btn{padding:12px 20px;border:none;border-radius:25px;margin:5px;cursor:pointer}
-.cart{position:fixed;right:-300px;top:0;width:300px;height:100%;background:white;transition:0.4s;padding:20px}
+
+/* HOVER ACTIONS */
+.actions{
+position:absolute;bottom:10px;left:0;width:100%;
+display:flex;justify-content:center;gap:10px;
+opacity:0;transition:0.3s;
+}
+.product:hover .actions{opacity:1}
+
+.icon-btn{
+background:white;border:none;padding:8px;border-radius:50%;
+cursor:pointer;
+}
+
+/* BUTTON */
+.btn{
+background:black;color:white;
+padding:12px 25px;border:none;
+border-radius:30px;cursor:pointer;
+margin-top:10px;
+}
+
+/* PRODUCT PAGE */
+.productPage{
+position:fixed;
+top:0;left:0;width:100%;height:100%;
+background:white;
+z-index:3000;
+display:none;
+overflow:auto;
+padding:40px;text-align:center;
+}
+.productPage img{max-width:420px;width:100%}
+
+/* CART */
+.cart{
+position:fixed;right:-350px;top:0;
+width:300px;height:100%;
+background:white;
+padding:20px;
+transition:0.4s;
+overflow:auto;
+}
 .cart.open{right:0}
-.footer{background:#111;color:white;text-align:center;padding:40px}
+
+/* REVIEWS */
+.review{
+background:#f5f5f5;padding:20px;border-radius:10px;margin:10px;
+}
+
+/* FOOTER */
+.footer{
+background:#111;color:white;padding:60px;text-align:center;
+}
+
+.social a{margin:0 10px;color:white;text-decoration:none}
+
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <div class="nav">
 <b>OBIRA</b>
-<div onclick="toggleCart()">🛒 <span id="count">0</span></div>
+<div>
+<a href="#store">Store</a>
+<a href="#about">About</a>
+<a href="#reviews">Reviews</a>
+<a href="#contact">Contact</a>
+<span onclick="toggleCart()">🛒 (<span id="count">0</span>)</span>
+</div>
 </div>
 
 <!-- HERO -->
-<div class="hero">
+<section class="hero">
+
 <div class="slide active"><video autoplay muted loop src="videos/Hero-V1.mp4"></video></div>
 <div class="slide"><video autoplay muted loop src="videos/Hero-V2.mp4"></video></div>
-<div class="slide"><img src="images/Hero-I1.jpg"></div>
+<div class="slide"><video autoplay muted loop src="videos/Hero-V3.mp4"></video></div>
+
 <div class="hero-text">
 <h1>OBIRA</h1>
 <p>You don’t wear OBIRA. You become it.</p>
 </div>
+
+</section>
+
+<div class="strip">
+ANTI-TARNISH • EVERYDAY LUXURY • DESIGNED TO LAST
 </div>
 
-<!-- STORE -->
-<div class="section">
-<h2>Signature</h2>
-<div class="products">
+<!-- FEATURE -->
+<section class="section">
+<h2>Signature Pieces</h2>
 
-<div class="product" onclick="openProduct('Chic Radiance Bracelet',1199,['images/Bracelets-CR-002.jpg','images/Bracelets-CR-002-1.jpg'])">
+<div class="feature">
+<div class="card" onclick="openProduct('Chic Radiance Bracelet',1199,'images/Bracelets-CR-002.jpg')">
 <img src="images/Bracelets-CR-002.jpg">
 <p>Chic Radiance</p>
 </div>
 
+<div class="card" onclick="openProduct('Midnight Bloom Bracelet',1199,'images/Bracelets-MB-008.jpg')">
+<img src="images/Bracelets-MB-008.jpg">
+<p>Midnight Bloom</p>
 </div>
+
+</div>
+</section>
+
+<!-- STORE -->
+<section class="section" id="store">
+<h2>Store</h2>
+
+<div class="products">
+
+<div class="product" onclick="openProduct('Golden Aura Bracelet',1199,'images/Bracelets-GA-004.jpg')">
+<img src="images/Bracelets-GA-004.jpg">
+<div class="actions">
+<button class="icon-btn" onclick="event.stopPropagation();addToCart()">🛒</button>
+<button class="icon-btn">❤️</button>
+<button class="icon-btn" onclick="share()">🔗</button>
+</div>
+</div>
+
+</div>
+
+<div style="text-align:center;margin-top:40px;">
+<button class="btn" onclick="showMore()">View More</button>
+</div>
+
+<div id="moreProducts" style="display:none">
+
+<!-- 👉 YOU CAN EXTEND SAME FORMAT FOR ALL PRODUCTS -->
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+<h2>Our Story</h2>
+<p style="max-width:600px;margin:auto;text-align:center">
+OBIRA started with a simple thought — why should jewellery fade, when your presence doesn’t?  
+Every piece is made to stay with you — through days, moments, and memories.
+</p>
+</section>
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+<h2>Reviews</h2>
+
+<div class="review">Ananya — “Honestly didn’t expect this quality. It still looks new.”</div>
+<div class="review">Riya — “People literally ask me where I got it from.”</div>
+<div class="review">Sneha — “Feels like luxury without the crazy price.”</div>
+
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+<h2>Contact</h2>
+<p style="text-align:center">
+obiraofficial1@gmail.com<br>
+<a href="https://wa.me/918792957799">WhatsApp</a>
+</p>
+</section>
+
+<!-- CART -->
+<div class="cart" id="cart">
+<h3>Your Cart</h3>
+<div id="cartItems"></div>
+<button class="btn" onclick="checkout()">Checkout</button>
 </div>
 
 <!-- PRODUCT PAGE -->
 <div class="productPage" id="productPage">
-<img id="mainImg" style="width:300px">
-<div id="gallery" class="gallery"></div>
-<h2 id="name"></h2>
-<p id="price"></p>
+<img id="pImg">
+<h2 id="pName"></h2>
+<p id="pPrice"></p>
 
-<button class="btn" onclick="addCart()">Add to Cart</button>
-<button class="btn" onclick="buy()">Order</button>
-<button class="btn" onclick="wishlist()">❤️</button>
-<button class="btn" onclick="share()">🔗</button>
-<button class="btn" onclick="closePage()">Close</button>
-</div>
-
-<!-- CART -->
-<div class="cart" id="cart">
-<h3>Cart</h3>
-<div id="cartItems"></div>
-<button onclick="checkout()">Checkout</button>
+<button class="btn" onclick="addToCart()">Add to Cart</button>
+<button class="btn" onclick="buyNow()">Order Now</button>
+<button class="btn" onclick="closeProduct()">Close</button>
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
+<div class="social">
 <a href="https://www.instagram.com/obira.official">Instagram</a>
 <a href="https://youtube.com/@obira.official1">YouTube</a>
+<a href="https://www.facebook.com">Facebook</a>
 <a href="https://pin.it/1wgRAuNBf">Pinterest</a>
-<br><br>
+</div>
+<br>
 © OBIRA 2026
 </div>
 
@@ -95,30 +285,57 @@ body{margin:0;font-family:'Poppins';background:#fff;color:#111}
 
 let slides=document.querySelectorAll(".slide");
 let i=0;
-setInterval(()=>{slides[i].classList.remove("active");i=(i+1)%slides.length;slides[i].classList.add("active")},3000);
+setInterval(()=>{
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
+},3000);
 
-let current={};
-function openProduct(n,p,imgs){
-current={name:n,price:p,imgs};
+let currentProduct=null;
+
+function openProduct(name,price,img){
+currentProduct={name,price,img};
 productPage.style.display="block";
-name.innerText=n;
-price.innerText="₹"+p;
-mainImg.src=imgs[0];
-gallery.innerHTML=imgs.map(img=>`<img src="${img}" onclick="mainImg.src='${img}'">`).join("");
+pImg.src=img;pName.innerText=name;pPrice.innerText="₹"+price;
 }
 
-function closePage(){productPage.style.display="none"}
+function closeProduct(){productPage.style.display="none";}
 
 let cart=JSON.parse(localStorage.getItem("cart"))||[];
-function toggleCart(){document.getElementById("cart").classList.toggle("open")}
-function addCart(){cart.push(current);localStorage.setItem("cart",JSON.stringify(cart));render()}
-function render(){count.innerText=cart.length;cartItems.innerHTML=cart.map(p=>p.name).join("<br>")}
-function buy(){window.open("https://wa.me/918792957799?text="+current.name)}
-function checkout(){window.open("https://wa.me/918792957799")}
-function wishlist(){alert("Saved ❤️")}
-function share(){navigator.share?navigator.share({title:current.name}):alert("Share not supported")}
 
-render();
+function toggleCart(){
+cart.classList.toggle("open");
+renderCart();
+}
+
+function addToCart(){
+cart.push(currentProduct);
+localStorage.setItem("cart",JSON.stringify(cart));
+renderCart();
+}
+
+function renderCart(){
+count.innerText=cart.length;
+cartItems.innerHTML=cart.map(p=>`<p>${p.name}</p>`).join("");
+}
+
+function buyNow(){
+window.open("https://wa.me/918792957799?text="+currentProduct.name);
+}
+
+function checkout(){
+window.open("https://wa.me/918792957799");
+}
+
+function showMore(){
+document.getElementById("moreProducts").style.display="block";
+}
+
+function share(){
+navigator.share && navigator.share({title:"OBIRA"});
+}
+
+renderCart();
 
 </script>
 

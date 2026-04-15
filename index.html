@@ -13,23 +13,34 @@
 body{
 margin:0;
 font-family:'Poppins',sans-serif;
-scroll-behavior:smooth;
 }
 
-/* TOP STRIP */
+/* RUNNING STRIP */
 .top-strip{
 background:#000;
 color:#fff;
-text-align:center;
 font-size:11px;
-padding:10px;
-letter-spacing:3px;
+padding:8px 0;
+overflow:hidden;
+white-space:nowrap;
 }
 
-/* NAVBAR */
+.top-strip span{
+display:inline-block;
+padding-left:100%;
+animation:scroll 12s linear infinite;
+letter-spacing:2px;
+}
+
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-100%);}
+}
+
+/* HEADER */
 .nav{
 position:fixed;
-top:32px;
+top:28px;
 width:100%;
 display:flex;
 justify-content:space-between;
@@ -49,25 +60,25 @@ letter-spacing:4px;
 font-weight:600;
 }
 
-/* LINKS */
-.nav-links{
+/* RIGHT SIDE */
+.right{
 display:flex;
-gap:28px;
+align-items:center;
+gap:22px;
+font-size:14px;
 }
 
-.nav-links a{
-text-decoration:none;
-color:#333;
-font-size:13px;
-letter-spacing:1px;
+/* STORE LINK */
+.store{
+cursor:pointer;
 position:relative;
 }
 
-/* HOVER EFFECT */
-.nav-links a::after{
+/* UNDERLINE EFFECT */
+.store::after{
 content:'';
 position:absolute;
-bottom:-5px;
+bottom:-4px;
 left:0;
 width:0%;
 height:1px;
@@ -75,56 +86,38 @@ background:#000;
 transition:0.3s;
 }
 
-.nav-links a:hover::after{
+.store:hover::after{
 width:100%;
 }
 
-.nav-links a:hover{
-color:#000;
-}
-
 /* ICONS */
-.icons{
-display:flex;
-gap:20px;
+.icon{
 font-size:18px;
-}
-
-.icons span{
 cursor:pointer;
 transition:0.3s;
 }
 
-.icons span:hover{
+.icon:hover{
 transform:scale(1.2);
 opacity:0.7;
 }
 
 /* SPACING */
 .space{
-height:110px;
+height:100px;
 }
-
-/* DUMMY SECTIONS (for scroll test) */
-section{
-height:100vh;
-padding:40px;
-}
-
-#store{background:#f9f9f9;}
-#bracelets{background:#fff;}
-#chains{background:#f4f4f4;}
-#hair{background:#fff;}
-#about{background:#f9f9f9;}
 
 </style>
 </head>
 
 <body>
 
-<!-- TOP STRIP -->
+<!-- RUNNING TEXT -->
 <div class="top-strip">
+<span>
+ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY •
 ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY
+</span>
 </div>
 
 <!-- HEADER -->
@@ -132,29 +125,15 @@ ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY
 
 <div class="logo">OBIRA</div>
 
-<div class="nav-links">
-<a href="#store">Store</a>
-<a href="#bracelets">Bracelets</a>
-<a href="#chains">Chains</a>
-<a href="#hair">Hair</a>
-<a href="#about">About</a>
-</div>
-
-<div class="icons">
-<span>♡</span>
-<span>🛒</span>
+<div class="right">
+<div class="store">Store</div>
+<div class="icon">♡</div>
+<div class="icon">🛒</div>
 </div>
 
 </div>
 
 <div class="space"></div>
-
-<!-- TEMP SECTIONS (JUST TO TEST SCROLL) -->
-<section id="store"><h2>Store Section</h2></section>
-<section id="bracelets"><h2>Bracelets</h2></section>
-<section id="chains"><h2>Chains</h2></section>
-<section id="hair"><h2>Hair Accessories</h2></section>
-<section id="about"><h2>About OBIRA</h2></section>
 
 </body>
 </html>

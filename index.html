@@ -185,12 +185,25 @@ ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY
 
 <div class="slides">
 
-<div class="slide active" style="background-image:url('Hero-I1.jpg');"></div>
-<div class="slide" style="background-image:url('Hero-I2.jpg');"></div>
-<div class="slide" style="background-image:url('Hero-I3.jpg');"></div>
+<!-- IMAGE 1 -->
+<div class="slide active" style="background-image:url('images/Hero-I1.jpg');"></div>
+
+<!-- IMAGE 2 -->
+<div class="slide" style="background-image:url('images/Hero-I2.jpg');"></div>
+
+<!-- VIDEO -->
+<div class="slide">
+<video autoplay muted loop playsinline>
+<source src="videos/Hero-V1.mp4" type="video/mp4">
+</video>
+</div>
+
+<!-- IMAGE 3 -->
+<div class="slide" style="background-image:url('images/Hero-I3.jpg');"></div>
 
 </div>
 
+<!-- CONTENT -->
 <div class="hero-content">
 <h1>Everyday Luxury, Effortlessly Yours</h1>
 <p>Anti-tarnish. Stainless steel. Designed to stay with you.</p>
@@ -204,7 +217,7 @@ ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY
 /* HERO */
 .hero{
 position:relative;
-height:90vh;
+height:92vh;
 overflow:hidden;
 }
 
@@ -219,14 +232,25 @@ height:100%;
 position:absolute;
 width:100%;
 height:100%;
-background-size:cover;
-background-position:center;
 opacity:0;
 transition:1s ease;
 }
 
 .slide.active{
 opacity:1;
+}
+
+/* IMAGE BACKGROUND */
+.slide{
+background-size:cover;
+background-position:center;
+}
+
+/* VIDEO */
+.slide video{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
 /* OVERLAY */
@@ -237,7 +261,7 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.3);
+background:rgba(0,0,0,0.35);
 }
 
 /* CONTENT */
@@ -253,7 +277,7 @@ z-index:2;
 
 .hero-content h1{
 font-family:'Playfair Display';
-font-size:42px;
+font-size:44px;
 letter-spacing:2px;
 margin-bottom:15px;
 }
@@ -265,7 +289,7 @@ letter-spacing:1px;
 }
 
 .hero-content button{
-padding:12px 30px;
+padding:12px 32px;
 background:#fff;
 color:#000;
 border:none;
@@ -296,7 +320,10 @@ slides[index].classList.add("active");
 
 /* SCROLL */
 function scrollToStore(){
-document.getElementById("store").scrollIntoView({behavior:"smooth"});
+let el = document.getElementById("store");
+if(el){
+el.scrollIntoView({behavior:"smooth"});
+}
 }
 
 </script>

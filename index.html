@@ -1,716 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OBIRA</title>
+<!-- ================= TOP STRIP ================= -->
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<div class="top-strip">
+<span>ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY</span>
+</div>
+
+<!-- ================= HEADER ================= -->
+
+<header class="nav">
+
+<!-- LOGO -->
+<div class="logo" onclick="scrollToTop()">
+<img src="logo.png" alt="OBIRA Logo">
+</div>
+
+<!-- RIGHT SIDE -->
+<div class="nav-right">
+
+<div class="nav-link" onclick="openStore()">Store</div>
+
+<div class="icon" onclick="wishlistOpen()">♡</div>
+
+<div class="icon cart-icon" onclick="toggleCart()">
+🛒 <span id="cartCount">0</span>
+</div>
+
+</div>
+
+</header>
+
+<!-- SPACING -->
+<div class="header-space"></div>
 
 <style>
 
-/* RESET */
-body{
-margin:0;
-font-family:'Poppins',sans-serif;
-}
-
-/* RUNNING STRIP */
+/* ===== TOP STRIP ===== */
 .top-strip{
+position:fixed;
+top:0;
+width:100%;
 background:#000;
 color:#fff;
 font-size:11px;
 padding:8px 0;
 overflow:hidden;
 white-space:nowrap;
+z-index:2000;
 }
 
 .top-strip span{
 display:inline-block;
 padding-left:100%;
-animation:scroll 12s linear infinite;
+animation:scroll 14s linear infinite;
 letter-spacing:2px;
 }
 
 @keyframes scroll{
-0%{transform:translateX(0);}
-100%{transform:translateX(-100%);}
+0%{transform:translateX(0)}
+100%{transform:translateX(-100%)}
 }
 
-/* HEADER */
+/* ===== HEADER ===== */
 .nav{
 position:fixed;
-top:28px;
+top:30px;
 width:100%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:18px 8%;
-background:rgba(255,255,255,0.9);
-backdrop-filter:blur(12px);
+padding:16px 8%;
+background:rgba(255,255,255,0.85);
+backdrop-filter:blur(10px);
 border-bottom:1px solid rgba(0,0,0,0.05);
-z-index:1000;
+z-index:1500;
 }
 
 /* LOGO */
-.logo{
-font-family:'Playfair Display';
-font-size:34px;
-letter-spacing:5px;
-font-weight:600;
+.logo img{
+width:170px;
+cursor:pointer;
 }
 
 /* RIGHT SIDE */
-.right{
+.nav-right{
 display:flex;
 align-items:center;
 gap:22px;
-font-size:14px;
 }
 
-/* STORE LINK */
-.store{
+/* STORE TEXT */
+.nav-link{
 cursor:pointer;
-position:relative;
-}
-
-/* UNDERLINE EFFECT */
-.store::after{
-content:'';
-position:absolute;
-bottom:-4px;
-left:0;
-width:0%;
-height:1px;
-background:#000;
+font-size:14px;
+letter-spacing:1px;
 transition:0.3s;
 }
 
-.store:hover::after{
-width:100%;
+.nav-link:hover{
+opacity:0.6;
 }
 
 /* ICONS */
 .icon{
-font-size:18px;
 cursor:pointer;
+font-size:18px;
+position:relative;
 transition:0.3s;
 }
 
 .icon:hover{
 transform:scale(1.2);
-opacity:0.7;
 }
 
-/* SPACING */
-.space{
-height:100px;
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- RUNNING TEXT -->
-<div class="top-strip">
-<span>
-ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY •
-ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY
-</span>
-</div>
-
-<!-- HEADER -->
-<div class="nav">
-
-<div class="logo">OBIRA</div>
-
-<div class="right">
-<div class="store">Store</div>
-<div class="icon">♡</div>
-<div class="icon">🛒</div>
-</div>
-
-</div>
-
-<div class="space"></div>
-
-</body>
-</html>
-
-
-<!-- HERO SECTION -->
-
-<section class="hero">
-
-<div class="slides">
-
-<!-- IMAGE 1 -->
-<div class="slide active" style="background-image:url('images/Hero-I1.jpg');"></div>
-
-<!-- IMAGE 2 -->
-<div class="slide" style="background-image:url('images/Hero-I2.jpg');"></div>
-
-<!-- VIDEO -->
-<div class="slide">
-<video autoplay muted loop playsinline>
-<source src="videos/Hero-V1.mp4" type="video/mp4">
-</video>
-</div>
-
-<!-- IMAGE 3 -->
-<div class="slide" style="background-image:url('images/Hero-I3.jpg');"></div>
-
-</div>
-
-<!-- CONTENT -->
-<div class="hero-content">
-<h1>                       </h1>
-<p>Anti-tarnish. Stainless steel. Designed to stay with you.</p>
-<button onclick="scrollToStore()">Shop Now</button>
-</div>
-
-</section>
-
-<style>
-
-/* HERO */
-.hero{
-position:relative;
-height:92vh;
-overflow:hidden;
-}
-
-/* SLIDES */
-.slides{
+/* CART COUNT */
+.cart-icon span{
 position:absolute;
-width:100%;
-height:100%;
-}
-
-.slide{
-position:absolute;
-width:100%;
-height:100%;
-opacity:0;
-transition:1s ease;
-}
-
-.slide.active{
-opacity:1;
-}
-
-/* IMAGE BACKGROUND */
-.slide{
-background-size:cover;
-background-position:center;
-}
-
-/* VIDEO */
-.slide video{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-/* OVERLAY */
-.hero::after{
-content:'';
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.35);
-}
-
-/* CONTENT */
-.hero-content{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-text-align:center;
-color:#fff;
-z-index:2;
-}
-
-.hero-content h1{
-font-family:'Playfair Display';
-font-size:44px;
-letter-spacing:2px;
-margin-bottom:15px;
-}
-
-.hero-content p{
-font-size:14px;
-margin-bottom:25px;
-letter-spacing:1px;
-}
-
-.hero-content button{
-padding:12px 32px;
-background:#fff;
-color:#000;
-border:none;
-font-size:13px;
-letter-spacing:1px;
-cursor:pointer;
-transition:0.3s;
-}
-
-.hero-content button:hover{
+top:-6px;
+right:-10px;
 background:#000;
 color:#fff;
+font-size:10px;
+padding:2px 6px;
+border-radius:50%;
+}
+
+/* SPACING FIX */
+.header-space{
+height:110px;
 }
 
 </style>
 
 <script>
 
-/* SLIDER */
-let slides = document.querySelectorAll(".slide");
-let index = 0;
-
-setInterval(()=>{
-slides[index].classList.remove("active");
-index = (index + 1) % slides.length;
-slides[index].classList.add("active");
-},4000);
-
-/* SCROLL */
-function scrollToStore(){
-let el = document.getElementById("store");
-if(el){
-el.scrollIntoView({behavior:"smooth"});
+/* SCROLL TOP */
+function scrollToTop(){
+window.scrollTo({top:0, behavior:'smooth'});
 }
+
+/* WISHLIST (TEMP UI) */
+function wishlistOpen(){
+alert("Wishlist feature coming soon ❤️");
 }
 
 </script>
-
-<!-- ================= FRONT CATEGORIES ================= -->
-
-<section style="padding:80px 8%; text-align:center;">
-
-<h2 style="font-family:'Playfair Display'; font-size:32px; margin-bottom:40px;">
-Explore OBIRA
-</h2>
-
-<div class="cat-wrap">
-
-<div class="cat" onclick="openStore()">
-<h3>Bracelets</h3>
-<p>The Wrist Edit</p>
-</div>
-
-<div class="cat" onclick="openStore()">
-<h3>Necklace Chains</h3>
-</div>
-
-<div class="cat" onclick="openStore()">
-<h3>Hair Accessories</h3>
-</div>
-
-</div>
-
-</section>
-
-<style>
-.cat-wrap{
-display:flex;
-gap:20px;
-justify-content:center;
-flex-wrap:wrap;
-}
-
-.cat{
-width:260px;
-height:160px;
-background:#f7f7f7;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-cursor:pointer;
-transition:0.3s;
-}
-
-.cat:hover{
-background:#000;
-color:#fff;
-}
-</style>
-
-<!-- ================= BEST SELLERS ================= -->
-
-<section style="padding:60px 8%;">
-
-<h2 style="text-align:center; font-family:'Playfair Display'; margin-bottom:30px;">
-Best Sellers
-</h2>
-
-<div class="grid">
-
-<div class="card" onclick="openProduct('OBIRA Aurelia Lock Bracelet','1199','images/Bracelets-ALB-001.jpg','Locks in elegance, effortlessly.')">
-<img src="images/Bracelets-ALB-001.jpg">
-<h4>OBIRA Aurelia Lock Bracelet</h4>
-<p>₹1199</p>
-</div>
-
-<div class="card" onclick="openProduct('OBIRA Golden Starfall Drop Chain','999','images/Necklace-Chain-GSD-004.jpg','Shine like falling stars.')">
-<img src="images/Necklace-Chain-GSD-004.jpg">
-<h4>OBIRA Golden Starfall Drop Chain</h4>
-<p>₹999</p>
-</div>
-
-<div class="card" onclick="openProduct('OBIRA Luna Pearl Butterfly Clip','199','images/Clip-LPB-001.jpg','Soft wings, bold charm.')">
-<img src="images/Clip-LPB-001.jpg">
-<h4>OBIRA Luna Pearl Butterfly Clip</h4>
-<p>₹199</p>
-</div>
-
-</div>
-
-<div style="text-align:center; margin-top:30px;">
-<button onclick="openStore()" class="btn">View Full Store</button>
-</div>
-
-</section>
-
-<style>
-.grid{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-justify-content:center;
-}
-
-.card{
-width:220px;
-cursor:pointer;
-text-align:center;
-transition:0.3s;
-}
-
-.card img{
-width:100%;
-}
-
-.card:hover{
-transform:translateY(-6px);
-}
-
-.btn{
-padding:10px 25px;
-border:none;
-background:#000;
-color:#fff;
-cursor:pointer;
-}
-</style>
-
-<!-- ================= STORE (ALL PRODUCTS) ================= -->
-
-<section id="store" style="display:none; padding:80px 8%;">
-
-<h2 style="text-align:center; font-family:'Playfair Display'; margin-bottom:40px;">
-OBIRA Store
-</h2>
-
-<div class="grid" id="allProducts"></div>
-
-</section>
-
-<!-- ================= PRODUCT OVERLAY ================= -->
-
-<div id="productPage" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; z-index:2000; padding:40px; overflow:auto;">
-
-<span onclick="closeProduct()" style="cursor:pointer; font-size:22px;">✕</span>
-
-<div style="text-align:center;">
-<img id="pImg" style="width:300px;">
-<h2 id="pName"></h2>
-<p id="pPrice"></p>
-<p id="pLine" style="color:#555;"></p>
-
-<div style="margin-top:20px;">
-<button onclick="orderNow()" class="btn">Buy Now</button>
-<button onclick="wishlistAdd()" class="btn">♡ Save</button>
-<button onclick="shareProduct()" class="btn">Share</button>
-</div>
-
-</div>
-
-</div>
-
-<script>
-
-/* STORE OPEN */
-function openStore(){
-document.getElementById("store").style.display="block";
-window.scrollTo({top:document.getElementById("store").offsetTop,behavior:'smooth'});
-}
-
-/* PRODUCT VIEW */
-let current={};
-
-function openProduct(name,price,img,line){
-current={name,price};
-document.getElementById("productPage").style.display="block";
-pImg.src=img;
-pName.innerText=name;
-pPrice.innerText="₹"+price;
-pLine.innerText=line;
-}
-
-function closeProduct(){
-productPage.style.display="none";
-}
-
-/* BUTTONS */
-function orderNow(){
-alert("Checkout coming soon ✨");
-}
-
-function wishlistAdd(){
-alert("Saved to wishlist ❤️");
-}
-
-function shareProduct(){
-navigator.share ? navigator.share({title:current.name}) : alert("Sharing...");
-}
-
-/* ALL PRODUCTS DATA */
-
-const products = [
-
-/* BRACELETS */
-["OBIRA Aurelia Lock Bracelet",1199,"images/Bracelets-ALB-001.jpg","Locks in elegance, effortlessly."],
-["OBIRA Chic Radiance Bracelet",1199,"images/Bracelets-CR-002.jpg","Glow that follows you."],
-["OBIRA Royal Medallion Charm Bracelet",999,"images/Bracelets-RMC-003.jpg","A charm of royalty."],
-["OBIRA Golden Aura Bracelet",1199,"images/Bracelets-GA-004.jpg","Carry your aura in gold."],
-["OBIRA Mystic Eye Bracelet",1199,"images/Bracelets-ME-005.jpg","Protection meets style."],
-["OBIRA Radiant Halo Bracelet",999,"images/Bracelets-RH-006.jpg","A halo that shines with you."],
-["OBIRA Floral Grace Bracelet",1199,"images/Bracelets-FG-007.jpg","Grace in every detail."],
-["OBIRA Midnight Bloom Bracelet",1199,"images/Bracelets-MB-008.jpg","Where elegance blooms at night."],
-["OBIRA Luxe Horizon Bracelet",999,"images/Bracelets-LH-009.jpg","Luxury without limits."],
-["OBIRA Rose Éclat Charm Bracelet",999,"images/Bracelets-REC-010.jpg","A soft sparkle of romance."],
-["OBIRA Iconic Rose Luxe Bracelet",999,"images/Bracelets-IRL-011.jpg","Iconic, just like you."],
-["OBIRA Midnight Luxe Charm Bracelet",1199,"images/Bracelets-MLC-012.jpg","Dark. Bold. Luxe."],
-["OBIRA Regal Harmony Bracelet",1199,"images/Bracelets-RHr-013.jpg","Balance in beauty."],
-["OBIRA Timeless Elegance Bracelet",1199,"images/Bracelets-TE-014.jpg","Never goes out of style."],
-
-/* HAIR */
-["OBIRA Luna Pearl Butterfly Clip",199,"images/Clip-LPB-001.jpg","Soft wings, bold charm."],
-["OBIRA Blush Aura Butterfly Clip",199,"images/Clip-BAB-002.jpg","Blush that stays."],
-["OBIRA Olive Green Butterfly Clip",199,"images/Clip-OGB-003.jpg","Nature meets elegance."],
-["OBIRA Rosé Flutter Bloop Clip",199,"images/Clip-RFB-004.jpg","Playful yet refined."],
-["OBIRA Celestial Bow Bands",199,"images/Bands-001.jpg","Tie your style together."],
-["OBIRA Celestial Bow Bands",199,"images/Bands-002.jpg","Everyday charm, redefined."],
-
-/* CHAINS */
-["OBIRA Blue Flutter Drop Chain",999,"images/Necklace-Chain-BFD-001.jpg","Let elegance fall lightly."],
-["OBIRA Eternal Time Drop Chain",999,"images/Necklace-Chain-ETD-002.jpg","Timeless, always."],
-["OBIRA Bloom Drop Chain",999,"images/Necklace-Chain-BD-003.jpg","A bloom you carry."],
-["OBIRA Golden Starfall Drop Chain",999,"images/Necklace-Chain-GSD-004.jpg","Shine like falling stars."],
-["OBIRA Butterfly Shell Lumière Chain",999,"images/Necklace-Chain-BSL-005.jpg","Light, delicate, radiant."],
-["OBIRA Lunar Bloom Chain",999,"images/Necklace-Chain-LB-006.jpg","Bloom under moonlight."],
-["OBIRA Heart Of The Sun Chain",999,"images/Necklace-Chain-HOS-007.jpg","Bold warmth within."],
-["OBIRA Starlight Drop Chain",999,"images/Necklace-Chain-SD-008.jpg","Carry the night sky."],
-["OBIRA Soaring Peace Chain",999,"images/Necklace-Chain-SP-009.jpg","Freedom in form."],
-["OBIRA Midnight Heart Chain",999,"images/Necklace-Chain-MH-010.jpg","Love, after dark."],
-["OBIRA Bamboo Heart Chain",999,"images/Necklace-Chain-BH-011.jpg","Nature meets love."]
-
-];
-
-/* LOAD ALL PRODUCTS */
-
-const container = document.getElementById("allProducts");
-
-products.forEach(p=>{
-let div=document.createElement("div");
-div.className="card";
-div.innerHTML=`
-<img src="${p[2]}">
-<h4>${p[0]}</h4>
-<p>₹${p[1]}</p>
-`;
-div.onclick=()=>openProduct(p[0],p[1],p[2],p[3]);
-container.appendChild(div);
-});
-
-</script>
-
-<!-- ================= TRUST BADGES ================= -->
-
-<section style="padding:60px 8%; text-align:center; background:#fafafa;">
-
-<h2 style="font-family:'Playfair Display'; margin-bottom:30px;">
-Why OBIRA?
-</h2>
-
-<div class="trust">
-
-<div>ANTI-TARNISH</div>
-<div>STAINLESS STEEL</div>
-<div>WATER RESISTANT</div>
-<div>EVERYDAY LUXURY</div>
-
-</div>
-
-</section>
-
-<!-- OBIRA INTRO / STORY -->
-
-<section style="padding:100px 10%; text-align:center;">
-
-<!-- LOGO -->
-<img src="logo.png" alt="OBIRA Logo" 
-style="width:250px; margin-bottom:25px;">
-
-<h2 style="font-family:'Playfair Display'; font-size:36px; margin-bottom:25px;">
-Not made for him or her, made for you! 
-</h2>
-
-<p style="max-width:700px; margin:auto; line-height:1.9; font-size:15px; color:#444;">
-
-OBIRA was never created to follow trends.  
-It was created for the moments you feel most like yourself.
-
-<br><br>
-
-The quiet confidence before you step out.  
-The subtle shine that catches light without asking for attention.  
-The feeling of wearing something that stays with you — effortlessly.
-
-<br><br>
-
-Every piece is crafted in anti-tarnish stainless steel, designed to last beyond seasons and moments.  
-Because luxury shouldn’t fade. And neither should you.
-
-<br><br>
-
-At OBIRA, we believe jewellery is not just something you wear.  
-It’s something you carry — your mood, your presence, your identity.
-
-</p>
-
-<div style="margin-top:35px; letter-spacing:2px; font-size:13px; font-weight:500;">
-ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY
-</div>
-
-</section>
-
-<style>
-.trust{
-display:flex;
-justify-content:center;
-gap:30px;
-flex-wrap:wrap;
-font-size:13px;
-letter-spacing:2px;
-}
-</style>
-
-<!-- ================= REVIEWS ================= -->
-
-<section style="padding:80px 8%; text-align:center;">
-
-<h2 style="font-family:'Playfair Display'; margin-bottom:40px;">
-Loved by You
-</h2>
-
-<div class="reviews">
-
-<div class="review">
-<p>"I’ve worn mine almost every day and it still looks brand new. OBIRA is different."</p>
-<h4>— Aanya R.</h4>
-</div>
-
-<div class="review">
-<p>"The shine is subtle but noticeable. It just elevates everything I wear."</p>
-<h4>— Meher K.</h4>
-</div>
-
-<div class="review">
-<p>"Didn’t expect this quality at this price. Feels way more premium."</p>
-<h4>— Riya S.</h4>
-</div>
-
-<div class="review">
-<p>"I gifted one to my sister and ended up ordering for myself too."</p>
-<h4>— Kavya N.</h4>
-</div>
-
-</div>
-
-</section>
-
-<style>
-.reviews{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-justify-content:center;
-}
-
-.review{
-width:250px;
-background:#f8f8f8;
-padding:20px;
-font-size:14px;
-}
-</style>
-
-<!-- ================= TERMS ================= -->
-
-<section style="padding:60px 8%; font-size:13px; color:#555; line-height:1.8;">
-
-<h3 style="font-family:'Playfair Display'; margin-bottom:20px;">Terms & Conditions</h3>
-
-<p>
-All OBIRA pieces are crafted with care using anti-tarnish stainless steel materials.  
-While designed for durability, proper care ensures longer life.
-</p>
-
-<p>
-Orders once placed cannot be cancelled after dispatch.  
-We currently do not offer returns for hygiene and safety reasons.
-</p>
-
-<p>
-Product colors may slightly vary due to lighting and screen differences.
-</p>
-
-</section>
-
-<!-- ================= FOOTER ================= -->
-
-<footer style="padding:40px 8%; background:#000; color:#fff; text-align:center;">
-
-<h2 style="font-family:'Playfair Display'; letter-spacing:3px;">
-OBIRA
-</h2>
-
-<p style="margin:15px 0;">
-obiraofficial1@gmail.com
-</p>
-
-<!-- SOCIALS -->
-<div style="font-size:20px; margin:15px 0;">
-
-<a href="https://www.instagram.com/obira.official" target="_blank" style="color:#fff; margin:0 10px;">Instagram</a>
-
-<a href="https://www.facebook.com/share/1ASSUzxYhN/" target="_blank" style="color:#fff; margin:0 10px;">Facebook</a>
-
-<a href="https://youtube.com/@obira.official1" target="_blank" style="color:#fff; margin:0 10px;">YouTube</a>
-
-<a href="https://pin.it/1wgRAuNBf" target="_blank" style="color:#fff; margin:0 10px;">Pinterest</a>
-
-</div>
-
-<p style="margin-top:20px; font-size:12px;">
-© 2025 OBIRA. All rights reserved.
-</p>
-
-</footer>

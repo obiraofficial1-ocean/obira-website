@@ -246,3 +246,227 @@ slides[index].classList.add("active");
 },4000);
 
 </script>
+
+<!-- ================= CATEGORIES ================= -->
+
+<section class="categories">
+
+<h2>Explore OBIRA</h2>
+
+<div class="cat-grid">
+
+<div class="cat-card" onclick="openStore()">
+<h3>Bracelets</h3>
+<p>The Wrist Edit</p>
+</div>
+
+<div class="cat-card" onclick="openStore()">
+<h3>Necklace Chains</h3>
+<p>Minimal. Timeless.</p>
+</div>
+
+<div class="cat-card" onclick="openStore()">
+<h3>Hair Accessories</h3>
+<p>Soft. Playful.</p>
+</div>
+
+</div>
+
+</section>
+
+<style>
+.categories{
+padding:90px 8%;
+text-align:center;
+}
+
+.categories h2{
+font-family:'Playfair Display';
+font-size:32px;
+margin-bottom:50px;
+}
+
+.cat-grid{
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.cat-card{
+width:260px;
+height:160px;
+background:#f4f4f4;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+transition:0.4s;
+}
+
+.cat-card h3{
+font-family:'Playfair Display';
+margin-bottom:5px;
+}
+
+.cat-card p{
+font-size:13px;
+color:#666;
+}
+
+.cat-card:hover{
+background:#000;
+color:#fff;
+transform:translateY(-6px);
+}
+
+.cat-card:hover p{
+color:#ccc;
+}
+</style>
+
+
+<!-- ================= BEST SELLERS ================= -->
+
+<section class="best">
+
+<h2>Best Sellers</h2>
+
+<div class="product-grid">
+
+<!-- PRODUCT 1 -->
+<div class="product-card" onclick="openProduct('OBIRA Aurelia Lock Bracelet',1199,'images/Bracelets-ALB-001.jpg','Locks in elegance, effortlessly.')">
+
+<div class="p-icons">
+<span onclick="event.stopPropagation(); wishlistOpen()">♡</span>
+<span onclick="event.stopPropagation(); shareProduct()">↗</span>
+</div>
+
+<img src="images/Bracelets-ALB-001.jpg">
+<h4>OBIRA Aurelia Lock Bracelet</h4>
+<p>₹1199</p>
+
+</div>
+
+<!-- PRODUCT 2 -->
+<div class="product-card" onclick="openProduct('OBIRA Golden Starfall Drop Chain',999,'images/Necklace-Chain-GSD-004.jpg','Shine like falling stars.')">
+
+<div class="p-icons">
+<span onclick="event.stopPropagation(); wishlistOpen()">♡</span>
+<span onclick="event.stopPropagation(); shareProduct()">↗</span>
+</div>
+
+<img src="images/Necklace-Chain-GSD-004.jpg">
+<h4>OBIRA Golden Starfall Drop Chain</h4>
+<p>₹999</p>
+
+</div>
+
+<!-- PRODUCT 3 -->
+<div class="product-card" onclick="openProduct('OBIRA Luna Pearl Butterfly Clip',199,'images/Clip-LPB-001.jpg','Soft wings, bold charm.')">
+
+<div class="p-icons">
+<span onclick="event.stopPropagation(); wishlistOpen()">♡</span>
+<span onclick="event.stopPropagation(); shareProduct()">↗</span>
+</div>
+
+<img src="images/Clip-LPB-001.jpg">
+<h4>OBIRA Luna Pearl Butterfly Clip</h4>
+<p>₹199</p>
+
+</div>
+
+<!-- PRODUCT 4 -->
+<div class="product-card" onclick="openProduct('OBIRA Midnight Bloom Bracelet',1199,'images/Bracelets-MB-008.jpg','Where elegance blooms at night.')">
+
+<div class="p-icons">
+<span onclick="event.stopPropagation(); wishlistOpen()">♡</span>
+<span onclick="event.stopPropagation(); shareProduct()">↗</span>
+</div>
+
+<img src="images/Bracelets-MB-008.jpg">
+<h4>OBIRA Midnight Bloom Bracelet</h4>
+<p>₹1199</p>
+
+</div>
+
+</div>
+
+<div class="view-store">
+<button onclick="openStore()">View Full Store</button>
+</div>
+
+</section>
+
+<style>
+.best{
+padding:80px 8%;
+text-align:center;
+}
+
+.best h2{
+font-family:'Playfair Display';
+font-size:30px;
+margin-bottom:40px;
+}
+
+.product-grid{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+}
+
+/* CARD */
+.product-card{
+width:220px;
+cursor:pointer;
+position:relative;
+}
+
+.product-card img{
+width:100%;
+}
+
+.product-card h4{
+font-size:14px;
+margin:8px 0 4px;
+}
+
+.product-card p{
+font-size:13px;
+color:#555;
+}
+
+/* ICONS */
+.p-icons{
+position:absolute;
+top:8px;
+right:8px;
+display:flex;
+gap:8px;
+}
+
+.p-icons span{
+background:#fff;
+padding:4px 6px;
+font-size:12px;
+cursor:pointer;
+}
+
+/* BUTTON */
+.view-store button{
+margin-top:30px;
+padding:12px 30px;
+background:#000;
+color:#fff;
+border:none;
+cursor:pointer;
+transition:0.3s;
+}
+
+.view-store button:hover{
+background:#333;
+}
+</style>

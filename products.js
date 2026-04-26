@@ -1,35 +1,346 @@
-const products = [
-    { id: 1, name: "Product 1", price: 29.99, image: "image1.jpg", category: "Category A", description: "Description for Product 1", rating: 4.5 },
-    { id: 2, name: "Product 2", price: 39.99, image: "image2.jpg", category: "Category B", description: "Description for Product 2", rating: 4.0 },
-    { id: 3, name: "Product 3", price: 19.99, image: "image3.jpg", category: "Category A", description: "Description for Product 3", rating: 4.7 },
-    { id: 4, name: "Product 4", price: 49.99, image: "image4.jpg", category: "Category C", description: "Description for Product 4", rating: 4.2 },
-    { id: 5, name: "Product 5", price: 59.99, image: "image5.jpg", category: "Category B", description: "Description for Product 5", rating: 4.3 },
-    { id: 6, name: "Product 6", price: 15.99, image: "image6.jpg", category: "Category A", description: "Description for Product 6", rating: 4.8 },
-    { id: 7, name: "Product 7", price: 34.99, image: "image7.jpg", category: "Category A", description: "Description for Product 7", rating: 4.3 },
-    { id: 8, name: "Product 8", price: 22.99, image: "image8.jpg", category: "Category B", description: "Description for Product 8", rating: 4.6 },
-    { id: 9, name: "Product 9", price: 11.99, image: "image9.jpg", category: "Category C", description: "Description for Product 9", rating: 4.5 },
-    { id: 10, name: "Product 10", price: 55.99, image: "image10.jpg", category: "Category A", description: "Description for Product 10", rating: 4.7 },
-    { id: 11, name: "Product 11", price: 25.99, image: "image11.jpg", category: "Category A", description: "Description for Product 11", rating: 4.2 },
-    { id: 12, name: "Product 12", price: 30.99, image: "image12.jpg", category: "Category B", description: "Description for Product 12", rating: 4.1 },
-    { id: 13, name: "Product 13", price: 75.99, image: "image13.jpg", category: "Category C", description: "Description for Product 13", rating: 4.8 },
-    { id: 14, name: "Product 14", price: 14.99, image: "image14.jpg", category: "Category B", description: "Description for Product 14", rating: 4.6 },
-    { id: 15, name: "Product 15", price: 60.99, image: "image15.jpg", category: "Category C", description: "Description for Product 15", rating: 4.0 },
-    { id: 16, name: "Product 16", price: 49.99, image: "image16.jpg", category: "Category A", description: "Description for Product 16", rating: 4.3 },
-    { id: 17, name: "Product 17", price: 35.99, image: "image17.jpg", category: "Category B", description: "Description for Product 17", rating: 4.1 },
-    { id: 18, name: "Product 18", price: 23.99, image: "image18.jpg", category: "Category A", description: "Description for Product 18", rating: 4.7 },
-    { id: 19, name: "Product 19", price: 45.99, image: "image19.jpg", category: "Category C", description: "Description for Product 19", rating: 4.2 },
-    { id: 20, name: "Product 20", price: 27.99, image: "image20.jpg", category: "Category B", description: "Description for Product 20", rating: 4.6 },
-    { id: 21, name: "Product 21", price: 90.99, image: "image21.jpg", category: "Category C", description: "Description for Product 21", rating: 4.3 },
-    { id: 22, name: "Product 22", price: 5.99, image: "image22.jpg", category: "Category A", description: "Description for Product 22", rating: 4.5 },
-    { id: 23, name: "Product 23", price: 19.99, image: "image23.jpg", category: "Category B", description: "Description for Product 23", rating: 4.8 },
-    { id: 24, name: "Product 24", price: 65.99, image: "image24.jpg", category: "Category C", description: "Description for Product 24", rating: 4.0 },
-    { id: 25, name: "Product 25", price: 22.99, image: "image25.jpg", category: "Category A", description: "Description for Product 25", rating: 4.7 },
-    { id: 26, name: "Product 26", price: 18.99, image: "image26.jpg", category: "Category A", description: "Description for Product 26", rating: 4.6 },
-    { id: 27, name: "Product 27", price: 33.99, image: "image27.jpg", category: "Category B", description: "Description for Product 27", rating: 4.4 },
-    { id: 28, name: "Product 28", price: 12.99, image: "image28.jpg", category: "Category C", description: "Description for Product 28", rating: 4.7 },
-    { id: 29, name: "Product 29", price: 70.99, image: "image29.jpg", category: "Category A", description: "Description for Product 29", rating: 4.2 },
-    { id: 30, name: "Product 30", price: 20.99, image: "image30.jpg", category: "Category B", description: "Description for Product 30", rating: 4.5 },
-    { id: 31, name: "Product 31", price: 99.99, image: "image31.jpg", category: "Category C", description: "Description for Product 31", rating: 4.9 }
-];
+// ================= OBIRA PRODUCTS DATABASE =================
 
-export default products;
+const products = [
+
+/* ================= BRACELETS ================= */
+
+{
+id: "aurelia-lock-bracelet",
+name: "OBIRA Aurelia Lock Bracelet",
+price: 1199,
+image: "images/Bracelets-ALB-001.jpg",
+category: "bracelet",
+tone: "Gold toned",
+desc: "Locks in elegance, effortlessly.",
+images: ["images/Bracelets-ALB-001.jpg"]
+},
+
+{
+id: "chic-radiance-bracelet",
+name: "OBIRA Chic Radiance Bracelet",
+price: 1199,
+image: "images/Bracelets-CR-002.jpg",
+category: "bracelet",
+tone: "Gold toned",
+desc: "Glow that follows you.",
+images: ["images/Bracelets-CR-002.jpg"]
+},
+
+{
+id: "royal-medallion-bracelet",
+name: "OBIRA Royal Medallion Charm Bracelet",
+price: 999,
+image: "images/Bracelets-RMC-003.jpg",
+category: "bracelet",
+tone: "Rose-gold toned",
+desc: "A charm of royalty.",
+images: ["images/Bracelets-RMC-003.jpg"]
+},
+
+{
+id: "golden-aura-bracelet",
+name: "OBIRA Golden Aura Bracelet",
+price: 1199,
+image: "images/Bracelets-GA-004.jpg",
+category: "bracelet",
+tone: "Gold toned",
+desc: "Carry your aura in gold.",
+images: ["images/Bracelets-GA-004.jpg"]
+},
+
+{
+id: "mystic-eye-bracelet",
+name: "OBIRA Mystic Eye Bracelet",
+price: 1199,
+image: "images/Bracelets-ME-005.jpg",
+category: "bracelet",
+tone: "Gold toned",
+desc: "Protection meets style.",
+images: ["images/Bracelets-ME-005.jpg"]
+},
+
+{
+id: "radiant-halo-bracelet",
+name: "OBIRA Radiant Halo Bracelet",
+price: 999,
+image: "images/Bracelets-RH-006.jpg",
+category: "bracelet",
+tone: "Gold toned",
+desc: "Radiance that surrounds you.",
+images: ["images/Bracelets-RH-006.jpg"]
+},
+
+{
+id: "floral-grace-bracelet",
+name: "OBIRA Floral Grace Bracelet",
+price: 1199,
+image: "images/Bracelets-FG-007.jpg",
+category: "bracelet",
+tone: "Gold toned",
+desc: "Soft floral elegance.",
+images: ["images/Bracelets-FG-007.jpg"]
+},
+
+{
+id: "midnight-bloom-bracelet",
+name: "OBIRA Midnight Bloom Bracelet",
+price: 1199,
+image: "images/Bracelets-MB-008.jpg",
+category: "bracelet",
+tone: "Gold toned",
+desc: "Where elegance blooms at night.",
+images: ["images/Bracelets-MB-008.jpg"]
+},
+
+{
+id: "luxe-horizon-bracelet",
+name: "OBIRA Luxe Horizon Bracelet",
+price: 999,
+image: "images/Bracelets-LH-009.jpg",
+category: "bracelet",
+tone: "Gold toned",
+desc: "Luxury at every glance.",
+images: ["images/Bracelets-LH-009.jpg"]
+},
+
+{
+id: "rose-eclat-bracelet",
+name: "OBIRA Rose Éclat Charm Bracelet",
+price: 999,
+image: "images/Bracelets-REC-010.jpg",
+category: "bracelet",
+tone: "Rose-gold toned",
+desc: "Soft rose brilliance.",
+images: ["images/Bracelets-REC-010.jpg"]
+},
+
+{
+id: "iconic-rose-luxe-bracelet",
+name: "OBIRA Iconic Rose Luxe Bracelet",
+price: 999,
+image: "images/Bracelets-IRL-011.jpg",
+category: "bracelet",
+tone: "Rose-gold toned",
+desc: "Iconic and timeless.",
+images: ["images/Bracelets-IRL-011.jpg"]
+},
+
+{
+id: "midnight-luxe-bracelet",
+name: "OBIRA Midnight Luxe Charm Bracelet",
+price: 1199,
+image: "images/Bracelets-MLC-012.jpg",
+category: "bracelet",
+tone: "Silver toned",
+desc: "Dark luxury redefined.",
+images: ["images/Bracelets-MLC-012.jpg"]
+},
+
+{
+id: "regal-harmony-bracelet",
+name: "OBIRA Regal Harmony Bracelet",
+price: 1199,
+image: "images/Bracelets-RHr-013.jpg",
+category: "bracelet",
+tone: "Gold toned",
+desc: "Balance of elegance.",
+images: ["images/Bracelets-RHr-013.jpg"]
+},
+
+{
+id: "timeless-elegance-bracelet",
+name: "OBIRA Timeless Elegance Bracelet",
+price: 1199,
+image: "images/Bracelets-TE-014.jpg",
+category: "bracelet",
+tone: "Gold toned",
+desc: "Never goes out of style.",
+images: ["images/Bracelets-TE-014.jpg"]
+},
+
+/* ================= HAIR ================= */
+
+{
+id: "luna-pearl-clip",
+name: "OBIRA Luna Pearl Butterfly Clip",
+price: 199,
+image: "images/Clip-LPB-001.jpg",
+category: "hair",
+desc: "Soft wings, bold charm.",
+images: ["images/Clip-LPB-001.jpg"]
+},
+
+{
+id: "blush-aura-clip",
+name: "OBIRA Blush Aura Butterfly Clip",
+price: 199,
+image: "images/Clip-BAB-002.jpg",
+category: "hair",
+desc: "Blush that stays.",
+images: ["images/Clip-BAB-002.jpg"]
+},
+
+{
+id: "olive-green-clip",
+name: "OBIRA Olive Green Butterfly Clip",
+price: 199,
+image: "images/Clip-OGB-003.jpg",
+category: "hair",
+desc: "Nature-inspired beauty.",
+images: ["images/Clip-OGB-003.jpg"]
+},
+
+{
+id: "rose-flutter-clip",
+name: "OBIRA Rosé Flutter Bloop Clip",
+price: 199,
+image: "images/Clip-RFB-004.jpg",
+category: "hair",
+desc: "Playful elegance.",
+images: ["images/Clip-RFB-004.jpg"]
+},
+
+{
+id: "bow-bands-1",
+name: "OBIRA Celestial Bow Bands (Pack of 8)",
+price: 199,
+image: "images/Bands-001.jpg",
+category: "hair",
+desc: "Cute everyday essentials.",
+images: ["images/Bands-001.jpg"]
+},
+
+{
+id: "bow-bands-2",
+name: "OBIRA Celestial Bow Bands (Pack of 8)",
+price: 199,
+image: "images/Bands-002.jpg",
+category: "hair",
+desc: "Style in every tie.",
+images: ["images/Bands-002.jpg"]
+},
+
+/* ================= CHAINS ================= */
+
+{
+id: "blue-flutter-chain",
+name: "OBIRA Blue Flutter Drop Chain",
+price: 999,
+image: "images/Necklace-Chain-BFD-001.jpg",
+category: "chain",
+tone: "Gold toned",
+desc: "Light and graceful.",
+images: ["images/Necklace-Chain-BFD-001.jpg"]
+},
+
+{
+id: "eternal-time-chain",
+name: "OBIRA Eternal Time Drop Chain",
+price: 999,
+image: "images/Necklace-Chain-ETD-002.jpg",
+category: "chain",
+tone: "Gold toned",
+desc: "Timeless charm.",
+images: ["images/Necklace-Chain-ETD-002.jpg"]
+},
+
+{
+id: "bloom-drop-chain",
+name: "OBIRA Bloom Drop Chain",
+price: 999,
+image: "images/Necklace-Chain-BD-003.jpg",
+category: "chain",
+tone: "Gold toned",
+desc: "Bloom with grace.",
+images: ["images/Necklace-Chain-BD-003.jpg"]
+},
+
+{
+id: "golden-starfall-chain",
+name: "OBIRA Golden Starfall Drop Chain",
+price: 999,
+image: "images/Necklace-Chain-GSD-004.jpg",
+category: "chain",
+tone: "Gold toned",
+desc: "Shine like falling stars.",
+images: ["images/Necklace-Chain-GSD-004.jpg"]
+},
+
+{
+id: "butterfly-shell-chain",
+name: "OBIRA Butterfly Shell Lumière Chain",
+price: 999,
+image: "images/Necklace-Chain-BSL-005.jpg",
+category: "chain",
+tone: "Gold toned",
+desc: "Soft luminous beauty.",
+images: ["images/Necklace-Chain-BSL-005.jpg"]
+},
+
+{
+id: "lunar-bloom-chain",
+name: "OBIRA Lunar Bloom Chain",
+price: 999,
+image: "images/Necklace-Chain-LB-006.jpg",
+category: "chain",
+tone: "Gold toned",
+desc: "Bloom under moonlight.",
+images: ["images/Necklace-Chain-LB-006.jpg"]
+},
+
+{
+id: "heart-of-sun-chain",
+name: "OBIRA Heart Of The Sun Chain",
+price: 999,
+image: "images/Necklace-Chain-HOS-007.jpg",
+category: "chain",
+tone: "Gold toned",
+desc: "Radiance from within.",
+images: ["images/Necklace-Chain-HOS-007.jpg"]
+},
+
+{
+id: "starlight-chain",
+name: "OBIRA Starlight Drop Chain",
+price: 999,
+image: "images/Necklace-Chain-SD-008.jpg",
+category: "chain",
+tone: "Gold toned",
+desc: "Glow like stars.",
+images: ["images/Necklace-Chain-SD-008.jpg"]
+},
+
+{
+id: "soaring-peace-chain",
+name: "OBIRA Soaring Peace Chain",
+price: 999,
+image: "images/Necklace-Chain-SP-009.jpg",
+category: "chain",
+tone: "Gold toned",
+desc: "Freedom in style.",
+images: ["images/Necklace-Chain-SP-009.jpg"]
+},
+
+{
+id: "midnight-heart-chain",
+name: "OBIRA Midnight Heart Chain",
+price: 999,
+image: "images/Necklace-Chain-MH-010.jpg",
+category: "chain",
+tone: "Gold toned",
+desc: "Love after dark.",
+images: ["images/Necklace-Chain-MH-010.jpg"]
+},
+
+{
+id: "bamboo-heart-chain",
+name: "OBIRA Bamboo Heart Chain",
+price: 999,
+image: "images/Necklace-Chain-BH-011.jpg",
+category: "chain",
+tone: "Gold toned",
+desc: "Nature meets love.",
+images: ["images/Necklace-Chain-BH-011.jpg"]
+}
+
+];

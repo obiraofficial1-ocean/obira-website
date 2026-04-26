@@ -1,27 +1,29 @@
 <!-- ================= TOP STRIP ================= -->
-
 <div class="top-strip">
-<span>ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY</span>
+ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY
 </div>
 
 <!-- ================= HEADER ================= -->
+<header class="header">
 
-<header class="nav">
+<div class="header-inner">
 
 <!-- LOGO -->
 <div class="logo" onclick="scrollToTop()">
-<img src="logo.png" alt="OBIRA Logo">
+<img src="logo.png" alt="OBIRA">
 </div>
 
 <!-- RIGHT SIDE -->
-<div class="nav-right">
+<div class="right">
 
-<div class="nav-link" onclick="openStore()">Store</div>
+<div class="store" onclick="openStore()">Store</div>
 
 <div class="icon" onclick="wishlistOpen()">♡</div>
 
-<div class="icon cart-icon" onclick="toggleCart()">
+<div class="icon cart" onclick="toggleCart()">
 🛒 <span id="cartCount">0</span>
+</div>
+
 </div>
 
 </div>
@@ -40,92 +42,86 @@ top:0;
 width:100%;
 background:#000;
 color:#fff;
+text-align:center;
 font-size:11px;
-padding:8px 0;
-overflow:hidden;
-white-space:nowrap;
-z-index:2000;
-}
-
-.top-strip span{
-display:inline-block;
-padding-left:100%;
-animation:scroll 14s linear infinite;
+padding:6px 0;
 letter-spacing:2px;
-}
-
-@keyframes scroll{
-0%{transform:translateX(0)}
-100%{transform:translateX(-100%)}
+z-index:3000;
 }
 
 /* ===== HEADER ===== */
-.nav{
+.header{
 position:fixed;
-top:30px;
+top:26px;
 width:100%;
+background:#fff;
+border-bottom:1px solid #eee;
+z-index:2000;
+}
+
+/* INNER */
+.header-inner{
+max-width:1200px;
+margin:auto;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:16px 8%;
-background:rgba(255,255,255,0.85);
-backdrop-filter:blur(10px);
-border-bottom:1px solid rgba(0,0,0,0.05);
-z-index:1500;
+padding:10px 20px;
 }
 
 /* LOGO */
 .logo img{
-width:170px;
-cursor:pointer;
+width:110px;
+height:auto;
+display:block;
 }
 
 /* RIGHT SIDE */
-.nav-right{
+.right{
 display:flex;
 align-items:center;
-gap:22px;
+gap:18px;
 }
 
-/* STORE TEXT */
-.nav-link{
-cursor:pointer;
-font-size:14px;
+/* STORE */
+.store{
+font-size:13px;
 letter-spacing:1px;
-transition:0.3s;
+cursor:pointer;
+transition:0.2s;
 }
 
-.nav-link:hover{
+.store:hover{
 opacity:0.6;
 }
 
 /* ICONS */
 .icon{
-cursor:pointer;
 font-size:18px;
+cursor:pointer;
 position:relative;
-transition:0.3s;
+transition:0.2s;
 }
 
 .icon:hover{
-transform:scale(1.2);
+transform:scale(1.15);
 }
 
 /* CART COUNT */
-.cart-icon span{
+.cart span{
 position:absolute;
 top:-6px;
-right:-10px;
+right:-8px;
 background:#000;
 color:#fff;
-font-size:10px;
+font-size:9px;
 padding:2px 6px;
 border-radius:50%;
 }
 
 /* SPACING FIX */
 .header-space{
-height:110px;
+height:80px;
 }
 
 </style>
@@ -137,9 +133,9 @@ function scrollToTop(){
 window.scrollTo({top:0, behavior:'smooth'});
 }
 
-/* WISHLIST (TEMP UI) */
+/* WISHLIST */
 function wishlistOpen(){
-alert("Wishlist feature coming soon ❤️");
+alert("Wishlist coming soon ❤️");
 }
 
 </script>

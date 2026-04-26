@@ -139,3 +139,110 @@ alert("Wishlist coming soon ❤️");
 }
 
 </script>
+
+<!-- ================= HERO SECTION ================= -->
+
+<section class="hero">
+
+<div class="hero-slide active" style="background-image:url('images/Hero-I1.jpg')"></div>
+<div class="hero-slide" style="background-image:url('images/Hero-I2.jpg')"></div>
+<div class="hero-slide" style="background-image:url('images/Hero-I3.jpg')"></div>
+
+<div class="hero-content">
+<h1>Everyday Luxury</h1>
+<p>Jewellery that stays with you</p>
+<button onclick="openStore()">Shop Now</button>
+</div>
+
+</section>
+
+<style>
+
+/* HERO */
+.hero{
+position:relative;
+height:90vh;
+overflow:hidden;
+}
+
+/* SLIDES */
+.hero-slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+opacity:0;
+transition:opacity 1s ease-in-out;
+}
+
+/* ACTIVE */
+.hero-slide.active{
+opacity:1;
+}
+
+/* DARK OVERLAY */
+.hero::after{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.35);
+top:0;
+left:0;
+}
+
+/* CONTENT */
+.hero-content{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+color:#fff;
+z-index:2;
+}
+
+/* TEXT */
+.hero-content h1{
+font-family:'Playfair Display';
+font-size:42px;
+margin-bottom:10px;
+}
+
+.hero-content p{
+font-size:14px;
+margin-bottom:20px;
+letter-spacing:1px;
+}
+
+/* BUTTON */
+.hero-content button{
+padding:12px 30px;
+border:none;
+background:#fff;
+color:#000;
+cursor:pointer;
+letter-spacing:1px;
+transition:0.3s;
+}
+
+.hero-content button:hover{
+background:#ddd;
+}
+
+</style>
+
+<script>
+
+/* HERO SLIDER */
+let slides = document.querySelectorAll(".hero-slide");
+let index = 0;
+
+setInterval(()=>{
+slides[index].classList.remove("active");
+index = (index + 1) % slides.length;
+slides[index].classList.add("active");
+},4000);
+
+</script>

@@ -9,6 +9,8 @@
 
 <h2 style="text-align:center;margin-top:40px;">Your Cart</h2>
 
+<button onclick="clearCart()" style="margin:20px;">Reset Cart</button>
+
 <div id="cart-items"></div>
 
 <div style="text-align:center;margin-top:20px;">
@@ -21,6 +23,11 @@
 <script src="script.js"></script>
 
 <script>
+
+function clearCart(){
+localStorage.removeItem("cart");
+location.reload();
+}
 
 function loadCart(){
 

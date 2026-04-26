@@ -470,3 +470,184 @@ transition:0.3s;
 background:#333;
 }
 </style>
+
+<!-- ================= STORE PAGE ================= -->
+
+<div id="storePage">
+
+<div class="store-header">
+<h2>OBIRA Store</h2>
+<span onclick="closeStore()">✕</span>
+</div>
+
+<div class="store-grid" id="storeGrid"></div>
+
+</div>
+
+<style>
+
+/* STORE PAGE */
+#storePage{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#fff;
+z-index:5000;
+display:none;
+overflow:auto;
+}
+
+/* HEADER */
+.store-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+border-bottom:1px solid #eee;
+}
+
+.store-header h2{
+font-family:'Playfair Display';
+}
+
+.store-header span{
+font-size:22px;
+cursor:pointer;
+}
+
+/* GRID */
+.store-grid{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+padding:30px;
+}
+
+/* PRODUCT CARD */
+.product-card{
+width:220px;
+cursor:pointer;
+position:relative;
+}
+
+.product-card img{
+width:100%;
+}
+
+.product-card h4{
+font-size:14px;
+margin:8px 0 4px;
+}
+
+.product-card p{
+font-size:13px;
+color:#555;
+}
+
+/* ICONS */
+.p-icons{
+position:absolute;
+top:8px;
+right:8px;
+display:flex;
+gap:8px;
+}
+
+.p-icons span{
+background:#fff;
+padding:4px 6px;
+font-size:12px;
+cursor:pointer;
+}
+
+</style>
+
+<script>
+
+/* OPEN / CLOSE STORE */
+function openStore(){
+document.getElementById("storePage").style.display = "block";
+}
+
+function closeStore(){
+document.getElementById("storePage").style.display = "none";
+}
+
+/* SHARE */
+function shareProduct(){
+if(navigator.share){
+navigator.share({title:"OBIRA Product"});
+}else{
+alert("Sharing coming soon ✨");
+}
+}
+
+/* PRODUCTS DATA */
+const storeProducts = [
+
+["OBIRA Aurelia Lock Bracelet",1199,"images/Bracelets-ALB-001.jpg","Locks in elegance, effortlessly."],
+["OBIRA Chic Radiance Bracelet",1199,"images/Bracelets-CR-002.jpg","Glow that follows you."],
+["OBIRA Royal Medallion Charm Bracelet",999,"images/Bracelets-RMC-003.jpg","A charm of royalty."],
+["OBIRA Golden Aura Bracelet",1199,"images/Bracelets-GA-004.jpg","Carry your aura in gold."],
+["OBIRA Mystic Eye Bracelet",1199,"images/Bracelets-ME-005.jpg","Protection meets style."],
+["OBIRA Radiant Halo Bracelet",999,"images/Bracelets-RH-006.jpg","A halo that shines."],
+["OBIRA Floral Grace Bracelet",1199,"images/Bracelets-FG-007.jpg","Grace in every detail."],
+["OBIRA Midnight Bloom Bracelet",1199,"images/Bracelets-MB-008.jpg","Where elegance blooms at night."],
+["OBIRA Luxe Horizon Bracelet",999,"images/Bracelets-LH-009.jpg","Luxury without limits."],
+["OBIRA Rose Éclat Charm Bracelet",999,"images/Bracelets-REC-010.jpg","A soft sparkle of romance."],
+["OBIRA Iconic Rose Luxe Bracelet",999,"images/Bracelets-IRL-011.jpg","Iconic, just like you."],
+["OBIRA Midnight Luxe Charm Bracelet",1199,"images/Bracelets-MLC-012.jpg","Dark. Bold. Luxe."],
+["OBIRA Regal Harmony Bracelet",1199,"images/Bracelets-RHr-013.jpg","Balance in beauty."],
+["OBIRA Timeless Elegance Bracelet",1199,"images/Bracelets-TE-014.jpg","Never goes out of style."],
+
+["OBIRA Luna Pearl Butterfly Clip",199,"images/Clip-LPB-001.jpg","Soft wings, bold charm."],
+["OBIRA Blush Aura Butterfly Clip",199,"images/Clip-BAB-002.jpg","Blush that stays."],
+["OBIRA Olive Green Butterfly Clip",199,"images/Clip-OGB-003.jpg","Nature meets elegance."],
+["OBIRA Rosé Flutter Bloop Clip",199,"images/Clip-RFB-004.jpg","Playful yet refined."],
+
+["OBIRA Celestial Bow Bands",199,"images/Bands-001.jpg","Tie your style together."],
+["OBIRA Celestial Bow Bands",199,"images/Bands-002.jpg","Everyday charm."],
+
+["OBIRA Blue Flutter Drop Chain",999,"images/Necklace-Chain-BFD-001.jpg","Let elegance fall lightly."],
+["OBIRA Eternal Time Drop Chain",999,"images/Necklace-Chain-ETD-002.jpg","Timeless, always."],
+["OBIRA Bloom Drop Chain",999,"images/Necklace-Chain-BD-003.jpg","A bloom you carry."],
+["OBIRA Golden Starfall Drop Chain",999,"images/Necklace-Chain-GSD-004.jpg","Shine like falling stars."],
+["OBIRA Butterfly Shell Lumière Chain",999,"images/Necklace-Chain-BSL-005.jpg","Light, delicate, radiant."],
+["OBIRA Lunar Bloom Chain",999,"images/Necklace-Chain-LB-006.jpg","Bloom under moonlight."],
+["OBIRA Heart Of The Sun Chain",999,"images/Necklace-Chain-HOS-007.jpg","Bold warmth within."],
+["OBIRA Starlight Drop Chain",999,"images/Necklace-Chain-SD-008.jpg","Carry the night sky."],
+["OBIRA Soaring Peace Chain",999,"images/Necklace-Chain-SP-009.jpg","Freedom in form."],
+["OBIRA Midnight Heart Chain",999,"images/Necklace-Chain-MH-010.jpg","Love, after dark."],
+["OBIRA Bamboo Heart Chain",999,"images/Necklace-Chain-BH-011.jpg","Nature meets love."]
+
+];
+
+/* LOAD PRODUCTS */
+const storeGrid = document.getElementById("storeGrid");
+
+storeProducts.forEach(p => {
+
+let card = document.createElement("div");
+card.className = "product-card";
+
+card.innerHTML = `
+<div class="p-icons">
+<span onclick="event.stopPropagation(); wishlistOpen()">♡</span>
+<span onclick="event.stopPropagation(); shareProduct()">↗</span>
+</div>
+
+<img src="${p[2]}">
+<h4>${p[0]}</h4>
+<p>₹${p[1]}</p>
+`;
+
+card.onclick = () => openProduct(p[0], p[1], p[2], p[3]);
+
+storeGrid.appendChild(card);
+
+});
+
+</script>

@@ -1,28 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Detail</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBIRA Product</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="product-detail">
-        <h1>Product Name</h1>
-        <img src="image1.jpg" alt="Product Image" class="product-image">
-        <div class="pricing">
-            <h2>$19.99</h2>
-            <button>Add to Cart</button>
-        </div>
-        <div class="description">
-            <h3>Description</h3>
-            <p>This is a brief description of the product, highlighting its features and benefits.</p>
-        </div>
-        <div class="reviews">
-            <h3>Reviews</h3>
-            <p>User 1: Great product!</p>
-            <p>User 2: I love this!</p>
-        </div>
-    </div>
+
+<!-- ===== TOP STRIP ===== -->
+<div class="top-strip">
+ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+<div class="header-inner">
+
+<div class="logo">
+<a href="index.html"><img src="logo.png"></a>
+</div>
+
+<div class="nav-right">
+<a href="store.html">Store</a>
+<span onclick="wishlistOpen()">♡</span>
+<span>🛒 <span id="cart-count">0</span></span>
+</div>
+
+</div>
+</header>
+
+<div class="header-space"></div>
+
+<!-- ===== PRODUCT SECTION ===== -->
+<section class="product-page">
+
+<div class="product-container">
+
+<!-- LEFT: IMAGE -->
+<div class="product-images">
+
+<img id="product-main-img" src="">
+
+<div id="product-gallery" class="gallery"></div>
+
+</div>
+
+<!-- RIGHT: DETAILS -->
+<div class="product-details">
+
+<h1 id="product-name"></h1>
+
+<p id="product-price"></p>
+
+<p id="product-desc"></p>
+
+<div class="product-buttons">
+
+<button onclick="addToCart(getProductId())">Add to Cart</button>
+
+<button onclick="toggleWishlist(getProductId())">♡ Wishlist</button>
+
+<button onclick="shareCurrentProduct()">Share</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+
+<p>Follow OBIRA</p>
+
+<div class="socials">
+<span>Instagram</span>
+<span>WhatsApp</span>
+<span>Email</span>
+</div>
+
+<p>© 2025 OBIRA. All rights reserved.</p>
+
+</footer>
+
+<!-- SCRIPTS -->
+<script src="products.js"></script>
+<script src="script.js"></script>
+
+<script>
+
+/* GET PRODUCT ID FROM URL */
+function getProductId(){
+const params = new URLSearchParams(window.location.search);
+return params.get("id");
+}
+
+/* SHARE CURRENT PRODUCT */
+function shareCurrentProduct(){
+const id = getProductId();
+const product = products.find(p => p.id === id);
+shareProduct(product);
+}
+
+</script>
+
 </body>
 </html>

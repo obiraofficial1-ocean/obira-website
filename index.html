@@ -1,45 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Obira Website</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBIRA</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section id="hero">
-        <h1>Welcome to Our Website</h1>
-        <p>Discover our amazing products and features!</p>
-    </section>
-    <section id="featured-products">
-        <h2>Featured Products</h2>
-        <div class="product-grid">
-            <div class="product">
-                <h3>Product 1</h3>
-                <p>Description of product 1.</p>
-            </div>
-            <div class="product">
-                <h3>Product 2</h3>
-                <p>Description of product 2.</p>
-            </div>
-            <div class="product">
-                <h3>Product 3</h3>
-                <p>Description of product 3.</p>
-            </div>
-        </div>
-    </section>
-    <footer>
-        <p>&copy; 2026 Obira Official</p>
-    </footer>
+
+<!-- ===== TOP STRIP ===== -->
+<div class="top-strip">
+ANTI-TARNISH • STAINLESS STEEL • WATER RESISTANT • EVERYDAY LUXURY
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+<div class="header-inner">
+
+<div class="logo">
+<img src="logo.png">
+</div>
+
+<div class="nav-right">
+<a href="store.html">Store</a>
+<span onclick="wishlistOpen()">♡</span>
+<span>🛒 <span id="cart-count">0</span></span>
+</div>
+
+</div>
+</header>
+
+<div class="header-space"></div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+
+<div class="hero-slide active" style="background-image:url('images/Hero-I1.jpg')"></div>
+<div class="hero-slide" style="background-image:url('images/Hero-I2.jpg')"></div>
+<div class="hero-slide" style="background-image:url('images/Hero-I3.jpg')"></div>
+
+<div class="hero-content">
+<h1>Everyday Luxury</h1>
+<p>Jewellery that stays with you</p>
+<a href="store.html"><button>Shop Now</button></a>
+</div>
+
+</section>
+
+<!-- ===== CATEGORIES ===== -->
+<section class="categories">
+
+<h2>Explore OBIRA</h2>
+
+<div class="cat-grid">
+
+<a href="store.html"><div class="cat-card">Bracelets<br><span>The Wrist Edit</span></div></a>
+<a href="store.html"><div class="cat-card">Necklace Chains</div></a>
+<a href="store.html"><div class="cat-card">Hair Accessories</div></a>
+
+</div>
+
+</section>
+
+<!-- ===== BEST SELLERS ===== -->
+<section class="best">
+
+<h2>Best Sellers</h2>
+
+<div id="store-products"></div>
+
+</section>
+
+<!-- ===== STORY ===== -->
+<section class="story">
+
+<h2>OBIRA</h2>
+<p>
+OBIRA is more than jewellery.  
+It’s about everyday confidence, effortless elegance, and pieces that stay with you — through every moment.
+</p>
+
+</section>
+
+<!-- ===== TRUST ===== -->
+<section class="trust">
+
+<h2>Why OBIRA</h2>
+
+<div class="trust-grid">
+<div>Anti-Tarnish</div>
+<div>Stainless Steel</div>
+<div>Water Resistant</div>
+<div>Long Lasting Shine</div>
+</div>
+
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="reviews">
+
+<h2>Customer Love</h2>
+
+<div class="review">“Looks premium and doesn’t fade!”</div>
+<div class="review">“Perfect for daily wear.”</div>
+<div class="review">“Quality is honestly amazing.”</div>
+
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+
+<p>Follow OBIRA</p>
+
+<div class="socials">
+<span>Instagram</span>
+<span>WhatsApp</span>
+<span>Email</span>
+</div>
+
+<p>© 2025 OBIRA. All rights reserved.</p>
+
+</footer>
+
+<!-- SCRIPTS -->
+<script src="products.js"></script>
+<script src="script.js"></script>
+
+<script>
+
+/* HERO AUTO SLIDE */
+let slides = document.querySelectorAll(".hero-slide");
+let i = 0;
+
+setInterval(()=>{
+slides[i].classList.remove("active");
+i = (i + 1) % slides.length;
+slides[i].classList.add("active");
+},4000);
+
+</script>
+
 </body>
 </html>

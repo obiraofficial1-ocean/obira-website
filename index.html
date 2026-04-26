@@ -134,8 +134,25 @@ window.scrollTo({top:0, behavior:'smooth'});
 }
 
 /* WISHLIST */
+function wishlistOpen(){;
+}let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
 function wishlistOpen(){
-alert("Wishlist coming soon ❤️");
+alert("Wishlist saved items: " + wishlist.length);
+}
+
+function wishlistAdd(){
+
+let item = pName.innerText;
+
+if(!wishlist.includes(item)){
+wishlist.push(item);
+localStorage.setItem("wishlist", JSON.stringify(wishlist));
+alert("Added to wishlist ❤️");
+}else{
+alert("Already in wishlist");
+}
+
 }
 
 </script>
@@ -324,6 +341,9 @@ transform:translateY(-6px);
 .cat-card:hover p{
 color:#ccc;
 }
+card.onclick = () => {
+window.location.search = "?product=" + encodeURIComponent(p[0]);
+};
 </style>
 
 
@@ -563,6 +583,9 @@ font-size:12px;
 cursor:pointer;
 }
 
+<button onclick="addToCart()">Add to Cart</button>
+<button onclick="wishlistAdd()">♡ Wishlist</button>
+<button onclick="shareProduct()">Share</button>
 </style>
 
 <script>
@@ -581,7 +604,23 @@ function shareProduct(){
 if(navigator.share){
 navigator.share({title:"OBIRA Product"});
 }else{
-alert("Sharing coming soon ✨");
+function shareProduct(){
+
+let name = pName.innerText;
+let url = window.location.href;
+
+if(navigator.share){
+navigator.share({
+title: name,
+text: "Check this out on OBIRA ✨",
+url: url
+});
+}else{
+navigator.clipboard.writeText(url);
+alert("Link copied 📎");
+}
+
+};
 }
 }
 

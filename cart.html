@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cart - OBIRA</title>
+<link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+<h2 style="text-align:center;margin-top:40px;">Your Cart</h2>
+
+<div id="cart-items"></div>
+
+<div style="text-align:center;margin-top:20px;">
+<h3>Total: ₹<span id="cart-total">0</span></h3>
+
+<button onclick="checkout()">Proceed to Payment</button>
+</div>
+
+<script src="products.js"></script>
+<script src="script.js"></script>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const container = document.getElementById("cart-items");
+let total = 0;
+
+cart.forEach(item => {
+total += item.price;
+
+container.innerHTML += `
+<div style="text-align:center;margin:15px;">
+<img src="${item.image}" width="120">
+<p>${item.name}</p>
+<p>₹${item.price}</p>
+</div>
+`;
+});
+
+document.getElementById("cart-total").innerText = total;
+
+function checkout(){
+alert("Next step: Payment integration");
+}
+
+</script>
+
+</body>
+</html>

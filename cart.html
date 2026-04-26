@@ -22,27 +22,44 @@
 
 <script>
 
+function loadCart(){
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const container = document.getElementById("cart-items");
+const totalEl = document.getElementById("cart-total");
+
+container.innerHTML = "";
 let total = 0;
 
+if(cart.length === 0){
+container.innerHTML = "<p style='text-align:center;'>Your cart is empty</p>";
+totalEl.innerText = 0;
+return;
+}
+
 cart.forEach(item => {
+
 total += item.price;
 
 container.innerHTML += `
-<div style="text-align:center;margin:15px;">
+<div style="text-align:center;margin:20px;">
 <img src="${item.image}" width="120">
 <p>${item.name}</p>
 <p>₹${item.price}</p>
 </div>
 `;
+
 });
 
-document.getElementById("cart-total").innerText = total;
+totalEl.innerText = total;
+
+}
+
+document.addEventListener("DOMContentLoaded", loadCart);
 
 function checkout(){
-alert("Next step: Payment integration");
+alert("Next step: Payment integration 💳");
 }
 
 </script>

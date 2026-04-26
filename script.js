@@ -1,67 +1,135 @@
-// script.js
+// ================= GLOBAL STORAGE =================
 
-// Shopping Cart Management
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-function addToCart(product) {
-    cart.push(product);
-    saveCart();
-}
-
-function removeFromCart(productId) {
-    cart = cart.filter(product => product.id !== productId);
-    saveCart();
-}
-
-function clearCart() {
-    cart = [];
-    saveCart();
-}
+// ================= SAVE FUNCTIONS =================
 
 function saveCart() {
-    localStorage.setItem('shoppingCart', JSON.stringify(cart));
-}
-
-function loadCart() {
-    cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
-}
-
-// Wishlist Functionality
-let wishlist = [];
-
-function addToWishlist(product) {
-    wishlist.push(product);
-    saveWishlist();
-}
-
-function removeFromWishlist(productId) {
-    wishlist = wishlist.filter(product => product.id !== productId);
-    saveWishlist();
+localStorage.setItem("cart", JSON.stringify(cart));
+updateCartCount();
 }
 
 function saveWishlist() {
-    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+localStorage.setItem("wishlist", JSON.stringify(wishlist));
 }
 
-function loadWishlist() {
-    wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+// ================= CART =================
+
+function addToCart(id) {
+const product = products.find(p => p.id === id);
+cart.push(product);
+saveCart();
+alert("Added to cart");
 }
 
-// Product Filtering and Sorting
-function filterProducts(products, criteria) {
-    return products.filter(product => product.category === criteria);
+function updateCartCount() {
+const count = document.getElementById("cart-count");
+if(count) count.innerText = cart.length;
 }
 
-function sortProducts(products, property, order = 'asc') {
-    return products.sort((a, b) => {
-        if (order === 'asc') {
-            return a[property] > b[property] ? 1 : -1;
-        } else {
-            return a[property] < b[property] ? 1 : -1;
-        }
-    });
-}  
+// ================= WISHLIST =================
 
-// On load
-loadCart();
-loadWishlist();
+function toggleWishlist(id) {
+if(wishlist.includes(id)) {
+wishlist = wishlist.filter(item => item !== id);
+} else {
+wishlist.push(id);
+}
+saveWishlist();
+renderStore(); // refresh hearts
+}
+
+// ================= SHARE =================
+
+function shareProduct(product) {
+const url = window.location.origin + "/product.html?id=" + product.id;
+
+if(navigator.share) {
+navigator.share({
+title: product.name,
+text: product.name,
+url: url
+});
+} else {
+navigator.clipboard.writeText(url);
+alert("Link copied!");
+}
+}
+
+// ================= NAVIGATION =================
+
+function openProduct(id) {
+window.location.href = "product.html?id=" + id;
+}
+
+// ================= STORE PAGE =================
+
+function renderStore() {
+const container = document.getElementById("store-products");
+if(!container) return;
+
+container.innerHTML = "";
+
+products.forEach(product => {
+
+const isWish = wishlist.includes(product.id);
+
+container.innerHTML += `
+<div class="product-card">
+<img src="${product.image}" onclick="openProduct('${product.id}')">
+
+<h3>${product.name}</h3>
+<p>₹${product.price}</p>
+
+<div class="product-actions">
+<button onclick="addToCart('${product.id}')">Add to Cart</button>
+
+<span class="heart ${isWish ? 'active' : ''}" onclick="toggleWishlist('${product.id}')">❤</span>
+
+<span class="share" onclick='shareProduct(${JSON.stringify(product)})'>🔗</span>
+</div>
+</div>
+`;
+});
+
+updateCartCount();
+}
+
+// ================= PRODUCT PAGE =================
+
+function loadProductPage() {
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+const product = products.find(p => p.id === id);
+if(!product) return;
+
+document.getElementById("product-name").innerText = product.name;
+document.getElementById("product-price").innerText = "₹" + product.price;
+document.getElementById("product-main-img").src = product.image;
+document.getElementById("product-desc").innerText = product.desc;
+
+// gallery
+const gallery = document.getElementById("product-gallery");
+gallery.innerHTML = "";
+
+product.images.forEach(img => {
+gallery.innerHTML += `<img src="${img}" onclick="changeImage('${img}')">`;
+});
+
+updateCartCount();
+}
+
+// change image
+function changeImage(src) {
+document.getElementById("product-main-img").src = src;
+}
+
+// ================= INIT =================
+
+document.addEventListener("DOMContentLoaded", () => {
+renderStore();
+loadProductPage();
+updateCartCount();
+});

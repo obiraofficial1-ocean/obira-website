@@ -234,4 +234,23 @@ font-size:14px;
 flex-direction:column;
 }
 
+.qty-controls{
+margin-top:10px;
+}
+
+.qty-controls button{
+padding:5px 10px;
+margin:0 5px;
+}
+
+.remove-btn{
+margin-top:8px;
+background:#e74c3c;
+border:none;
+padding:6px 10px;
+color:white;
+border-radius:6px;
+cursor:pointer;
+
+}
 }

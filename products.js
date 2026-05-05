@@ -44,3 +44,55 @@ const products = [
 { id:"n011", name:"OBIRA Bamboo Heart Chain - Gold toned", price:999, image:"images/Necklace-Chain-BH-011.jpg" }
 
 ];
+
+const products = [
+
+/* BRACELETS */
+{
+id:"b1",
+name:"OBIRA Aurelia Lock Bracelet",
+price:1199,
+image:"images/Bracelets-ALB-001.jpg",
+category:"bracelets"
+},
+{
+id:"b2",
+name:"OBIRA Chic Radiance Bracelet",
+price:1199,
+image:"images/Bracelets-CR-002.jpg",
+category:"bracelets"
+},
+
+/* CHAINS */
+{
+id:"c1",
+name:"OBIRA Bamboo Heart Chain - Gold toned",
+price:999,
+image:"images/Necklace-Chain-BH-011.jpg",
+category:"chains"
+},
+{
+id:"c2",
+name:"OBIRA Midnight Heart Chain - Gold toned",
+price:999,
+image:"images/Necklace-Chain-MH-010.jpg",
+category:"chains"
+},
+
+/* CLIPS */
+{
+id:"cl1",
+name:"OBIRA Luna Pearl Butterfly Clip",
+price:199,
+image:"images/Clip-LPB-001.jpg",
+category:"clips"
+},
+{
+id:"cl2",
+name:"OBIRA Blush Aura Butterfly Clip",
+price:199,
+image:"images/Clip-BAB-002.jpg",
+category:"clips"
+}
+
+];

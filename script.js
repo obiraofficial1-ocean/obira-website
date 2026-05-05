@@ -59,17 +59,20 @@ document.getElementById("p-img").src = p.image;
 }
 
 // =======================
-// ADD TO CART
+// ADD TO CART (WITH QTY)
 // =======================
 function addToCart(id){
 
-let p = products.find(x=>x.id === id);
-if(!p) return;
+let existing = cart.find(item => item.id === id);
 
-cart.push(p);
+if(existing){
+existing.qty += 1;
+}else{
+let p = products.find(x=>x.id === id);
+cart.push({...p, qty:1});
+}
 
 localStorage.setItem("cart", JSON.stringify(cart));
-
 alert("Added to cart");
 
 }
@@ -78,12 +81,9 @@ alert("Added to cart");
 // ADD FROM PRODUCT PAGE
 // =======================
 function addToCartFromPage(){
-
 let id = localStorage.getItem("selectedProduct");
 if(!id) return;
-
 addToCart(id);
-
 }
 
 // =======================
@@ -100,16 +100,25 @@ let total = 0;
 
 cart.forEach(item=>{
 
-total += item.price;
+total += item.price * item.qty;
 
 container.innerHTML += `
-<div>
+<div class="cart-item">
 
 <img src="${item.image}">
 
-<div>
+<div class="cart-info">
 <p>${item.name}</p>
 <p>₹${item.price}</p>
+
+<div class="qty-controls">
+<button onclick="decreaseQty('${item.id}')">−</button>
+<span>${item.qty}</span>
+<button onclick="increaseQty('${item.id}')">+</button>
+</div>
+
+<button class="remove-btn" onclick="removeItem('${item.id}')">Remove</button>
+
 </div>
 
 </div>
@@ -119,6 +128,34 @@ container.innerHTML += `
 
 document.getElementById("total").innerText = total;
 
+localStorage.setItem("cart", JSON.stringify(cart));
+
+}
+
+// =======================
+// QTY CONTROLS
+// =======================
+function increaseQty(id){
+let item = cart.find(i=>i.id === id);
+item.qty += 1;
+loadCart();
+}
+
+function decreaseQty(id){
+let item = cart.find(i=>i.id === id);
+
+if(item.qty > 1){
+item.qty -= 1;
+}else{
+cart = cart.filter(i=>i.id !== id);
+}
+
+loadCart();
+}
+
+function removeItem(id){
+cart = cart.filter(i=>i.id !== id);
+loadCart();
 }
 
 // =======================
@@ -126,7 +163,7 @@ document.getElementById("total").innerText = total;
 // =======================
 function checkout(){
 
-let total = cart.reduce((sum, item)=> sum + item.price, 0);
+let total = cart.reduce((sum, item)=> sum + (item.price * item.qty), 0);
 
 if(total === 0){
 alert("Cart is empty");
@@ -152,12 +189,10 @@ rzp.open();
 }
 
 // =======================
-// INIT ALL PAGES
+// INIT
 // =======================
 document.addEventListener("DOMContentLoaded", ()=>{
-
 loadStore();
 loadProduct();
 loadCart();
-
 });

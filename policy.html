@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Store Policy - OBIRA</title>
+<title>Product - OBIRA</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -27,61 +27,40 @@
   </nav>
 </header>
 
-<!-- PAGE CONTENT -->
-<section class="policy-page">
+<!-- PRODUCT SECTION -->
+<section class="product-page">
 
-  <h2>Store Policy</h2>
+  <!-- IMAGE -->
+  <div class="product-image">
+    <img id="p-img" src="" alt="Product">
+  </div>
 
-  <p>
-    Welcome to OBIRA. By accessing and using our website, you agree to the following terms and policies.
-  </p>
+  <!-- DETAILS -->
+  <div class="product-details">
+    <h2 id="p-name"></h2>
+    <p id="p-price"></p>
 
-  <h3>Product Information</h3>
-  <p>
-    We strive to ensure that all product details, images, and pricing are accurate.  
-    However, slight variations in color or appearance may occur due to lighting and screen differences.
-  </p>
+    <!-- QUANTITY -->
+    <div class="qty-controls">
+      <button onclick="decreaseQtyFromProduct()">-</button>
+      <span id="p-qty">1</span>
+      <button onclick="increaseQtyFromProduct()">+</button>
+    </div>
 
-  <h3>Pricing & Payments</h3>
-  <p>
-    All prices are listed in INR (₹). Payments are securely processed through our payment partner.  
-    We do not store your payment details.
-  </p>
+    <!-- ADD TO CART -->
+    <button class="add-btn" onclick="addToCartFromProduct()">
+      Add to Cart
+    </button>
 
-  <h3>Order Confirmation</h3>
-  <p>
-    Once an order is placed, you will receive a confirmation.  
-    OBIRA reserves the right to cancel any order due to unforeseen circumstances, including stock availability.
-  </p>
+  </div>
 
-  <h3>Shipping Policy</h3>
-  <p>
-    Orders are processed within 1–3 business days.  
-    Delivery timelines may vary depending on your location.
-  </p>
+</section>
 
-  <h3>No Returns Policy</h3>
-  <p>
-    We follow a strict no returns and no exchange policy.  
-    Please refer to our <a href="no-returns.html">No Returns Policy</a> for detailed information.
-  </p>
+<!-- SUGGESTIONS -->
+<section class="suggestions">
+  <h3>You may also like</h3>
 
-  <h3>Privacy</h3>
-  <p>
-    Your personal information is handled securely and will not be shared with third parties,  
-    except as required to process your order.
-  </p>
-
-  <h3>Contact</h3>
-  <p>
-    For any queries or concerns, feel free to reach out:
-  </p>
-
-  <p>
-    Email: obiraofficial1@gmail.com<br>
-    Phone: +91 8792957799
-  </p>
-
+  <div id="suggested-products" class="suggested-grid"></div>
 </section>
 
 <!-- FOOTER -->
@@ -107,68 +86,19 @@
     <div>
       <h3>Help</h3>
       <ul>
-        <li><a href="policy.html">Store Policy</a></li>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="track.html">Track Order</a></li>
-        <li><a href="no-returns.html">No Returns Policy</a></li>
+        <li><a href="policy.html">•Store Policy</a></li>
+        <li><a href="privacy.html">•Privacy Policy</a></li>
+        <li><a href="track.html">•Track Order</a></li>
+        <li><a href="no-returns.html">•No Returns Policy</a></li>
       </ul>
     </div>
 
   </div>
 </footer>
 
-</body>
-</html>
+<!-- SCRIPTS (VERY IMPORTANT ORDER) -->
+<script src="products.js"></script>
+<script src="script.js"></script>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Policy</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 10px;
-        }
-        h2 {
-            color: #555;
-            margin-top: 30px;
-        }
-        p {
-            color: #666;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Policy</h1>
-        <p>Welcome to our Policy page. This document outlines the guidelines and policies that govern our business operations and customer interactions.</p>
-        
-        <h2>General Policies</h2>
-        <p>All customers are expected to comply with our terms of service and respect our community guidelines.</p>
-        
-        <h2>Usage Terms</h2>
-        <p>By using our services, you agree to abide by all applicable policies and regulations.</p>
-        
-        <h2>Compliance</h2>
-        <p>We reserve the right to enforce our policies and take appropriate action against violations.</p>
-    </div>
 </body>
 </html>

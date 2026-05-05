@@ -6,8 +6,6 @@
 <title>Product - OBIRA</title>
 
 <link rel="stylesheet" href="style.css">
-
-<!-- Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
@@ -17,7 +15,7 @@
 <!-- HEADER -->
 <div class="header">
   <div class="logo">
-    <img src="logo.png" alt="OBIRA">
+    <img src="logo.png">
   </div>
 
   <div class="nav">
@@ -28,29 +26,31 @@
 </div>
 
 <!-- PRODUCT SECTION -->
-<section class="product-page">
+<div class="product-page">
 
-  <div class="product-container">
+  <img id="p-img" src="" alt="Product">
 
-    <!-- IMAGE -->
-    <div class="product-image">
-      <img id="p-img" src="" alt="Product">
+  <div class="product-details">
+    <h2 id="p-name"></h2>
+    <p id="p-price"></p>
+
+    <div class="qty-controls">
+      <button onclick="decreaseQtyFromProduct()">-</button>
+      <span id="p-qty">1</span>
+      <button onclick="increaseQtyFromProduct()">+</button>
     </div>
 
-    <!-- DETAILS -->
-    <div class="product-details">
-
-      <h2 id="p-name"></h2>
-
-      <p class="price" id="p-price"></p>
-
-      <button onclick="addToCartFromPage()">Add to Cart</button>
-
-    </div>
+    <button onclick="addToCartFromProduct()">Add to Cart</button>
 
   </div>
 
-</section>
+</div>
+
+<!-- SUGGESTIONS -->
+<div class="suggestions">
+  <h3>You may also like</h3>
+  <div id="suggested-products"></div>
+</div>
 
 <!-- FOOTER -->
 <div class="footer">
@@ -58,7 +58,6 @@
 
     <div>
       <h3>OBIRA</h3>
-
       <div class="social-icons">
         <a href="https://www.instagram.com/obira.official?igsh=MXU2YmJlZ29razZkag==" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://www.facebook.com/share/1CZx4pnAAb/" target="_blank"><i class="fab fa-facebook"></i></a>
@@ -73,18 +72,9 @@
       <p>Phone: +91 8792957799</p>
     </div>
 
-    <div class="footer-links">
-      <h3>Help</h3>
-      <a href="policy.html">•Store Policy</a>
-      <a href="privacy.html">•Privacy Policy</a>
-      <a href="track.html">•Track Order</a>
-      <a href="no-returns.html">•No Returns Policy</a>
-    </div>
-
   </div>
 </div>
 
-<!-- SCRIPTS -->
 <script src="products.js"></script>
 <script src="script.js"></script>
 

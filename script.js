@@ -1,10 +1,17 @@
+// =======================
+// SAFE CART LOAD
+// =======================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+// Fix old cart data (adds qty if missing)
 cart = cart.map(item => ({
-...item,
-qty: item.qty || 1
+  ...item,
+  qty: item.qty || 1
 }));
 
+// =======================
+// STORE PAGE
+// =======================
 function loadStore(){
 let container = document.getElementById("store-products");
 if(!container) return;
@@ -23,6 +30,9 @@ container.innerHTML += `
 });
 }
 
+// =======================
+// PRODUCT PAGE
+// =======================
 function openProduct(id){
 localStorage.setItem("selectedProduct", id);
 window.location.href="product.html";
@@ -40,7 +50,11 @@ document.getElementById("p-price").innerText="₹"+p.price;
 document.getElementById("p-img").src=p.image;
 }
 
+// =======================
+// ADD TO CART
+// =======================
 function addToCart(id){
+
 let existing = cart.find(item=>item.id===id);
 
 if(existing){
@@ -52,14 +66,14 @@ cart.push({...p, qty:1});
 
 localStorage.setItem("cart", JSON.stringify(cart));
 alert("Added to cart");
+
 }
 
-function addToCartFromPage(){
-let id = localStorage.getItem("selectedProduct");
-addToCart(id);
-}
-
+// =======================
+// LOAD CART
+// =======================
 function loadCart(){
+
 let container=document.getElementById("cart-items");
 if(!container) return;
 
@@ -71,25 +85,36 @@ total += item.price * item.qty;
 
 container.innerHTML += `
 <div class="cart-item">
+
 <img src="${item.image}">
+
 <div class="cart-info">
 <p>${item.name}</p>
 <p>₹${item.price}</p>
+
 <div class="qty-controls">
 <button onclick="decreaseQty('${item.id}')">-</button>
 <span>${item.qty}</span>
 <button onclick="increaseQty('${item.id}')">+</button>
 </div>
+
 <button class="remove-btn" onclick="removeItem('${item.id}')">Remove</button>
+
 </div>
+
 </div>
 `;
 });
 
-document.getElementById("total").innerText=total;
+document.getElementById("total").innerText = total;
+
+// save updated cart
 localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+// =======================
+// CART ACTIONS
+// =======================
 function increaseQty(id){
 let item=cart.find(i=>i.id===id);
 item.qty++;
@@ -102,18 +127,22 @@ let item=cart.find(i=>i.id===id);
 if(item.qty>1){
 item.qty--;
 }else{
-cart=cart.filter(i=>i.id!==id);
+cart = cart.filter(i=>i.id!==id);
 }
 
 loadCart();
 }
 
 function removeItem(id){
-cart=cart.filter(i=>i.id!==id);
+cart = cart.filter(i=>i.id!==id);
 loadCart();
 }
 
+// =======================
+// CHECKOUT
+// =======================
 function checkout(){
+
 let total=cart.reduce((sum,item)=>sum+(item.price*item.qty),0);
 
 if(total===0){
@@ -137,8 +166,11 @@ var rzp=new Razorpay(options);
 rzp.open();
 }
 
-document.addEventListener("DOMContentLoaded", ()=>{
+// =======================
+// INIT (IMPORTANT)
+// =======================
+window.onload = function(){
 loadStore();
 loadProduct();
 loadCart();
-});
+};

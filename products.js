@@ -344,3 +344,105 @@ images: ["images/Necklace-Chain-BH-011.jpg"]
 }
 
 ];
+
+const products = [
+
+{
+id:"alb001",
+name:"OBIRA Aurelia Lock Bracelet",
+price:1199,
+image:"images/Bracelets-ALB-001.jpg"
+},
+
+{
+id:"cr002",
+name:"OBIRA Chic Radiance Bracelet",
+price:1199,
+image:"images/Bracelets-CR-002.jpg"
+},
+
+{
+id:"rmc003",
+name:"OBIRA Royal Medallion Charm Bracelet",
+price:999,
+image:"images/Bracelets-RMC-003.jpg"
+},
+
+{
+id:"ga004",
+name:"OBIRA Golden Aura Bracelet",
+price:1199,
+image:"images/Bracelets-GA-004.jpg"
+},
+
+{
+id:"me005",
+name:"OBIRA Mystic Eye Bracelet",
+price:1199,
+image:"images/Bracelets-ME-005.jpg"
+},
+
+{
+id:"rh006",
+name:"OBIRA Radiant Halo Bracelet",
+price:999,
+image:"images/Bracelets-RH-006.jpg"
+},
+
+{
+id:"fg007",
+name:"OBIRA Floral Grace Bracelet",
+price:1199,
+image:"images/Bracelets-FG-007.jpg"
+},
+
+{
+id:"mb008",
+name:"OBIRA Midnight Bloom Bracelet",
+price:1199,
+image:"images/Bracelets-MB-008.jpg"
+},
+
+{
+id:"lh009",
+name:"OBIRA Luxe Horizon Bracelet",
+price:999,
+image:"images/Bracelets-LH-009.jpg"
+},
+
+{
+id:"rec010",
+name:"OBIRA Rose Éclat Bracelet",
+price:999,
+image:"images/Bracelets-REC-010.jpg"
+},
+
+{
+id:"irl011",
+name:"OBIRA Iconic Rose Luxe Bracelet",
+price:999,
+image:"images/Bracelets-IRL-011.jpg"
+},
+
+{
+id:"mlc012",
+name:"OBIRA Midnight Luxe Bracelet",
+price:1199,
+image:"images/Bracelets-MLC-012.jpg"
+},
+
+{
+id:"rhr013",
+name:"OBIRA Regal Harmony Bracelet",
+price:1199,
+image:"images/Bracelets-RHr-013.jpg"
+},
+
+{
+id:"te014",
+name:"OBIRA Timeless Elegance Bracelet",
+price:1199,
+image:"images/Bracelets-TE-014.jpg"
+}
+
+];

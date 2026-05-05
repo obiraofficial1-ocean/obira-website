@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #28a745;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .tracking-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 30px;
+            display: none;
+        }
+        .tracking-info.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Track Your Order</h1>
+        <p>Enter your order number to track the status of your shipment.</p>
+        
+        <div class="form-group">
+            <label for="orderNumber">Order Number:</label>
+            <input type="text" id="orderNumber" placeholder="e.g., ORD-123456">
+        </div>
+        
+        <button onclick="trackOrder()">Track Order</button>
+        
+        <div class="tracking-info" id="trackingInfo">
+            <h2>Tracking Status</h2>
+            <p><strong>Order Number:</strong> <span id="displayOrderNumber"></span></p>
+            <p><strong>Status:</strong> <span id="orderStatus"></span></p>
+            <p><strong>Estimated Delivery:</strong> <span id="estimatedDelivery"></span></p>
+        </div>
+    </div>
+    
+    <script>
+        function trackOrder() {
+            const orderNumber = document.getElementById('orderNumber').value;
+            if (orderNumber.trim() === '') {
+                alert('Please enter an order number');
+                return;
+            }
+            
+            document.getElementById('displayOrderNumber').textContent = orderNumber;
+            document.getElementById('orderStatus').textContent = 'In Transit';
+            document.getElementById('estimatedDelivery').textContent = 'May 10, 2026';
+            document.getElementById('trackingInfo').classList.add('show');
+        }
+    </script>
+</body>
+</html>

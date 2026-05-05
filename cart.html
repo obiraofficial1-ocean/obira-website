@@ -1,20 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Cart</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart - OBIRA</title>
+
 <link rel="stylesheet" href="style.css">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
 
-<h2>Your Cart</h2>
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">
+    <img src="logo.png" alt="OBIRA">
+  </div>
 
+  <div class="nav">
+    <a href="index.html">•Home•</a>
+    <a href="store.html">Store•</a>
+    <a href="cart.html">Cart•</a>
+  </div>
+</div>
+
+<!-- TITLE -->
+<section style="padding:30px 20px; text-align:center;">
+  <h2>Your Cart</h2>
+</section>
+
+<!-- CART ITEMS -->
 <div id="cart-items"></div>
 
-<h3>Total: ₹<span id="total">0</span></h3>
+<!-- TOTAL + BUTTON -->
+<div style="text-align:center; margin-top:20px;">
+  <h3>Total: ₹<span id="total">0</span></h3>
 
-<button onclick="checkout()">Pay Now</button>
+  <button onclick="checkout()" style="margin-top:15px;">
+    Proceed to Payment
+  </button>
+</div>
 
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-grid">
+
+    <div>
+      <h3>OBIRA</h3>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/obira.official?igsh=MXU2YmJlZ29razZkag==" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/share/1CZx4pnAAb/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.youtube.com/@OBIRA.OFFICIAL1" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://pin.it/7GoYisUBN" target="_blank"><i class="fab fa-pinterest"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <h3>Contact</h3>
+      <p>Email: obiraofficial1@gmail.com</p>
+      <p>Phone: +91 8792957799</p>
+    </div>
+
+    <div class="footer-links">
+      <h3></h3>
+      <a href="policy.html">•Store Policy•</a>
+      <a href="privacy.html">Privacy Policy•</a>
+      <a href="track.html">Track Order•</a>
+      <a href="no-returns.html">No Returns Policy•</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- SCRIPTS -->
 <script src="products.js"></script>
 <script src="script.js"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>

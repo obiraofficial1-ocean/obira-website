@@ -1,18 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Product</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product - OBIRA</title>
+
 <link rel="stylesheet" href="style.css">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
 
-<img id="p-img" width="200">
-<h2 id="p-name"></h2>
-<p id="p-price"></p>
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">
+    <img src="logo.png" alt="OBIRA">
+  </div>
 
-<button onclick="addToCartFromPage()">Add to Cart</button>
+  <div class="nav">
+    <a href="index.html">•Home•</a>
+    <a href="store.html">Store•</a>
+    <a href="cart.html">Cart•</a>
+  </div>
+</div>
 
+<!-- PRODUCT SECTION -->
+<section class="product-page">
+
+  <div class="product-container">
+
+    <!-- IMAGE -->
+    <div class="product-image">
+      <img id="p-img" src="" alt="Product">
+    </div>
+
+    <!-- DETAILS -->
+    <div class="product-details">
+
+      <h2 id="p-name"></h2>
+
+      <p class="price" id="p-price"></p>
+
+      <button onclick="addToCartFromPage()">Add to Cart</button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-grid">
+
+    <div>
+      <h3>OBIRA</h3>
+
+      <div class="social-icons">
+        <a href="https://www.instagram.com/obira.official?igsh=MXU2YmJlZ29razZkag==" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/share/1CZx4pnAAb/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.youtube.com/@OBIRA.OFFICIAL1" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://pin.it/7GoYisUBN" target="_blank"><i class="fab fa-pinterest"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <h3>Contact</h3>
+      <p>Email: obiraofficial1@gmail.com</p>
+      <p>Phone: +91 8792957799</p>
+    </div>
+
+    <div class="footer-links">
+      <h3></h3>
+      <a href="policy.html">•Store Policy•</a>
+      <a href="privacy.html">Privacy Policy•</a>
+      <a href="track.html">Track Order•</a>
+      <a href="no-returns.html">No Returns Policy•</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- SCRIPTS -->
 <script src="products.js"></script>
 <script src="script.js"></script>
 

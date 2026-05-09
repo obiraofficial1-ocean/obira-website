@@ -188,3 +188,90 @@ window.onload = function(){
 loadStore();
 loadCart();
 };
+
+
+
+
+// =======================
+// PRODUCT PAGE FIX
+// =======================
+let productQty = 1;
+
+function loadProduct(){
+
+let id = localStorage.getItem("selectedProduct");
+if(!id) return;
+
+let p = products.find(x => x.id === id);
+if(!p) return;
+
+document.getElementById("p-name").innerText = p.name;
+document.getElementById("p-price").innerText = "₹" + p.price;
+document.getElementById("p-img").src = p.image;
+
+loadSuggestions(p.category);
+}
+
+function increaseQtyFromProduct(){
+productQty++;
+document.getElementById("p-qty").innerText = productQty;
+}
+
+function decreaseQtyFromProduct(){
+if(productQty > 1){
+productQty--;
+document.getElementById("p-qty").innerText = productQty;
+}
+}
+
+function addToCartFromProduct(){
+
+let id = localStorage.getItem("selectedProduct");
+let cart = getCart();
+
+let existing = cart.find(i=>i.id===id);
+
+if(existing){
+existing.qty += productQty;
+}else{
+let p = products.find(x=>x.id===id);
+cart.push({...p, qty: productQty});
+}
+
+saveCart(cart);
+alert("Added to cart");
+}
+
+// =======================
+// SUGGESTIONS SYSTEM
+// =======================
+function loadSuggestions(category){
+
+let container = document.getElementById("suggested-products");
+if(!container) return;
+
+container.innerHTML = "";
+
+let suggested = [];
+
+if(category === "bracelets"){
+suggested = products.filter(p=>p.category === "chains");
+}
+else if(category === "chains"){
+suggested = products.filter(p=>p.category === "clips");
+}
+else{
+suggested = products.slice(0,4);
+}
+
+suggested.slice(0,4).forEach(p=>{
+container.innerHTML += `
+<div class="product-card">
+<img src="${p.image}" onclick="openProduct('${p.id}')">
+<p>${p.name}</p>
+<p>₹${p.price}</p>
+</div>
+`;
+});
+
+}

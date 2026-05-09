@@ -1,88 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cart - OBIRA</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OBIRA Cart</title>
 
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
+  <!-- RAZORPAY -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
-
 <body>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="logo">
-    <img src="logo.png" alt="OBIRA">
-  </div>
+<!-- NAVBAR -->
+<header class="navbar">
+  <a href="index.html" class="logo-wrap">
+    <img src="logo.png" class="logo" alt="OBIRA Logo">
+  </a>
 
-  <nav class="nav">
+  <nav>
     <a href="index.html">Home</a>
     <a href="store.html">Store</a>
     <a href="cart.html">Cart</a>
   </nav>
 </header>
 
-<!-- TITLE -->
-<section class="page-title">
-  <h2>Your Cart</h2>
-</section>
 
-<!-- CART ITEMS -->
-<section class="cart-container">
+<!-- CART SECTION -->
+<section class="cart-page">
+  <h1>Your Cart</h1>
+
+  <!-- CART ITEMS -->
   <div id="cart-items"></div>
+
+  <!-- TOTAL -->
+  <div class="cart-total-box">
+    <h2>Total: ₹<span id="cart-total">0</span></h2>
+
+    <button class="checkout-btn" onclick="checkout()">
+      Proceed to Payment
+    </button>
+  </div>
 </section>
 
-<!-- TOTAL + CHECKOUT -->
-<section class="cart-summary">
-  <h3>Total: ₹<span id="total">0</span></h3>
-
-  <button class="checkout-btn" onclick="checkout()">
-    Proceed to Payment
-  </button>
-</section>
 
 <!-- FOOTER -->
 <footer class="footer">
+
   <div class="footer-grid">
 
+    <!-- BRAND -->
     <div>
       <h3>OBIRA</h3>
+
       <div class="social-icons">
-        <a href="https://www.instagram.com/obira.official?igsh=MXU2YmJlZ29razZkag==" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.facebook.com/share/1CZx4pnAAb/" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.youtube.com/@OBIRA.OFFICIAL1" target="_blank"><i class="fab fa-youtube"></i></a>
-        <a href="https://pin.it/7GoYisUBN" target="_blank"><i class="fab fa-pinterest"></i></a>
+
+        <a href="https://www.instagram.com/obira.official?igsh=MXU2YmJlZ29razZkag==" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="https://www.facebook.com/share/1CZx4pnAAb/" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+
+        <a href="https://www.youtube.com/@OBIRA.OFFICIAL1" target="_blank">
+          <i class="fab fa-youtube"></i>
+        </a>
+
+        <a href="https://pin.it/7GoYisUBN" target="_blank">
+          <i class="fab fa-pinterest"></i>
+        </a>
+
       </div>
     </div>
 
+
+    <!-- CONTACT -->
     <div>
       <h3>Contact</h3>
+
       <p>Email: obiraofficial1@gmail.com</p>
       <p>Phone: +91 8792957799</p>
     </div>
 
+
+    <!-- HELP -->
     <div>
       <h3>Help</h3>
-      <ul>
-        <li><a href="policy.html">•Store Policy</a></li>
-        <li><a href="privacy.html">•Privacy Policy</a></li>
-        <li><a href="track.html">•Track Order</a></li>
-        <li><a href="no-returns.html">•No Returns Policy</a></li>
+
+      <ul class="footer-links">
+        <li><a href="policy.html">Store Policy</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="track.html">Track Order</a></li>
+        <li><a href="no-returns.html">No Returns Policy</a></li>
       </ul>
     </div>
 
   </div>
 </footer>
 
-<!-- SCRIPTS (DO NOT MOVE) -->
+
 <script src="products.js"></script>
 <script src="script.js"></script>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 </body>
 </html>

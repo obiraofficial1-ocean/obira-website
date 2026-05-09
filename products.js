@@ -1,164 +1,44 @@
 const products = [
 
-{
-    id: 1,
-    name: "OBIRA Aurelia Lock Bracelet - Gold toned",
-    price: 1199,
-    image: "images/Bracelets-ALB-001.jpg",
-    category: "bracelet"
-},
+/* ================= BRACELETS ================= */
 
-{
-    id: 2,
-    name: "OBIRA Chic Radiance Bracelet - Gold toned",
-    price: 1199,
-    image: "images/Bracelets-CRB-002.jpg",
-    category: "bracelet"
-},
+{ id:"alb001", name:"OBIRA Aurelia Lock Bracelet - Gold toned", price:1199, image:"images/Bracelets-ALB-001.jpg" },
+{ id:"cr002", name:"OBIRA Chic Radiance Bracelet - Gold toned", price:1199, image:"images/Bracelets-CR-002.jpg" },
+{ id:"rmc003", name:"OBIRA Royal Medallion Charm Bracelet - Rose-gold toned", price:999, image:"images/Bracelets-RMC-003.jpg" },
+{ id:"ga004", name:"OBIRA Golden Aura Bracelet - Gold toned", price:1199, image:"images/Bracelets-GA-004.jpg" },
+{ id:"me005", name:"OBIRA Mystic Eye Bracelet - Gold toned", price:1199, image:"images/Bracelets-ME-005.jpg" },
+{ id:"rh006", name:"OBIRA Radiant Halo Bracelet - Gold toned", price:999, image:"images/Bracelets-RH-006.jpg" },
+{ id:"fg007", name:"OBIRA Floral Grace Bracelet - Gold toned", price:1199, image:"images/Bracelets-FG-007.jpg" },
+{ id:"mb008", name:"OBIRA Midnight Bloom Bracelet - Gold toned", price:1199, image:"images/Bracelets-MB-008.jpg" },
+{ id:"lh009", name:"OBIRA Luxe Horizon Bracelet - Gold toned", price:999, image:"images/Bracelets-LH-009.jpg" },
+{ id:"rec010", name:"OBIRA Rose Éclat Charm Bracelet - Rose-gold toned", price:999, image:"images/Bracelets-REC-010.jpg" },
+{ id:"irl011", name:"OBIRA Iconic Rose Luxe Bracelet - Rose-gold toned", price:999, image:"images/Bracelets-IRL-011.jpg" },
+{ id:"mlc012", name:"OBIRA Midnight Luxe Charm Bracelet - Silver toned", price:1199, image:"images/Bracelets-MLC-012.jpg" },
+{ id:"rhr013", name:"OBIRA Regal Harmony Bracelet - Gold toned", price:1199, image:"images/Bracelets-RHr-013.jpg" },
+{ id:"te014", name:"OBIRA Timeless Elegance Bracelet - Gold toned", price:1199, image:"images/Bracelets-TE-014.jpg" },
 
-{
-    id: 3,
-    name: "OBIRA Celeste Charm Bracelet",
-    price: 1099,
-    image: "images/Bracelets-CCB-003.jpg",
-    category: "bracelet"
-},
+/* ================= HAIR CLIPS ================= */
 
-{
-    id: 4,
-    name: "OBIRA Luxe Orbit Bracelet",
-    price: 1299,
-    image: "images/Bracelets-LOB-004.jpg",
-    category: "bracelet"
-},
+{ id:"clip001", name:"OBIRA Luna Pearl Butterfly Clip (Pair)", price:199, image:"images/Clip-LPB-001.jpg" },
+{ id:"clip002", name:"OBIRA Blush Aura Butterfly Clip (Pair)", price:199, image:"images/Clip-BAB-002.jpg" },
+{ id:"clip003", name:"OBIRA Olive Green Butterfly Clip (Pair)", price:199, image:"images/Clip-OGB-003.jpg" },
+{ id:"clip004", name:"OBIRA Rosé Flutter Bloop Clip (Pair)", price:199, image:"images/Clip-RFB-004.jpg" },
 
-{
-    id: 5,
-    name: "OBIRA Minimal Muse Bracelet",
-    price: 999,
-    image: "images/Bracelets-MMB-005.jpg",
-    category: "bracelet"
-},
+/* ================= HAIR BANDS ================= */
 
-{
-    id: 6,
-    name: "OBIRA Golden Halo Bracelet",
-    price: 1399,
-    image: "images/Bracelets-GHB-006.jpg",
-    category: "bracelet"
-},
+{ id:"band001", name:"OBIRA Celestial Bow Bands (Pack of 8)", price:199, image:"images/Bands-001.jpg" },
+{ id:"band002", name:"OBIRA Celestial Bow Bands (Pack of 8)", price:199, image:"images/Bands-002.jpg" },
 
-{
-    id: 7,
-    name: "OBIRA Pearl Glow Bracelet",
-    price: 1499,
-    image: "images/Bracelets-PGB-007.jpg",
-    category: "bracelet"
-},
+/* ================= NECKLACE CHAINS ================= */
 
-{
-    id: 8,
-    name: "OBIRA Signature Chain Necklace",
-    price: 999,
-    image: "images/Necklace-Chain-SCN-008.jpg",
-    category: "chain"
-},
-
-{
-    id: 9,
-    name: "OBIRA Bamboo Heart Chain - Gold toned",
-    price: 999,
-    image: "images/Necklace-Chain-BH-011.jpg",
-    category: "chain"
-},
-
-{
-    id: 10,
-    name: "OBIRA Luxe Link Necklace",
-    price: 1299,
-    image: "images/Necklace-Chain-LLN-010.jpg",
-    category: "chain"
-},
-
-{
-    id: 11,
-    name: "OBIRA Moonlight Layered Chain",
-    price: 1499,
-    image: "images/Necklace-Chain-MLC-011.jpg",
-    category: "chain"
-},
-
-{
-    id: 12,
-    name: "OBIRA Elegant Pearl Chain",
-    price: 1599,
-    image: "images/Necklace-Chain-EPC-012.jpg",
-    category: "chain"
-},
-
-{
-    id: 13,
-    name: "OBIRA Signature Hair Clip",
-    price: 799,
-    image: "images/Clip-LPB-001.jpg",
-    category: "clip"
-},
-
-{
-    id: 14,
-    name: "OBIRA Luxe Pearl Clip",
-    price: 899,
-    image: "images/Clip-LPC-002.jpg",
-    category: "clip"
-},
-
-{
-    id: 15,
-    name: "OBIRA Minimal Gold Clip",
-    price: 699,
-    image: "images/Clip-MGC-003.jpg",
-    category: "clip"
-},
-
-{
-    id: 16,
-    name: "OBIRA Rose Luxe Clip",
-    price: 999,
-    image: "images/Clip-RLC-004.jpg",
-    category: "clip"
-},
-
-{
-    id: 17,
-    name: "OBIRA Classic Matte Clip",
-    price: 749,
-    image: "images/Clip-CMC-005.jpg",
-    category: "clip"
-},
-
-{
-    id: 18,
-    name: "OBIRA Elegant Bow Clip",
-    price: 899,
-    image: "images/Clip-EBC-006.jpg",
-    category: "clip"
-},
-
-{
-    id: 19,
-    name: "OBIRA Diamond Touch Bracelet",
-    price: 1699,
-    image: "images/Bracelets-DTB-019.jpg",
-    category: "bracelet"
-},
-
-{
-    id: 20,
-    name: "OBIRA Aurora Bracelet",
-    price: 1199,
-    image: "images/Bracelets-AB-020.jpg",
-    category: "bracelet"
-}
-
-];
-
+{ id:"n001", name:"OBIRA Blue Flutter Drop Chain - Gold toned", price:999, image:"images/Necklace-Chain-BFD-001.jpg" },
+{ id:"n002", name:"OBIRA Eternal Time Drop Chain - Gold toned", price:999, image:"images/Necklace-Chain-ETD-002.jpg" },
+{ id:"n003", name:"OBIRA Bloom Drop Chain - Gold toned", price:999, image:"images/Necklace-Chain-BD-003.jpg" },
+{ id:"n004", name:"OBIRA Golden Starfall Drop Chain - Gold toned", price:999, image:"images/Necklace-Chain-GSD-004.jpg" },
+{ id:"n005", name:"OBIRA Butterfly Shell Lumière Chain - Gold toned", price:999, image:"images/Necklace-Chain-BSL-005.jpg" },
+{ id:"n006", name:"OBIRA Lunar Bloom Chain - Gold toned", price:999, image:"images/Necklace-Chain-LB-006.jpg" },
+{ id:"n007", name:"OBIRA Heart Of The Sun Chain - Gold toned", price:999, image:"images/Necklace-Chain-HOS-007.jpg" },
+{ id:"n008", name:"OBIRA Starlight Drop Chain - Gold toned", price:999, image:"images/Necklace-Chain-SD-008.jpg" },
+{ id:"n009", name:"OBIRA Soaring Peace Chain - Gold toned", price:999, image:"images/Necklace-Chain-SP-009.jpg" },
+{ id:"n010", name:"OBIRA Midnight Heart Chain - Gold toned", price:999, image:"images/Necklace-Chain-MH-010.jpg" },
+{ id:"n011", name:"OBIRA Bamboo Heart Chain - Gold toned", price:999, image:"images/Necklace-Chain-BH-011.jpg" }

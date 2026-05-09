@@ -1,391 +1,265 @@
-// ======================
-// STORE PRODUCTS
-// ======================
-
-const storeProducts =
-document.getElementById("store-products");
-
-if(storeProducts){
-
-    products.forEach(product => {
-
-        storeProducts.innerHTML += `
-
-        <div class="product-card">
-
-            <a href="product.html?id=${product.id}">
-                <img src="${product.image}">
-            </a>
-
-            <h3>${product.name}</h3>
-
-            <p>₹${product.price}</p>
-
-            <button onclick="addToCart(${product.id})">
-                Add to Cart
-            </button>
-
-        </div>
-
-        `;
-    });
+// =======================
+// STORAGE HELPERS
+// =======================
+function getCart(){
+return JSON.parse(localStorage.getItem("cart")) || [];
 }
 
+function saveCart(cart){
+localStorage.setItem("cart", JSON.stringify(cart));
+}
 
+// =======================
+// STORE PAGE
+// =======================
+function loadStore(){
 
-// ======================
+let container = document.getElementById("store-products");
+if(!container) return;
+
+let cart = getCart();
+container.innerHTML = "";
+
+products.forEach(p=>{
+
+let item = cart.find(i=>i.id===p.id);
+let qty = item ? item.qty : 0;
+
+container.innerHTML += `
+<div class="product-card">
+
+<img src="${p.image}" onclick="openProduct('${p.id}')">
+
+<h3>${p.name}</h3>
+<p>₹${p.price}</p>
+
+<div class="qty-controls">
+<button onclick="decreaseQty('${p.id}')">-</button>
+<span>${qty}</span>
+<button onclick="increaseQty('${p.id}')">+</button>
+</div>
+
+</div>
+`;
+});
+
+}
+
+// =======================
 // PRODUCT PAGE
-// ======================
+// =======================
+let productQty = 1;
 
-let selectedQty = 1;
-
-const params =
-new URLSearchParams(window.location.search);
-
-const productId =
-params.get("id");
-
-if(productId){
-
-    const product =
-    products.find(
-        p => p.id == productId
-    );
-
-    if(product){
-
-        document.getElementById("p-img").src =
-        product.image;
-
-        document.getElementById("p-name").innerText =
-        product.name;
-
-        document.getElementById("p-price").innerText =
-        "₹" + product.price;
-
-
-
-        // SUGGESTIONS
-
-        const suggestionBox =
-        document.getElementById("suggested-products");
-
-        if(suggestionBox){
-
-            const suggestions =
-            products.filter(
-                p => p.category !== product.category
-            );
-
-            suggestions.forEach(item => {
-
-                suggestionBox.innerHTML += `
-
-                <div class="suggest-card">
-
-                    <a href="product.html?id=${item.id}">
-                        <img src="${item.image}">
-                    </a>
-
-                    <p>${item.name}</p>
-
-                    <span>₹${item.price}</span>
-
-                </div>
-
-                `;
-            });
-        }
-    }
+function openProduct(id){
+localStorage.setItem("selectedProduct", id);
+window.location.href="product.html";
 }
 
+function loadProduct(){
 
+let id = localStorage.getItem("selectedProduct");
+if(!id) return;
 
-// ======================
-// PRODUCT QUANTITY
-// ======================
+let p = products.find(x=>x.id===id);
+if(!p) return;
+
+document.getElementById("p-name").innerText = p.name;
+document.getElementById("p-price").innerText = "₹" + p.price;
+document.getElementById("p-img").src = p.image;
+
+loadSuggestions(p.category);
+}
 
 function increaseQtyFromProduct(){
-
-    selectedQty++;
-
-    document.getElementById("p-qty").innerText =
-    selectedQty;
+productQty++;
+document.getElementById("p-qty").innerText = productQty;
 }
 
 function decreaseQtyFromProduct(){
-
-    if(selectedQty > 1){
-
-        selectedQty--;
-
-        document.getElementById("p-qty").innerText =
-        selectedQty;
-    }
+if(productQty > 1){
+productQty--;
+document.getElementById("p-qty").innerText = productQty;
 }
-
-
-
-// ======================
-// ADD TO CART
-// ======================
-
-function addToCart(id, qty = 1){
-
-    let cart =
-    JSON.parse(localStorage.getItem("cart")) || [];
-
-    const existing =
-    cart.find(item => item.id == id);
-
-    if(existing){
-
-        existing.qty += qty;
-
-    }else{
-
-        cart.push({
-            id:id,
-            qty:qty
-        });
-    }
-
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
-
-    alert("Added to cart");
 }
-
-
-
-// ======================
-// ADD FROM PRODUCT PAGE
-// ======================
 
 function addToCartFromProduct(){
 
-    addToCart(productId, selectedQty);
+let id = localStorage.getItem("selectedProduct");
+let cart = getCart();
+
+let existing = cart.find(i=>i.id===id);
+
+if(existing){
+existing.qty += productQty;
+}else{
+let p = products.find(x=>x.id===id);
+cart.push({...p, qty:productQty});
 }
 
+saveCart(cart);
+alert("Added to cart");
+}
 
-
-// ======================
+// =======================
 // CART PAGE
-// ======================
+// =======================
+function loadCart(){
 
-const cartItems =
-document.getElementById("cart-items");
+let container = document.getElementById("cart-items");
+if(!container) return;
 
-const totalElement =
-document.getElementById("total");
+let cart = getCart();
+container.innerHTML = "";
 
-if(cartItems){
+let total = 0;
 
-    let cart =
-    JSON.parse(localStorage.getItem("cart")) || [];
+cart.forEach(item=>{
 
-    let total = 0;
+total += item.price * item.qty;
 
-    cartItems.innerHTML = "";
+container.innerHTML += `
+<div class="cart-item">
 
-    cart.forEach(cartItem => {
+<img src="${item.image}">
 
-        const product =
-        products.find(
-            p => p.id == cartItem.id
-        );
+<div class="cart-info">
+<p>${item.name}</p>
+<p>₹${item.price}</p>
 
-        if(!product) return;
+<div class="qty-controls">
+<button onclick="decreaseQty('${item.id}')">-</button>
+<span>${item.qty}</span>
+<button onclick="increaseQty('${item.id}')">+</button>
+</div>
 
-        total += product.price * cartItem.qty;
+<button class="remove-btn" onclick="removeItem('${item.id}')">🗑</button>
 
-        cartItems.innerHTML += `
+</div>
 
-        <div class="cart-card">
+</div>
+`;
+});
 
-            <img src="${product.image}">
-
-            <div class="cart-info">
-
-                <h3>${product.name}</h3>
-
-                <p>₹${product.price}</p>
-
-                <div class="qty-controls">
-
-                    <button onclick="changeQty(${product.id}, -1)">
-                        -
-                    </button>
-
-                    <span>${cartItem.qty}</span>
-
-                    <button onclick="changeQty(${product.id}, 1)">
-                        +
-                    </button>
-
-                </div>
-
-                <button class="delete-btn"
-                onclick="removeItem(${product.id})">
-
-                    <i class="fas fa-trash"></i>
-
-                </button>
-
-            </div>
-
-        </div>
-
-        `;
-    });
-
-    totalElement.innerText = total;
+document.getElementById("total").innerText = total;
 }
 
+// =======================
+// CART ACTIONS
+// =======================
+function increaseQty(id){
 
+let cart = getCart();
 
-// ======================
-// CHANGE QUANTITY
-// ======================
+let item = cart.find(i=>i.id===id);
 
-function changeQty(id, change){
-
-    let cart =
-    JSON.parse(localStorage.getItem("cart")) || [];
-
-    const item =
-    cart.find(i => i.id == id);
-
-    if(!item) return;
-
-    item.qty += change;
-
-    if(item.qty <= 0){
-
-        cart =
-        cart.filter(i => i.id != id);
-    }
-
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
-
-    location.reload();
+if(item){
+item.qty++;
+}else{
+let p = products.find(x=>x.id===id);
+cart.push({...p, qty:1});
 }
 
+saveCart(cart);
+loadStore();
+loadCart();
+}
 
+function decreaseQty(id){
 
-// ======================
-// REMOVE PRODUCT
-// ======================
+let cart = getCart();
+
+let item = cart.find(i=>i.id===id);
+
+if(!item) return;
+
+if(item.qty > 1){
+item.qty--;
+}else{
+cart = cart.filter(i=>i.id!==id);
+}
+
+saveCart(cart);
+loadStore();
+loadCart();
+}
 
 function removeItem(id){
 
-    let cart =
-    JSON.parse(localStorage.getItem("cart")) || [];
+let cart = getCart();
+cart = cart.filter(i=>i.id!==id);
 
-    cart =
-    cart.filter(item => item.id != id);
-
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
-
-    location.reload();
+saveCart(cart);
+loadCart();
 }
 
-
-
-// ======================
-// SHARE PRODUCT
-// ======================
-
-function shareProduct(){
-
-    const url =
-    window.location.href;
-
-    const text =
-    "Check out this beautiful product from OBIRA ✨\n" + url;
-
-    if(navigator.share){
-
-        navigator.share({
-            title:"OBIRA",
-            text:text,
-            url:url
-        });
-
-    }else{
-
-        navigator.clipboard.writeText(url);
-
-        alert("Product link copied!");
-    }
-}
-
-
-
-// ======================
-// WISHLIST
-// ======================
-
-function addWishlist(){
-
-    alert("Added to Wishlist ❤️");
-}
-
-
-
-// ======================
-// PAYMENT
-// ======================
-
+// =======================
+// CHECKOUT
+// =======================
 function checkout(){
 
-    let cart =
-    JSON.parse(localStorage.getItem("cart")) || [];
+let cart = getCart();
 
-    let total = 0;
+let total = cart.reduce((sum,item)=> sum + item.price * item.qty, 0);
 
-    cart.forEach(item => {
-
-        const product =
-        products.find(
-            p => p.id == item.id
-        );
-
-        if(product){
-
-            total +=
-            product.price * item.qty;
-        }
-    });
-
-    const options = {
-
-        key:"YOUR_RAZORPAY_KEY",
-
-        amount: total * 100,
-
-        currency:"INR",
-
-        name:"OBIRA",
-
-        description:"Order Payment",
-
-        handler:function(){
-
-            alert("Payment Successful");
-        }
-    };
-
-    const rzp =
-    new Razorpay(options);
-
-    rzp.open();
+if(total === 0){
+alert("Cart is empty");
+return;
 }
+
+var options = {
+"key":"rzp_test_SljBi0Hjg0lqGY",
+"amount": total * 100,
+"currency":"INR",
+"name":"OBIRA",
+"description":"Order Payment",
+"handler":function(){
+localStorage.removeItem("cart");
+window.location.href="success.html";
+}
+};
+
+var rzp = new Razorpay(options);
+rzp.open();
+}
+
+// =======================
+// SUGGESTIONS
+// =======================
+function loadSuggestions(category){
+
+let container = document.getElementById("suggested-products");
+if(!container) return;
+
+container.innerHTML = "";
+
+let suggested = [];
+
+if(category === "bracelets"){
+suggested = products.filter(p=>p.category==="chains");
+}
+else if(category === "chains"){
+suggested = products.filter(p=>p.category==="clips");
+}
+else{
+suggested = products.slice(0,4);
+}
+
+suggested.slice(0,4).forEach(p=>{
+container.innerHTML += `
+<div class="product-card">
+<img src="${p.image}" onclick="openProduct('${p.id}')">
+<p>${p.name}</p>
+<p>₹${p.price}</p>
+</div>
+`;
+});
+}
+
+// =======================
+// INIT
+// =======================
+window.onload = function(){
+loadStore();
+loadProduct();
+loadCart();
+};

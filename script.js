@@ -1,12 +1,11 @@
 // ======================
-// STORE PAGE PRODUCTS
+// STORE PRODUCTS
 // ======================
 
-const storeProducts = document.getElementById("store-products");
+const storeProducts =
+document.getElementById("store-products");
 
-if (storeProducts) {
-
-    storeProducts.innerHTML = "";
+if(storeProducts){
 
     products.forEach(product => {
 
@@ -15,7 +14,7 @@ if (storeProducts) {
         <div class="product-card">
 
             <a href="product.html?id=${product.id}">
-                <img src="${product.image}" alt="${product.name}">
+                <img src="${product.image}">
             </a>
 
             <h3>${product.name}</h3>
@@ -40,38 +39,42 @@ if (storeProducts) {
 
 let selectedQty = 1;
 
-const params = new URLSearchParams(window.location.search);
-const productId = params.get("id");
+const params =
+new URLSearchParams(window.location.search);
 
-if (productId) {
+const productId =
+params.get("id");
 
-    const product = products.find(
+if(productId){
+
+    const product =
+    products.find(
         p => p.id == productId
     );
 
-    if (product) {
+    if(product){
 
         document.getElementById("p-img").src =
-            product.image;
+        product.image;
 
         document.getElementById("p-name").innerText =
-            product.name;
+        product.name;
 
         document.getElementById("p-price").innerText =
-            "₹" + product.price;
+        "₹" + product.price;
 
 
 
         // SUGGESTIONS
 
         const suggestionBox =
-            document.getElementById("suggested-products");
+        document.getElementById("suggested-products");
 
-        if (suggestionBox) {
+        if(suggestionBox){
 
-            const suggestions = products.filter(
-                p =>
-                p.category !== product.category
+            const suggestions =
+            products.filter(
+                p => p.category !== product.category
             );
 
             suggestions.forEach(item => {
@@ -99,25 +102,25 @@ if (productId) {
 
 
 // ======================
-// PRODUCT QTY
+// PRODUCT QUANTITY
 // ======================
 
-function increaseQtyFromProduct() {
+function increaseQtyFromProduct(){
 
     selectedQty++;
 
     document.getElementById("p-qty").innerText =
-        selectedQty;
+    selectedQty;
 }
 
-function decreaseQtyFromProduct() {
+function decreaseQtyFromProduct(){
 
-    if (selectedQty > 1) {
+    if(selectedQty > 1){
 
         selectedQty--;
 
         document.getElementById("p-qty").innerText =
-            selectedQty;
+        selectedQty;
     }
 }
 
@@ -127,23 +130,23 @@ function decreaseQtyFromProduct() {
 // ADD TO CART
 // ======================
 
-function addToCart(id, qty = 1) {
+function addToCart(id, qty = 1){
 
     let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+    JSON.parse(localStorage.getItem("cart")) || [];
 
     const existing =
-        cart.find(item => item.id == id);
+    cart.find(item => item.id == id);
 
-    if (existing) {
+    if(existing){
 
         existing.qty += qty;
 
-    } else {
+    }else{
 
         cart.push({
-            id: id,
-            qty: qty
+            id:id,
+            qty:qty
         });
     }
 
@@ -161,7 +164,7 @@ function addToCart(id, qty = 1) {
 // ADD FROM PRODUCT PAGE
 // ======================
 
-function addToCartFromProduct() {
+function addToCartFromProduct(){
 
     addToCart(productId, selectedQty);
 }
@@ -173,15 +176,15 @@ function addToCartFromProduct() {
 // ======================
 
 const cartItems =
-    document.getElementById("cart-items");
+document.getElementById("cart-items");
 
 const totalElement =
-    document.getElementById("total");
+document.getElementById("total");
 
-if (cartItems) {
+if(cartItems){
 
     let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+    JSON.parse(localStorage.getItem("cart")) || [];
 
     let total = 0;
 
@@ -190,11 +193,11 @@ if (cartItems) {
     cart.forEach(cartItem => {
 
         const product =
-            products.find(
-                p => p.id == cartItem.id
-            );
+        products.find(
+            p => p.id == cartItem.id
+        );
 
-        if (!product) return;
+        if(!product) return;
 
         total += product.price * cartItem.qty;
 
@@ -225,7 +228,7 @@ if (cartItems) {
                 </div>
 
                 <button class="delete-btn"
-                    onclick="removeItem(${product.id})">
+                onclick="removeItem(${product.id})">
 
                     <i class="fas fa-trash"></i>
 
@@ -244,24 +247,25 @@ if (cartItems) {
 
 
 // ======================
-// CHANGE QTY
+// CHANGE QUANTITY
 // ======================
 
-function changeQty(id, change) {
+function changeQty(id, change){
 
     let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+    JSON.parse(localStorage.getItem("cart")) || [];
 
     const item =
-        cart.find(i => i.id == id);
+    cart.find(i => i.id == id);
 
-    if (!item) return;
+    if(!item) return;
 
     item.qty += change;
 
-    if (item.qty <= 0) {
+    if(item.qty <= 0){
 
-        cart = cart.filter(i => i.id != id);
+        cart =
+        cart.filter(i => i.id != id);
     }
 
     localStorage.setItem(
@@ -275,15 +279,16 @@ function changeQty(id, change) {
 
 
 // ======================
-// REMOVE ITEM
+// REMOVE PRODUCT
 // ======================
 
-function removeItem(id) {
+function removeItem(id){
 
     let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+    JSON.parse(localStorage.getItem("cart")) || [];
 
-    cart = cart.filter(item => item.id != id);
+    cart =
+    cart.filter(item => item.id != id);
 
     localStorage.setItem(
         "cart",
@@ -299,12 +304,28 @@ function removeItem(id) {
 // SHARE PRODUCT
 // ======================
 
-function shareProduct() {
+function shareProduct(){
 
-    navigator.share({
-        title: document.getElementById("p-name").innerText,
-        url: window.location.href
-    });
+    const url =
+    window.location.href;
+
+    const text =
+    "Check out this beautiful product from OBIRA ✨\n" + url;
+
+    if(navigator.share){
+
+        navigator.share({
+            title:"OBIRA",
+            text:text,
+            url:url
+        });
+
+    }else{
+
+        navigator.clipboard.writeText(url);
+
+        alert("Product link copied!");
+    }
 }
 
 
@@ -313,9 +334,9 @@ function shareProduct() {
 // WISHLIST
 // ======================
 
-function addWishlist() {
+function addWishlist(){
 
-    alert("Added to Wishlist");
+    alert("Added to Wishlist ❤️");
 }
 
 
@@ -324,46 +345,47 @@ function addWishlist() {
 // PAYMENT
 // ======================
 
-function checkout() {
+function checkout(){
 
     let cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
+    JSON.parse(localStorage.getItem("cart")) || [];
 
     let total = 0;
 
     cart.forEach(item => {
 
         const product =
-            products.find(
-                p => p.id == item.id
-            );
+        products.find(
+            p => p.id == item.id
+        );
 
-        if (product) {
+        if(product){
 
-            total += product.price * item.qty;
+            total +=
+            product.price * item.qty;
         }
     });
 
     const options = {
 
-        key: "YOUR_RAZORPAY_KEY",
+        key:"YOUR_RAZORPAY_KEY",
 
         amount: total * 100,
 
-        currency: "INR",
+        currency:"INR",
 
-        name: "OBIRA",
+        name:"OBIRA",
 
-        description: "Order Payment",
+        description:"Order Payment",
 
-        handler: function () {
+        handler:function(){
 
             alert("Payment Successful");
         }
     };
 
     const rzp =
-        new Razorpay(options);
+    new Razorpay(options);
 
     rzp.open();
 }

@@ -1,33 +1,50 @@
 // =======================
-// SAFE CART LOAD
+// CART STORAGE (ALWAYS FRESH)
 // =======================
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+function getCart(){
+return JSON.parse(localStorage.getItem("cart")) || [];
+}
 
-// Fix old cart data (adds qty if missing)
-cart = cart.map(item => ({
-  ...item,
-  qty: item.qty || 1
-}));
+function saveCart(cart){
+localStorage.setItem("cart", JSON.stringify(cart));
+}
 
 // =======================
 // STORE PAGE
 // =======================
 function loadStore(){
+
 let container = document.getElementById("store-products");
 if(!container) return;
+
+let cart = getCart();
 
 container.innerHTML = "";
 
 products.forEach(p=>{
+
+let item = cart.find(i=>i.id===p.id);
+let qty = item ? item.qty : 0;
+
 container.innerHTML += `
 <div class="product-card">
+
 <img src="${p.image}" onclick="openProduct('${p.id}')">
+
 <h3>${p.name}</h3>
 <p class="price">₹${p.price}</p>
-<button onclick="addToCart('${p.id}')">Add to Cart</button>
+
+<div class="qty-controls">
+<button onclick="decreaseQty('${p.id}')">-</button>
+<span>${qty}</span>
+<button onclick="increaseQty('${p.id}')">+</button>
+</div>
+
 </div>
 `;
+
 });
+
 }
 
 // =======================
@@ -38,49 +55,72 @@ localStorage.setItem("selectedProduct", id);
 window.location.href="product.html";
 }
 
-function loadProduct(){
-let id = localStorage.getItem("selectedProduct");
-if(!id) return;
-
-let p = products.find(x=>x.id===id);
-if(!p) return;
-
-document.getElementById("p-name").innerText=p.name;
-document.getElementById("p-price").innerText="₹"+p.price;
-document.getElementById("p-img").src=p.image;
-}
-
 // =======================
-// ADD TO CART
+// CART FUNCTIONS
 // =======================
-function addToCart(id){
+function increaseQty(id){
 
-let existing = cart.find(item=>item.id===id);
+let cart = getCart();
 
-if(existing){
-existing.qty++;
+let item = cart.find(i=>i.id===id);
+
+if(item){
+item.qty++;
 }else{
 let p = products.find(x=>x.id===id);
 cart.push({...p, qty:1});
 }
 
-localStorage.setItem("cart", JSON.stringify(cart));
-alert("Added to cart");
+saveCart(cart);
+loadStore();
+loadCart();
+}
 
+function decreaseQty(id){
+
+let cart = getCart();
+
+let item = cart.find(i=>i.id===id);
+
+if(!item) return;
+
+if(item.qty > 1){
+item.qty--;
+}else{
+cart = cart.filter(i=>i.id!==id);
+}
+
+saveCart(cart);
+loadStore();
+loadCart();
+}
+
+function removeItem(id){
+
+let cart = getCart();
+cart = cart.filter(i=>i.id!==id);
+
+saveCart(cart);
+loadStore();
+loadCart();
 }
 
 // =======================
-// LOAD CART
+// LOAD CART PAGE (FIXED)
 // =======================
 function loadCart(){
 
-let container=document.getElementById("cart-items");
+let container = document.getElementById("cart-items");
 if(!container) return;
 
-container.innerHTML="";
-let total=0;
+let cart = getCart();
+
+container.innerHTML = "";
+
+let total = 0;
 
 cart.forEach(item=>{
+
 total += item.price * item.qty;
 
 container.innerHTML += `
@@ -98,44 +138,17 @@ container.innerHTML += `
 <button onclick="increaseQty('${item.id}')">+</button>
 </div>
 
-<button class="remove-btn" onclick="removeItem('${item.id}')">Remove</button>
+<button class="remove-btn" onclick="removeItem('${item.id}')">🗑</button>
 
 </div>
 
 </div>
 `;
+
 });
 
 document.getElementById("total").innerText = total;
 
-// save updated cart
-localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-// =======================
-// CART ACTIONS
-// =======================
-function increaseQty(id){
-let item=cart.find(i=>i.id===id);
-item.qty++;
-loadCart();
-}
-
-function decreaseQty(id){
-let item=cart.find(i=>i.id===id);
-
-if(item.qty>1){
-item.qty--;
-}else{
-cart = cart.filter(i=>i.id!==id);
-}
-
-loadCart();
-}
-
-function removeItem(id){
-cart = cart.filter(i=>i.id!==id);
-loadCart();
 }
 
 // =======================
@@ -143,16 +156,18 @@ loadCart();
 // =======================
 function checkout(){
 
-let total=cart.reduce((sum,item)=>sum+(item.price*item.qty),0);
+let cart = getCart();
 
-if(total===0){
+let total = cart.reduce((sum,item)=> sum + item.price * item.qty, 0);
+
+if(total === 0){
 alert("Cart is empty");
 return;
 }
 
-var options={
+var options = {
 "key":"rzp_test_SljBi0Hjg0lqGY",
-"amount":total*100,
+"amount": total * 100,
 "currency":"INR",
 "name":"OBIRA",
 "description":"Order Payment",
@@ -162,15 +177,14 @@ window.location.href="success.html";
 }
 };
 
-var rzp=new Razorpay(options);
+var rzp = new Razorpay(options);
 rzp.open();
 }
 
 // =======================
-// INIT (IMPORTANT)
+// INIT
 // =======================
 window.onload = function(){
 loadStore();
-loadProduct();
 loadCart();
 };

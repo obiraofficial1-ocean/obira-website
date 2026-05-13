@@ -201,12 +201,11 @@ function loadCart() {
   if (cart.length === 0) {
     container.innerHTML = `
       <div style="text-align:center; padding: 40px 20px;">
-        <p>Your cart is empty</p>
-        <a href="store.html" class="link-btn">Continue Shopping</a>
+        <p style="font-size: 18px; color: #666;">Your cart is empty</p>
+        <a href="store.html" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #111; color: #fff; text-decoration: none; border-radius: 8px;">Continue Shopping</a>
       </div>
     `;
-    const totalEl = document.getElementById("total");
-    if (totalEl) totalEl.innerText = "0";
+    document.getElementById("total").innerText = "0";
     return;
   }
 
@@ -221,7 +220,7 @@ function loadCart() {
         <img src="${item.image}" alt="${item.name}">
 
         <div class="cart-info">
-          <p class="item-name">${item.name}</p>
+          <p class="item-name"><strong>${item.name}</strong></p>
           <p class="item-price">₹${item.price}</p>
 
           <div class="qty-controls">
@@ -244,6 +243,7 @@ function loadCart() {
   const totalEl = document.getElementById("total");
   if (totalEl) totalEl.innerText = finalTotal;
 
+  // Update summary
   const summary = document.getElementById("cart-summary");
   if (summary) {
     summary.innerHTML = `
@@ -260,8 +260,8 @@ function loadCart() {
         <span>${shipping === 0 ? 'FREE' : '₹' + shipping}</span>
       </div>
       <div class="summary-row total">
-        <span>Total:</span>
-        <span>₹${finalTotal}</span>
+        <span><strong>Total:</strong></span>
+        <span><strong>₹${finalTotal}</strong></span>
       </div>
     `;
   }
@@ -522,6 +522,7 @@ window.addEventListener('load', function () {
   loadCart();
   updateCartBadge();
 
+  // Load Razorpay script
   const script = document.createElement('script');
   script.src = 'https://checkout.razorpay.com/v1/checkout.js';
   document.body.appendChild(script);

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmation - OBIRA</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="logo.png" alt="OBIRA">
+    </div>
+    <nav class="nav">
+      <a href="index.html"><i class="fa fa-home"></i> Home</a>
+      <a href="store.html"><i class="fa fa-store"></i> Store</a>
+      <a href="wishlist.html" id="wishlist-link">
+        <i class="fa fa-heart"></i>
+        Favourites
+        <span id="wishlist-badge" class="wishlist-badge">0</span>
+      </a>
+      <a href="cart.html"><i class="fa fa-shopping-cart cart-icon"></i> Cart <span id="cart-badge">0</span></a>
+    </nav>
+  </header>
+
+  <!-- ORDER CONFIRMATION -->
+  <section id="confirmation-container"></section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h3>OBIRA</h3>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/obira.official?igsh=MXU2YmJlZ29razZkag==" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/share/1CZx4pnAAb/" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.youtube.com/@OBIRA.OFFICIAL1" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://pin.it/7GoYisUBN" target="_blank"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>Email: obiraofficial1@gmail.com</p>
+        <p>Phone: +91 8792957799</p>
+      </div>
+      <div>
+        <h3>Help</h3>
+        <ul>
+          <li><a href="policy.html">•Store Policy</a></li>
+          <li><a href="privacy.html">•Privacy Policy</a></li>
+          <li><a href="track.html">•Track Order</a></li>
+          <li><a href="no-returns.html">•No Returns Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div id="notification" class="notification"></div>
+
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+  <script>
+    function loadOrderConfirmation() {
+      const container = document.getElementById('confirmation-container');
+      const paymentId = sessionStorage.getItem('paymentId');
+      const shippingDetails = JSON.parse(localStorage.getItem('shippingDetails') || '{}');
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      
+      if (!paymentId || cart.length === 0) {
+        container.innerHTML = "<p>No order information found. <a href='index.html'>Back to Home</a></p>";
+        return;
+      }
+      
+      // Calculate totals
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const tax = Math.round(subtotal * 5 / 100);
+      const shipping = 50;
+      const finalTotal = subtotal + tax + shipping;
+      
+      // Generate order ID
+      const orderId = 'ORD' + Date.now();
+      
+      // Build order items HTML
+      let orderItemsHTML = '';
+      cart.forEach(item => {
+        orderItemsHTML += `
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee;">
+            <div style="flex: 1;">
+              <p style="margin: 0; font-weight: 600;">${item.name}</p>
+              <p style="margin: 5px 0 0 0; color: #666; font-size: 0.9em;">Qty: ${item.qty}</p>
+            </div>
+            <p style="margin: 0; font-weight: 600;">₹${item.price * item.qty}</p>
+          </div>
+        `;
+      });
+      
+      container.innerHTML = `
+        <div style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+          
+          <!-- Success Header -->
+          <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #111 0%, #333 100%); border-radius: 15px; margin-bottom: 30px; color: white;">
+            <div style="font-size: 70px; margin-bottom: 20px;">✓</div>
+            <h1 style="margin: 0 0 10px 0; font-size: 2.5em; color: white;">Payment Successful!</h1>
+            <p style="margin: 10px 0; font-size: 1.1em; color: #ddd;">Your Order is Confirmed</p>
+            <p style="margin: 20px 0 0 0; font-size: 0.95em; color: #bbb;">Thank you for choosing OBIRA</p>
+          </div>
+
+          <!-- Order Details Card -->
+          <div style="background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 30px; margin-bottom: 30px;">
+            
+            <!-- Order ID and Payment ID -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 2px solid #f0f0f0;">
+              <div>
+                <p style="margin: 0 0 8px 0; color: #666; font-size: 0.9em;">Order ID</p>
+                <p style="margin: 0; font-weight: bold; font-size: 1.1em; color: #111;">${orderId}</p>
+              </div>
+              <div>
+                <p style="margin: 0 0 8px 0; color: #666; font-size: 0.9em;">Payment ID</p>
+                <p style="margin: 0; font-weight: bold; font-size: 1.1em; color: #111;">${paymentId}</p>
+              </div>
+            </div>
+
+            <!-- Order Items -->
+            <h3 style="margin: 0 0 20px 0; font-size: 1.2em;">Order Items</h3>
+            <div style="margin-bottom: 30px;">
+              ${orderItemsHTML}
+            </div>
+
+            <!-- Price Breakdown -->
+            <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span>Subtotal:</span>
+                <span style="font-weight: 600;">₹${subtotal}</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span>Tax (5%):</span>
+                <span style="font-weight: 600;">₹${tax}</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+                <span>Shipping:</span>
+                <span style="font-weight: 600;">₹${shipping}</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 1.2em;">
+                <span style="font-weight: bold;">Total Amount:</span>
+                <span style="font-weight: bold; color: #111;">₹${finalTotal}</span>
+              </div>
+            </div>
+
+            <!-- Shipping Address -->
+            <h3 style="margin: 30px 0 20px 0; font-size: 1.2em;">Shipping Address</h3>
+            <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #111;">
+              <p style="margin: 0 0 8px 0;"><strong>${shippingDetails.fullName || 'N/A'}</strong></p>
+              <p style="margin: 0 0 8px 0; color: #666;">${shippingDetails.address1 || 'N/A'}</p>
+              <p style="margin: 0 0 8px 0; color: #666;">${shippingDetails.address2 ? shippingDetails.address2 + ', ' : ''}${shippingDetails.city || 'N/A'}</p>
+              <p style="margin: 0 0 8px 0; color: #666;">${shippingDetails.state || 'N/A'} - ${shippingDetails.postalCode || 'N/A'}</p>
+              <p style="margin: 0 0 15px 0; color: #666;">${shippingDetails.country || 'India'}</p>
+              <p style="margin: 0; color: #666;">
+                <i class="fa fa-phone"></i> ${shippingDetails.phone || 'N/A'}<br>
+                <i class="fa fa-envelope"></i> ${shippingDetails.email || 'N/A'}
+              </p>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div style="background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%); border-radius: 10px; padding: 40px 30px; text-align: center; margin-bottom: 30px;">
+            <h2 style="margin: 0 0 20px 0; font-size: 1.8em; color: #111;">Your Journey Begins! ✨</h2>
+            <p style="margin: 0 0 15px 0; font-size: 1.1em; color: #333; line-height: 1.6;">
+              We're crafting your OBIRA collection with love and care. Your accessories are being prepared to amplify your elegance and style.
+            </p>
+            <p style="margin: 15px 0; font-size: 1em; color: #666;">
+              Expected delivery within <strong>5-7 business days</strong>. We'll keep you updated every step of the way! 📦
+            </p>
+            <p style="margin: 20px 0 0 0; font-style: italic; color: #888; font-size: 0.95em;">
+              "Your world—amplified, beautifully." — <strong>OBIRA</strong>
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 40px;">
+            <a href="track.html" style="padding: 14px; background: #111; color: white; text-decoration: none; border-radius: 8px; text-align: center; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.background='#333'" onmouseout="this.style.background='#111'">
+              <i class="fa fa-tracking"></i> Track Order
+            </a>
+            <a href="index.html" style="padding: 14px; background: #f0f0f0; color: #111; text-decoration: none; border-radius: 8px; text-align: center; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.background='#ddd'" onmouseout="this.style.background='#f0f0f0'">
+              <i class="fa fa-home"></i> Back to Home
+            </a>
+          </div>
+
+          <!-- Support Info -->
+          <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+            <p style="margin: 0; color: #856404;">
+              <strong>Need Help?</strong> Contact us at <strong>obiraofficial1@gmail.com</strong> or call <strong>+91 8792957799</strong>. We're here to help! 💌
+            </p>
+          </div>
+
+        </div>
+      `;
+      
+      // Clear cart and session
+      localStorage.removeItem('cart');
+      sessionStorage.removeItem('paymentId');
+    }
+
+    window.addEventListener('load', loadOrderConfirmation);
+  </script>
+</body>
+</html>

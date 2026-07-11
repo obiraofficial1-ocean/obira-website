@@ -52,6 +52,7 @@ function showNotification(message) {
   if (!notification) {
     notification = document.createElement("div");
     notification.id = "notification";
+    notification.classList.add("notification");
     document.body.appendChild(notification);
   }
   notification.textContent = message;
@@ -391,6 +392,9 @@ function checkout() {
   const tax = Math.round(subtotal * TAX_PERCENTAGE / 100);
   const finalTotal = subtotal + tax + SHIPPING_COST;
   
+  // Save cart to session before payment
+  sessionStorage.setItem("orderCart", JSON.stringify(cart));
+  
   // Razorpay Options
   const options = {
     key: RAZORPAY_KEY,
@@ -399,10 +403,12 @@ function checkout() {
     name: "OBIRA",
     description: "Accessory Purchase",
     handler: function (response) {
-      localStorage.removeItem("cart");
+      // Save payment ID to session
       sessionStorage.setItem("paymentId", response.razorpay_payment_id);
-      updateCartBadge();
-      window.location.href = "success.html";
+      // Keep cart in session for confirmation page
+      sessionStorage.setItem("orderCart", JSON.stringify(cart));
+      // Redirect to shipping details page
+      window.location.href = "shipping-details.html";
     },
     prefill: {
       name: "",
@@ -424,7 +430,7 @@ function checkout() {
 }
 
 // =======================
-// SUCCESS PAGE
+// SUCCESS PAGE (DEPRECATED - Replaced by Order Confirmation)
 // =======================
 function loadSuccess() {
   const container = document.getElementById("success-container");

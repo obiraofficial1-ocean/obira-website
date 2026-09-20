@@ -8,6 +8,27 @@ const SHIPPING_COST = 50;
 // =======================
 // STORAGE HELPERS
 // =======================
+function normalizeWishlist(rawWishlist) {
+  if (!Array.isArray(rawWishlist)) return [];
+
+  const seen = new Set();
+  const sanitized = [];
+
+  rawWishlist.forEach((item) => {
+    if (!item || typeof item !== 'object' || !item.id) return;
+
+    const product = products.find(p => p.id === item.id);
+    if (!product) return;
+
+    if (seen.has(product.id)) return;
+
+    seen.add(product.id);
+    sanitized.push(product);
+  });
+
+  return sanitized;
+}
+
 function getCart() {
   try {
     return JSON.parse(localStorage.getItem("cart")) || [];
@@ -28,7 +49,15 @@ function saveCart(cart) {
 
 function getWishlist() {
   try {
-    return JSON.parse(localStorage.getItem("wishlist")) || [];
+    const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const sanitizedWishlist = normalizeWishlist(storedWishlist);
+
+    if (sanitizedWishlist.length !== storedWishlist.length) {
+      localStorage.setItem("wishlist", JSON.stringify(sanitizedWishlist));
+      updateWishlistBadge();
+    }
+
+    return sanitizedWishlist;
   } catch (e) {
     console.error("Error parsing wishlist:", e);
     return [];
@@ -37,7 +66,8 @@ function getWishlist() {
 
 function saveWishlist(wishlist) {
   try {
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    const sanitizedWishlist = normalizeWishlist(wishlist);
+    localStorage.setItem("wishlist", JSON.stringify(sanitizedWishlist));
     updateWishlistBadge();
   } catch (e) {
     console.error("Error saving wishlist:", e);

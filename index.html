@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OBIRA</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Icons -->
+  <link rel="stylesheet" href="marketing.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <!-- HEADER -->
   <header class="header">
     <div class="logo">
       <img src="logo.png" alt="OBIRA">
@@ -25,56 +24,108 @@
       <a href="cart.html"><i class="fa fa-shopping-cart cart-icon"></i> Cart <span id="cart-badge">0</span></a>
     </nav>
   </header>
-  <!-- HERO -->
-  <section class="hero">
+
+  <section class="showcase-intro">
+    <div class="brand-profile">
+      <img src="logo.png" alt="OBIRA profile">
+      <h1>OBIRA</h1>
+      <p>Style meets everyday sparkle</p>
+    </div>
+
+    <div class="story-review-slider" aria-live="polite">
+      <div class="story-review-slide active">
+        <h2>Our Story</h2>
+        <p>OBIRA began with a simple idea: make elegant accessories feel personal, affordable, and wearable every day. Every piece is designed to help you define your moment beautifully.</p>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="story-review-slide">
+        <h2>How It Feels</h2>
+        <p>From everyday charm to statement styling, OBIRA layers gold tones, soft rose details, and polished silhouettes together so your look feels elevated without being heavy.</p>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="story-review-slide">
+        <h2>Customer Love</h2>
+        <p>“My bracelet set looks premium and fits my style perfectly. I paired it with a chain and it instantly felt complete.” — Ananya</p>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="slider-controls">
+        <button class="slider-dot active" aria-label="Slide 1"></button>
+        <button class="slider-dot" aria-label="Slide 2"></button>
+        <button class="slider-dot" aria-label="Slide 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <div style="text-align:center; margin-top:0.25rem;">
+    <a class="home-jump" href="#hero">Explore the Edit</a>
+  </div>
+
+  <section id="hero" class="hero">
     <div class="hero-slide">
-      <img src="images/Hero-I1.jpg">
+      <img src="images/Hero-I1.jpg" alt="OBIRA bracelet collection">
       <div class="hero-text">
         <h1>OBIRA Bracelets</h1>
-        <p>The Wrist Edit — ₹999 onwards</p>
+        <p>The Wrist Edit — from ₹999</p>
       </div>
     </div>
     <div class="hero-slide">
-      <img src="images/Hero-I2.jpg">
+      <img src="images/Hero-I2.jpg" alt="OBIRA accessories">
       <div class="hero-text">
         <h1>Elegant Essentials</h1>
         <p>Gold | Rose Gold | Silver</p>
       </div>
     </div>
     <div class="hero-slide">
-      <img src="images/Hero-I3.jpg">
+      <img src="images/Hero-I3.jpg" alt="OBIRA styling">
       <div class="hero-text">
         <h1>Your World, Amplified</h1>
         <p>Minimal • Modern • Timeless</p>
       </div>
     </div>
   </section>
-  <!-- FEATURES -->
+
   <section class="features">
     <div>Secure Payments</div>
     <div>Assured Quality</div>
     <div>Made in India</div>
     <div>Timely Delivery</div>
   </section>
-  <!-- CATEGORIES -->
+
   <section class="categories">
     <h2>Trending Categories</h2>
     <div class="category-grid">
       <div onclick="location.href='store.html'">
-        <img src="images/Bracelets-ALB-001.jpg">
+        <img src="images/Bracelets-ALB-001.jpg" alt="Bracelets">
         <p>Bracelets — The Wrist Edit</p>
       </div>
       <div onclick="location.href='store.html'">
-        <img src="images/Necklace-Chain-BH-011.jpg">
+        <img src="images/Necklace-Chain-BH-011.jpg" alt="Chains">
         <p>The Chain Edit</p>
       </div>
       <div onclick="location.href='store.html'">
-        <img src="images/Clip-LPB-001.jpg">
+        <img src="images/Clip-LPB-001.jpg" alt="Hair clips">
         <p>The Signature Clip</p>
       </div>
     </div>
   </section>
-  <!-- BRAND STORY -->
+
+  <section class="coupon-wheel-card">
+    <div>
+      <h2>Spin & save</h2>
+      <p>Win a small, thoughtful discount on your next OBIRA look. Try your luck for a little extra joy.</p>
+      <div class="coupon-box">
+        <input id="coupon-code" placeholder="Enter a coupon code" />
+        <button onclick="applyCoupon()">Apply</button>
+      </div>
+      <div id="coupon-message" data-coupon-label>Try the wheel or enter a coupon.</div>
+    </div>
+    <div class="wheel-wrap">
+      <div id="coupon-wheel" class="wheel"><span>SPIN</span></div>
+      <button class="wheel-button" onclick="spinCouponWheel()">Spin for discount</button>
+      <div id="coupon-result" class="coupon-result"></div>
+    </div>
+  </section>
+
   <section class="about">
     <h2>Our OBIRA Story</h2>
     <p>
@@ -86,16 +137,16 @@
       Welcome to OBIRA.</em>
     </p>
   </section>
-  <!-- REVIEWS -->
+
   <section class="reviews">
     <h2>Customer Love</h2>
     <div class="review-grid">
-      <div>⭐⭐⭐⭐⭐  <p>Absolutely love the quality!</p></div>
-      <div>⭐⭐⭐⭐⭐  <p>Looks premium and elegant.</p></div>
-      <div>⭐⭐⭐⭐☆  <p>Perfect for daily wear.</p></div>
+      <div>⭐⭐⭐⭐⭐ <p>Absolutely love the quality!</p></div>
+      <div>⭐⭐⭐⭐⭐ <p>Looks premium and elegant.</p></div>
+      <div>⭐⭐⭐⭐☆ <p>Perfect for daily wear.</p></div>
     </div>
   </section>
-  <!-- FOOTER -->
+
   <footer class="footer">
     <div class="footer-grid">
       <div>
@@ -115,13 +166,18 @@
       <div>
         <h3>Help</h3>
         <ul>
-          <li><a href="policy.html">•Store Policy</a></li>
-          <li><a href="privacy.html">•Privacy Policy</a></li>
-          <li><a href="track.html">•Track Order</a></li>
-          <li><a href="no-returns.html">•No Returns Policy</a></li>
+          <li><a href="policy.html">• Store Policy</a></li>
+          <li><a href="privacy.html">• Privacy Policy</a></li>
+          <li><a href="track.html">• Track Order</a></li>
+          <li><a href="no-returns.html">• No Returns Policy</a></li>
         </ul>
       </div>
     </div>
   </footer>
+
+  <div id="notification"></div>
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+  <script src="marketing.js"></script>
 </body>
 </html>

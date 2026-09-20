@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OBIRA Store</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="marketing.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="products.js"></script>
+  <script src="marketing.js"></script>
   <script src="script.js"></script>
 </head>
 <body>
-  <!-- HEADER (shared) -->
   <header class="header">
-    <div class="logo">
-      <img src="logo.png" alt="OBIRA">
-    </div>
+    <div class="logo"><img src="logo.png" alt="OBIRA"></div>
     <nav class="nav">
       <a href="index.html"><i class="fa fa-home"></i> Home</a>
       <a href="store.html"><i class="fa fa-store"></i> Store</a>
@@ -21,13 +21,21 @@
       <a href="cart.html"><i class="fa fa-shopping-cart cart-icon"></i> Cart <span id="cart-badge">0</span></a>
     </nav>
   </header>
-  <section>
-    <h1>Shop All Accessories</h1>
+
+  <main>
+    <div class="page-header">
+      <h1 class="page-title">Shop the OBIRA Edit</h1>
+      <p class="page-subtitle">Bracelets, chains, clips and everyday details — now with a launch saving on every product.</p>
+      <span class="discount-badge">8% launch saving shown on every product</span>
+    </div>
     <div id="store-products"></div>
-  </section>
+  </main>
+
   <div id="notification"></div>
   <script>
-    // loadStore() auto-renders grid with clickable cards
+    window.addEventListener('load', function () {
+      if (typeof loadStore === 'function') loadStore();
+    });
   </script>
 </body>
 </html>

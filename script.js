@@ -15,15 +15,26 @@ function normalizeWishlist(rawWishlist) {
   const sanitized = [];
 
   rawWishlist.forEach((item) => {
-    if (!item || typeof item !== 'object' || !item.id) return;
+    if (!item || typeof item !== 'object') return;
 
-    const product = products.find(p => p.id === item.id);
+    const candidateId = item.id;
+    if (candidateId === undefined || candidateId === null || candidateId === '') return;
+
+    const product = products.find(p => String(p.id) === String(candidateId));
     if (!product) return;
 
-    if (seen.has(product.id)) return;
+    const productId = String(product.id);
+    if (seen.has(productId)) return;
 
-    seen.add(product.id);
-    sanitized.push(product);
+    seen.add(productId);
+    sanitized.push({
+      ...product,
+      id: product.id,
+      name: product.name || 'Unnamed Product',
+      price: Number(product.price) || 0,
+      image: product.image || '',
+      category: product.category || 'general'
+    });
   });
 
   return sanitized;
@@ -264,6 +275,8 @@ function loadWishlist() {
   let html = "<div class='wishlist-grid'>";
   
   wishlist.forEach(product => {
+    if (!product || !product.id || !product.name) return;
+
     const cart = getCart();
     const cartItem = cart.find(i => i.id === product.id);
     const qty = cartItem ? cartItem.qty : 0;
@@ -288,14 +301,18 @@ function loadWishlist() {
 }
 
 function removeFromWishlist(id) {
+  if (!id) return;
+
   const wishlist = getWishlist();
-  const index = wishlist.findIndex(w => w.id === id);
-  if (index !== -1) {
-    wishlist.splice(index, 1);
-    saveWishlist(wishlist);
-    loadWishlist();
-    showNotification("Removed from wishlist");
+  const updatedWishlist = wishlist.filter(w => String(w.id) !== String(id));
+
+  if (updatedWishlist.length === wishlist.length) {
+    return;
   }
+
+  saveWishlist(updatedWishlist);
+  loadWishlist();
+  showNotification("Removed from wishlist");
 }
 
 // =======================
@@ -303,12 +320,13 @@ function removeFromWishlist(id) {
 // =======================
 function toggleWishlist(id, event) {
   if (event) event.stopPropagation();
+  if (!id) return;
   
   const wishlist = getWishlist();
-  const index = wishlist.findIndex(w => w.id === id);
+  const index = wishlist.findIndex(w => String(w.id) === String(id));
   
   if (index === -1) {
-    const product = products.find(p => p.id === id);
+    const product = products.find(p => String(p.id) === String(id));
     if (product) {
       wishlist.push(product);
       showNotification("Added to wishlist! ♥");

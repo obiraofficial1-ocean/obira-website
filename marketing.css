@@ -1,0 +1,41 @@
+/* OBIRA showcase enhancements */
+.showcase-intro { width:min(1100px,calc(100% - 2rem)); margin:2rem auto 1rem; display:grid; grid-template-columns:minmax(220px,.75fr) minmax(0,1.5fr); gap:2rem; align-items:center; padding:2rem; border:1px solid var(--line); border-radius:28px; background:linear-gradient(135deg,#fff,#f9edf3); box-shadow:var(--shadow); }
+.brand-profile { display:grid; place-items:center; text-align:center; }
+.brand-profile img { width:150px; height:150px; object-fit:contain; border-radius:50%; padding:14px; background:#fff; border:8px solid #fbe4ee; box-shadow:var(--shadow-strong); margin:0 auto 1rem; }
+.brand-profile h1 { margin:0; font-size:clamp(2rem,4vw,3rem); letter-spacing:-.06em; }
+.brand-profile p { margin:.35rem 0 0; color:var(--accent-strong); font-weight:800; }
+.story-review-slider { position:relative; min-height:190px; overflow:hidden; }
+.story-review-slide { display:none; animation:obiraFade .45s ease; }
+.story-review-slide.active { display:block; }
+.story-review-slide h2 { margin:0 0 .7rem; font-size:clamp(1.45rem,2.5vw,2rem); letter-spacing:-.04em; }
+.story-review-slide p { margin:0; color:var(--muted); max-width:650px; }
+.story-review-slide .stars { margin-top:1rem; color:#d69a24; letter-spacing:.15em; }
+.slider-controls { display:flex; gap:.5rem; margin-top:1.3rem; }
+.slider-dot { width:9px; height:9px; padding:0; border:0; border-radius:50%; background:#dfc6d0; cursor:pointer; }
+.slider-dot.active { background:var(--accent-strong); transform:scale(1.2); }
+.hero { scroll-margin-top:100px; }
+.home-jump { display:inline-flex; margin:1rem auto 0; padding:.8rem 1.2rem; border-radius:999px; background:#111; color:#fff; font-weight:800; }
+.pairing-panel { margin-top:1.2rem; padding:1rem; border:1px solid var(--line); border-radius:18px; background:#fff9fb; }
+.pairing-panel h3 { margin:0 0 .8rem; font-size:1rem; }
+.pair-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem; }
+.pair-option { display:grid; grid-template-columns:58px minmax(0,1fr); gap:.65rem; align-items:center; padding:.55rem; border:1px solid var(--line); border-radius:13px; background:#fff; text-align:left; cursor:pointer; }
+.pair-option:hover { border-color:var(--accent); transform:translateY(-1px); }
+.pair-option img { width:58px; height:58px; border-radius:10px; object-fit:cover; }
+.pair-option strong { display:block; font-size:.78rem; line-height:1.3; }
+.pair-option small { color:var(--muted); }
+.price-stack { display:flex; flex-wrap:wrap; gap:.55rem; align-items:baseline; }
+.price-stack .original-price { color:#888; text-decoration:line-through; font-size:.88rem; }
+.discount-badge { display:inline-flex; width:max-content; padding:.25rem .5rem; border-radius:999px; background:#e5f7ef; color:#08734f; font-size:.72rem; font-weight:800; }
+.coupon-wheel-card { width:min(1100px,calc(100% - 2rem)); margin:2rem auto; display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; align-items:center; padding:1.5rem; border-radius:24px; background:#111; color:#fff; box-shadow:var(--shadow-strong); }
+.coupon-wheel-card h2 { margin:0 0 .5rem; letter-spacing:-.04em; }
+.coupon-wheel-card p { color:rgba(255,255,255,.75); }
+.wheel-wrap { display:grid; place-items:center; gap:.8rem; }
+.wheel { width:190px; height:190px; display:grid; place-items:center; border:10px solid #fff; border-radius:50%; background:conic-gradient(#d7709b 0 25%,#f1c5d7 25% 50%,#b8537f 50% 75%,#f7dfeb 75% 100%); box-shadow:0 10px 30px rgba(0,0,0,.25); transition:transform 2.2s cubic-bezier(.15,.8,.2,1); }
+.wheel span { width:70px; height:70px; display:grid; place-items:center; border-radius:50%; background:#111; color:#fff; font-weight:800; font-size:.8rem; text-align:center; }
+.wheel-button { padding:.8rem 1.2rem; border:0; border-radius:999px; background:#fff; color:#111; font-weight:800; cursor:pointer; }
+.coupon-result { min-height:1.4rem; color:#ffd4e4; font-weight:800; }
+.coupon-box { display:flex; gap:.6rem; margin:1rem 0; }
+.coupon-box input { min-width:0; flex:1; padding:.75rem; border:1px solid var(--line); border-radius:10px; }
+.coupon-box button { padding:.75rem 1rem; border:0; border-radius:10px; background:#111; color:#fff; font-weight:800; cursor:pointer; }
+@keyframes obiraFade { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+@media(max-width:720px){ .showcase-intro,.coupon-wheel-card { grid-template-columns:1fr; padding:1.25rem; } .story-review-slider { min-height:230px; } .pair-options { grid-template-columns:1fr; } }
